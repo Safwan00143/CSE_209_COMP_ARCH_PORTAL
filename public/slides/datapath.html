@@ -170,6 +170,22 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .inp { background: #1b1f24; border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 12px; font-family: "JetBrains Mono", Consolas, monospace; font-size: 18px; color: var(--ink); }
 .bitcell { font-family: "JetBrains Mono", Consolas, monospace; }
 
+/* exam relevance badge */
+.exam { position: absolute; right: 110px; top: 50px; z-index: 25; font-family: Inter, sans-serif; font-size: 17px; }
+.exb { all: unset; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; padding: 6px 15px; border-radius: 999px; border: 1.5px solid; letter-spacing: .01em; white-space: nowrap; }
+.ex-core .exb { background: #2f2710; border-color: #e8b23a; color: #f4d35e; font-weight: 600; }
+.ex-some .exb { border-color: #59626d; color: #cfd3d8; }
+.ex-glance .exb { border-color: #2c3138; color: #7d848d; }
+.exb .yrs { font-weight: 500; } .exb .more { opacity: .7; font-weight: 500; }
+.exp { display: none; position: absolute; right: 0; top: 46px; width: 540px; background: #15181c; border: 1.5px solid #3a3f47; border-radius: 14px; padding: 14px 18px; font-size: 18px; line-height: 1.5; color: #dfe3e8; box-shadow: 0 12px 34px #000a; }
+.exam.open .exp, .exam:hover .exp { display: block; }
+.exr b { color: #f4d35e; font-weight: 600; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.exn { color: #a7aeb6; margin-bottom: 6px; font-style: italic; }
+.exlegend { color: #9aa1aa; }
+.exk { display: inline-block; padding: 1px 10px; border-radius: 999px; border: 1.5px solid; font-size: .9em; }
+.exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
+.mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -244,7 +260,7 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
     if (!rd) return
     const sl = document.querySelector(".slide.active")
     if (!sl) return
-    rd.querySelector(".t").textContent = sl.dataset.title || ""
+    rd.querySelector(".t").textContent = (sl.dataset.exam === "core" ? "★ " : sl.dataset.exam === "glance" ? "Glance · " : "") + (sl.dataset.title || "")
     rd.querySelector(".n").textContent = document.querySelector("#count")?.textContent || ""
     const cap = sl.querySelector(":scope > .cap"), c = rd.querySelector(".c")
     if (cap) {
@@ -294,97 +310,142 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h1 class="ttl">The Processor:<br>Datapath and Control</h1>
   <p class="dim sub" style="max-width:1000px;margin-top:22px">How one MIPS instruction runs in a single clock cycle: building the datapath piece by piece, and the control unit that steers it.</p>
   <div class="h abs" style="left:110px;top:450px;width:1380px;height:300px"></div>
+  <p class="small abs exlegend" style="left:110px;bottom:104px"><span class="exk core">★ Exam</span> asked in past papers (sessions shown; tap for the questions) &nbsp; <span class="exk some">Asked</span> once or twice &nbsp; <span class="exk glance">Glance</span> not asked: read once</p>
   <p class="small dim abs hint" style="left:110px;bottom:60px">→ / ← step · ☰ or G: slide menu · S: speed · F: full screen · captions appear next to what they describe</p>
 </section>
-<section class="slide" data-scene="steps" data-title="Instruction execution: five steps" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · pp. 2–4">
+<section class="slide" data-scene="steps" data-title="Instruction execution: five steps" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · pp. 2–4" data-exam="some" data-examtxt="asked ’11-12">
   <div class="kicker">1 · Overview</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’11-12</span></button><div class="exp"><div class="exr"><b>2011-12</b>Purpose of the ALU for R-type, load/store and branch</div></div></div>
   <h2>What every instruction does</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="mux" data-title="Why multiplexers" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · pp. 5–6">
+<section class="slide" data-scene="mux" data-title="Why multiplexers" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · pp. 5–6" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · Overview</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>You can't just join wires</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="clock" data-title="State, logic and the clock (slider)" data-sec="2 · Logic design" data-ref="Ch. 4 Part 1 · pp. 7–11">
+<section class="slide" data-scene="clock" data-title="State, logic and the clock (slider)" data-sec="2 · Logic design" data-ref="Ch. 4 Part 1 · pp. 7–11" data-exam="some" data-examtxt="asked ’23-24">
   <div class="kicker">2 · Logic design</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24</span></button><div class="exp"><div class="exr"><b>2023-24</b>How the clock period is set in a single-cycle design</div></div></div>
   <h2>Clocking: logic between registers</h2>
   <div class="ctrls abs" style="left:1000px;top:680px;width:480px"></div>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="fetch" data-title="Instruction fetch" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 12–13">
+<section class="slide" data-scene="fetch" data-title="Instruction fetch" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 12–13" data-exam="core" data-examtxt="★ exam ’23-24">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24</span></button><div class="exp"><div class="exn">Fetch is part of every datapath you draw.</div><div class="exr"><b>2023-24</b>Why is PC incremented by 4?</div><div class="exr"><b>2023-24</b>Single memory for instructions and data?</div></div></div>
   <h2>Instruction fetch</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="formats" data-title="Instruction formats (pick one)" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 14–16, 25">
+<section class="slide" data-scene="formats" data-title="Instruction formats (pick one)" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 14–16, 25" data-exam="some" data-examtxt="asked ’22-23">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’22-23</span></button><div class="exp"><div class="exr"><b>2022-23</b>Design an M-type instruction format</div><div class="exr"><b>2022-23</b>Branch format → target address formula</div></div></div>
   <h2>The instruction word splits into fields</h2>
   <div class="ctrls abs" style="left:110px;top:160px;"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="rtype" data-title="R-format datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 15, 28">
+<section class="slide" data-scene="rtype" data-title="R-format datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 15, 28" data-exam="core" data-examtxt="★ exam ’17-18 · ’16-17 · ’13-14">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’16-17 · ’13-14</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2016-17</b>Describe the datapath for R-type</div><div class="exr"><b>2017-18</b>Datapath for add, lw, beq</div><div class="exr"><b>2013-14</b>Datapath for add, sw, beq</div><div class="exr"><b>2011-12</b>Minimal datapath for ADD, SW, JUMP</div></div></div>
   <h2>R-format: read, compute, write</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="load" data-title="Load datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 16–17, 29">
+<section class="slide" data-scene="load" data-title="Load datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 16–17, 29" data-exam="core" data-examtxt="★ exam ’20-21 · ’17-18">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’20-21 · ’17-18</span></button><div class="exp"><div class="exr"><b>2020-21</b>Active datapath and control bits for ori</div><div class="exr"><b>2017-18</b>Datapath for add, lw, beq</div></div></div>
   <h2>Load: base + offset, then memory</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="store" data-title="Store datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 16–17">
+<section class="slide" data-scene="store" data-title="Store datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 16–17" data-exam="core" data-examtxt="★ exam ’19-20 · ’13-14 · ’11-12">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’19-20 · ’13-14 · ’11-12</span></button><div class="exp"><div class="exr"><b>2019-20</b>Control signals for sw</div><div class="exr"><b>2013-14</b>Datapath for add, sw, beq</div><div class="exr"><b>2011-12</b>Minimal datapath for ADD, SW, JUMP</div></div></div>
   <h2>Store: the same address, a write</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="wires" data-title="Sign-extend and shift left 2" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 18–19">
+<section class="slide" data-scene="wires" data-title="Sign-extend and shift left 2" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 18–19" data-exam="core" data-examtxt="★ exam ’22-23 · ’16-17">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’16-17</span></button><div class="exp"><div class="exr"><b>2022-23</b>Branch target address formula</div><div class="exr"><b>2016-17</b>PC update for beq</div></div></div>
   <h2>Sign-extend and shift: only wires</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="branch" data-title="Branch datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 18–19, 30">
+<section class="slide" data-scene="branch" data-title="Branch datapath" data-sec="3 · Building the datapath" data-ref="Ch. 4 Part 1 · pp. 18–19, 30" data-exam="core" data-examtxt="★ exam ’22-23 · ’21-22 · ’14-15">
   <div class="kicker">3 · Building the datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’21-22 · ’14-15</span></button><div class="exp"><div class="exr"><b>2022-23</b>beq datapath (relevant parts only)</div><div class="exr"><b>2022-23</b>Add beq, bneq, j, jr to a partial datapath</div><div class="exr"><b>2021-22</b>Complete the datapath for beq and j</div><div class="exr"><b>2014-15</b>Control bits for beq</div></div></div>
   <h2>beq: compare, and compute the target</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="compose" data-title="Composing the full datapath" data-sec="4 · The full datapath" data-ref="Ch. 4 Part 1 · pp. 20–22, 26">
+<section class="slide" data-scene="compose" data-title="Composing the full datapath" data-sec="4 · The full datapath" data-ref="Ch. 4 Part 1 · pp. 20–22, 26" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’18-19">
   <div class="kicker">4 · The full datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’18-19</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Questions on a given full datapath</div><div class="exr"><b>2021-22</b>Complete a given incomplete datapath</div><div class="exr"><b>2018-19</b>Update a given datapath: bne, j, jr, jal, slt, lui</div><div class="exr"><b>2012-13</b>Add bne, j, jr, jal</div></div></div>
   <h2>Composing the elements</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="aluctl" data-title="ALU control" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 23–24">
+<section class="slide" data-scene="aluctl" data-title="ALU control" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 23–24" data-exam="core" data-examtxt="★ exam ’16-17">
   <div class="kicker">5 · Control</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’16-17</span></button><div class="exp"><div class="exr"><b>2016-17</b>ALU control from ALUOp and funct</div><div class="exr"><b>2016-17</b>Functions of ALUSrc, ALUOp, RegDst, MemWrite, RegWrite</div></div></div>
   <h2>ALU control: two levels of decoding</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="run" data-title="Watch an instruction run (pick one)" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 25–30">
+<section class="slide" data-scene="run" data-title="Watch an instruction run (pick one)" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 25–30" data-exam="core" data-examtxt="★ exam ’20-21 · ’19-20 · ’14-15">
   <div class="kicker">5 · Control</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’20-21 · ’19-20 · ’14-15</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2020-21</b>Control bits for ori</div><div class="exr"><b>2019-20</b>Control signals for add, sw, beq</div><div class="exr"><b>2014-15</b>Control bits for beq</div><div class="exr"><b>2012-13</b>Control values for new instructions</div></div></div>
   <h2>The main control, instruction by instruction</h2>
   <div class="ctrls abs" style="left:1180px;top:650px;width:310px"></div>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="jump" data-title="Implementing jumps" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 31–32">
+<section class="slide" data-scene="jump" data-title="Implementing jumps" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 31–32" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
   <div class="kicker">5 · Control</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Add jump to the datapath; why the upper 4 bits</div><div class="exr"><b>2022-23</b>Add j and jr</div><div class="exr"><b>2021-22</b>Complete the datapath for j</div><div class="exr"><b>2011-12</b>Datapath with JUMP</div></div></div>
   <h2>Jumps: building a 32-bit target</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="perf" data-title="Performance issues" data-sec="6 · Performance" data-ref="Ch. 4 Part 1 · p. 33">
-  <div class="kicker">6 · Performance</div>
+<section class="slide" data-scene="buildR" data-title="Build: R-type from nothing" data-sec="6 · Build it yourself" data-ref="Ch. 4 Part 1 · pp. 12–17" data-exam="core" data-examtxt="★ exam ’17-18 · ’16-17 · ’13-14">
+  <div class="kicker">6 · Build it yourself</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’16-17 · ’13-14</span><span class="more">+1</span></button><div class="exp"><div class="exn">Drawn from scratch in older papers.</div><div class="exr"><b>2017-18</b>Datapath for add, lw, beq</div><div class="exr"><b>2016-17</b>Describe the R-type datapath</div><div class="exr"><b>2013-14</b>Datapath for add, sw, beq</div><div class="exr"><b>2011-12</b>Minimal datapath for ADD, SW, JUMP</div></div></div>
+  <h2>Build the datapath for add, step by step</h2>
+  <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="buildI" data-title="Build: add lw and sw (conflicts → muxes)" data-sec="6 · Build it yourself" data-ref="Ch. 4 Part 1 · pp. 18–22" data-exam="core" data-examtxt="★ exam ’17-18 · ’13-14 · ’11-12">
+  <div class="kicker">6 · Build it yourself</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’13-14 · ’11-12</span></button><div class="exp"><div class="exr"><b>2017-18</b>Datapath for add, lw, beq</div><div class="exr"><b>2013-14</b>Datapath for add, sw, beq</div><div class="exr"><b>2011-12</b>Minimal datapath for ADD, SW, JUMP</div></div></div>
+  <h2>Add lw and sw: every conflict becomes a mux</h2>
+  <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="buildB" data-title="Given datapath: add beq and j" data-sec="6 · Build it yourself" data-ref="Ch. 4 Part 1 · pp. 20–22, 31–32" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
+  <div class="kicker">6 · Build it yourself</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span></button><div class="exp"><div class="exn">Since 2018-19 the datapath is usually given and you extend it.</div><div class="exr"><b>2023-24</b>Add jump to a given datapath</div><div class="exr"><b>2022-23</b>Add beq, bneq, j, jr with 2×1 muxes</div><div class="exr"><b>2022-23</b>beq datapath from scratch</div><div class="exr"><b>2021-22</b>Complete a given datapath for beq and j</div></div></div>
+  <h2>Extend a given datapath: beq, then j</h2>
+  <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="custom" data-title="Custom instructions (pick one)" data-sec="6 · Build it yourself" data-ref="Exam questions" data-exam="core" data-examtxt="★ exam ’22-23 · ’20-21 · ’18-19">
+  <div class="kicker">6 · Build it yourself</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’20-21 · ’18-19</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2022-23</b>beq, bneq, j, jr with 2×1 muxes</div><div class="exr"><b>2022-23</b>M-type: memory operand for add/sub</div><div class="exr"><b>2020-21</b>Active path for ori</div><div class="exr"><b>2018-19</b>bne, j, jr, jal, slt, lui</div><div class="exr"><b>2012-13</b>bne, j, jr, jal</div></div></div>
+  <h2>New instructions on the full datapath</h2>
+  <div class="ctrls abs" style="left:1180px;top:650px;width:310px"></div>
+  <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="perf" data-title="Performance issues" data-sec="7 · Performance" data-ref="Ch. 4 Part 1 · p. 33" data-exam="some" data-examtxt="asked ’23-24 · ’18-19">
+  <div class="kicker">7 · Performance</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24 · ’18-19</span></button><div class="exp"><div class="exr"><b>2018-19</b>Why single-cycle is inefficient</div><div class="exr"><b>2023-24</b>How the clock period is set</div></div></div>
   <h2>The longest delay sets the clock</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
@@ -951,7 +1012,7 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
       const sp = line.search(/\s/);
       const op = (sp < 0 ? line : line.slice(0, sp)).toLowerCase();
       const rest = sp < 0 ? "" : line.slice(sp + 1);
-      const args = rest.split(",").map((a) => a.trim()).filter(Boolean);
+      const args = rest.split(",").map((a2) => a2.trim()).filter(Boolean);
       for (const l of pending) {
         if (l in labels) throw new Error(`duplicate label ${l}`);
         labels[l] = instrs.length;
@@ -1007,9 +1068,9 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
     sc: 56
   };
   var J_OP = { j: 2, jal: 3 };
-  function memArg(a) {
-    const m = a.match(/^(-?(?:0x[0-9a-f]+|\d+))?\s*\(\s*(\$?\w+)\s*\)$/i);
-    if (!m) throw new Error(`bad memory operand ${a}`);
+  function memArg(a2) {
+    const m = a2.match(/^(-?(?:0x[0-9a-f]+|\d+))?\s*\(\s*(\$?\w+)\s*\)$/i);
+    if (!m) throw new Error(`bad memory operand ${a2}`);
     return [m[1] ? Number(m[1]) : 0, m[2]];
   }
   var imm = (s) => {
@@ -1027,10 +1088,10 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
   }
   function encode(ins, pc = 0, labels = {}) {
     const { op, args } = ins;
-    const target = (a) => {
-      if (a in labels) return labels[a];
-      const v = Number(a);
-      if (!Number.isFinite(v)) throw new Error(`unknown label ${a}`);
+    const target = (a2) => {
+      if (a2 in labels) return labels[a2];
+      const v = Number(a2);
+      if (!Number.isFinite(v)) throw new Error(`unknown label ${a2}`);
       return v;
     };
     if (op === "nop") {
@@ -1108,22 +1169,22 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
     regs[28] = 268468224;
     for (const [k, v] of Object.entries(init)) regs[regNum(k)] = v ?? 0;
     const mem = /* @__PURE__ */ new Map();
-    for (const [a, v] of Object.entries(memory)) storeWord(mem, +a, v);
+    for (const [a2, v] of Object.entries(memory)) storeWord(mem, +a2, v);
     return { regs, mem, hi: 0, lo: 0, pc: 0, steps: 0 };
   }
-  function loadByte(mem, a) {
-    return mem.get(u32(a)) ?? 0;
+  function loadByte(mem, a2) {
+    return mem.get(u32(a2)) ?? 0;
   }
-  function storeByte(mem, a, v) {
-    mem.set(u32(a), v & 255);
+  function storeByte(mem, a2, v) {
+    mem.set(u32(a2), v & 255);
   }
-  function loadWord(mem, a) {
-    if (a % 4) throw new Error(`unaligned word access at ${a}`);
-    return s32(loadByte(mem, a) << 24 | loadByte(mem, a + 1) << 16 | loadByte(mem, a + 2) << 8 | loadByte(mem, a + 3));
+  function loadWord(mem, a2) {
+    if (a2 % 4) throw new Error(`unaligned word access at ${a2}`);
+    return s32(loadByte(mem, a2) << 24 | loadByte(mem, a2 + 1) << 16 | loadByte(mem, a2 + 2) << 8 | loadByte(mem, a2 + 3));
   }
-  function storeWord(mem, a, v) {
-    if (a % 4) throw new Error(`unaligned word access at ${a}`);
-    for (let i = 0; i < 4; i++) storeByte(mem, a + i, v >>> 24 - 8 * i);
+  function storeWord(mem, a2, v) {
+    if (a2 % 4) throw new Error(`unaligned word access at ${a2}`);
+    for (let i = 0; i < 4; i++) storeByte(mem, a2 + i, v >>> 24 - 8 * i);
   }
   var RETURN = 2147483632;
   function run(prog, m, opts = {}) {
@@ -1145,16 +1206,16 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
       if (!Number.isInteger(i) || i < 0 || i > prog.instrs.length) throw new Error(`pc ${pc.toString(16)} outside the program`);
       if (++m.steps > max) throw new Error("too many steps (infinite loop?)");
       const ins = prog.instrs[i];
-      const a = ins.args;
-      const g = (k) => R[regNum(a[k])];
+      const a2 = ins.args;
+      const g = (k) => R[regNum(a2[k])];
       const set = (k, v) => {
-        const n = regNum(a[k]);
+        const n = regNum(a2[k]);
         if (n !== 0) R[n] = s32(v);
       };
       let next = pc + 4;
       const ea = (k) => {
-        const [off, b] = memArg(a[k]);
-        return s32(R[regNum(b)] + off);
+        const [off, b2] = memArg(a2[k]);
+        return s32(R[regNum(b2)] + off);
       };
       const ov = (x, y, r) => ((x ^ r) & (y ^ r)) < 0;
       switch (ins.op) {
@@ -1195,40 +1256,40 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
           set(0, u32(g(1)) < u32(g(2)) ? 1 : 0);
           break;
         case "sll":
-          set(0, g(1) << imm(a[2]));
+          set(0, g(1) << imm(a2[2]));
           break;
         case "srl":
-          set(0, g(1) >>> imm(a[2]));
+          set(0, g(1) >>> imm(a2[2]));
           break;
         case "sra":
-          set(0, g(1) >> imm(a[2]));
+          set(0, g(1) >> imm(a2[2]));
           break;
         case "addi": {
-          const r = s32(g(1) + imm(a[2]));
-          if (ov(g(1), imm(a[2]), r)) throw new Error(`overflow in ${ins.text}`);
+          const r = s32(g(1) + imm(a2[2]));
+          if (ov(g(1), imm(a2[2]), r)) throw new Error(`overflow in ${ins.text}`);
           set(0, r);
           break;
         }
         case "addiu":
-          set(0, g(1) + imm(a[2]));
+          set(0, g(1) + imm(a2[2]));
           break;
         case "andi":
-          set(0, g(1) & (imm(a[2]) & 65535));
+          set(0, g(1) & (imm(a2[2]) & 65535));
           break;
         case "ori":
-          set(0, g(1) | imm(a[2]) & 65535);
+          set(0, g(1) | imm(a2[2]) & 65535);
           break;
         case "xori":
-          set(0, g(1) ^ imm(a[2]) & 65535);
+          set(0, g(1) ^ imm(a2[2]) & 65535);
           break;
         case "slti":
-          set(0, g(1) < imm(a[2]) ? 1 : 0);
+          set(0, g(1) < imm(a2[2]) ? 1 : 0);
           break;
         case "sltiu":
-          set(0, u32(g(1)) < u32(s32(imm(a[2]))) ? 1 : 0);
+          set(0, u32(g(1)) < u32(s32(imm(a2[2]))) ? 1 : 0);
           break;
         case "lui":
-          set(0, (imm(a[1]) & 65535) << 16);
+          set(0, (imm(a2[1]) & 65535) << 16);
           break;
         case "lw":
           set(0, loadWord(m.mem, ea(1)));
@@ -1291,17 +1352,17 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
           set(0, m.hi);
           break;
         case "beq":
-          if (g(0) === g(1)) next = labelAddr(a[2]);
+          if (g(0) === g(1)) next = labelAddr(a2[2]);
           break;
         case "bne":
-          if (g(0) !== g(1)) next = labelAddr(a[2]);
+          if (g(0) !== g(1)) next = labelAddr(a2[2]);
           break;
         case "j":
-          next = labelAddr(a[0]);
+          next = labelAddr(a2[0]);
           break;
         case "jal":
           R[31] = pc + 4;
-          next = labelAddr(a[0]);
+          next = labelAddr(a2[0]);
           break;
         case "jr":
           next = g(0);
@@ -1313,19 +1374,19 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
           set(0, g(1));
           break;
         case "li":
-          set(0, imm(a[1]));
+          set(0, imm(a2[1]));
           break;
         case "blt":
-          if (g(0) < g(1)) next = labelAddr(a[2]);
+          if (g(0) < g(1)) next = labelAddr(a2[2]);
           break;
         case "bgt":
-          if (g(0) > g(1)) next = labelAddr(a[2]);
+          if (g(0) > g(1)) next = labelAddr(a2[2]);
           break;
         case "ble":
-          if (g(0) <= g(1)) next = labelAddr(a[2]);
+          if (g(0) <= g(1)) next = labelAddr(a2[2]);
           break;
         case "bge":
-          if (g(0) >= g(1)) next = labelAddr(a[2]);
+          if (g(0) >= g(1)) next = labelAddr(a2[2]);
           break;
         default:
           throw new Error(`cannot execute ${ins.op}`);
@@ -1475,10 +1536,10 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
       time++;
       const way = set.findIndex((l) => l.valid && l.tag === tag);
       const hit = way >= 0;
-      const a = { addr, write, block, index, tag, hit, after: [] };
+      const a2 = { addr, write, block, index, tag, hit, after: [] };
       const faHit = fa.includes(block);
-      if (!hit) a.missKind = !seen.has(block) ? "compulsory" : faHit ? "conflict" : "capacity";
-      fa = [block, ...fa.filter((b) => b !== block)].slice(0, capacity);
+      if (!hit) a2.missKind = !seen.has(block) ? "compulsory" : faHit ? "conflict" : "capacity";
+      fa = [block, ...fa.filter((b2) => b2 !== block)].slice(0, capacity);
       seen.add(block);
       if (hit) {
         set[way].lastUse = time;
@@ -1488,15 +1549,15 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
         if (victim < 0) {
           const key = (l) => rep === "LRU" ? l.lastUse : l.loaded;
           victim = set.reduce((best, l, i) => key(l) < key(set[best]) ? i : best, 0);
-          a.evicted = set[victim].block;
-          a.writeBack = set[victim].dirty;
+          a2.evicted = set[victim].block;
+          a2.writeBack = set[victim].dirty;
         }
         set[victim] = { valid: true, tag, block, dirty: write && cfg.write === "back", lastUse: time, loaded: time };
       }
-      a.after = sets.map((s) => s.map((l) => ({ ...l })));
-      accesses.push(a);
+      a2.after = sets.map((s) => s.map((l) => ({ ...l })));
+      accesses.push(a2);
     }
-    const hits = accesses.filter((a) => a.hit).length;
+    const hits = accesses.filter((a2) => a2.hit).length;
     return { accesses, hits, misses: accesses.length - hits, hitRate: accesses.length ? hits / accesses.length : 0, final: sets };
   }
   function splitAddress(addressBits, blockBytes, sets, wordBytes = 4) {
@@ -1553,16 +1614,16 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
     name: "1-bit",
     start,
     predict: (s) => s,
-    next: (_s, a) => a
+    next: (_s, a2) => a2
   });
   var twoBitPredictor = (start = "SN") => ({
     name: "2-bit",
     start,
     predict: (s) => s === "ST" || s === "WT" ? "T" : "N",
-    next: (s, a) => {
+    next: (s, a2) => {
       const order = ["SN", "WN", "WT", "ST"];
       const i = order.indexOf(s);
-      return order[a === "T" ? Math.min(3, i + 1) : Math.max(0, i - 1)];
+      return order[a2 === "T" ? Math.min(3, i + 1) : Math.max(0, i - 1)];
     }
   });
   function runPredictor(p, outcomes) {
@@ -1585,11 +1646,11 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
   var insOf = (s) => parse(strip(s)).instrs[0];
   function scheduleProblems(packets) {
     const out = [];
-    packets.forEach(([a, l], p) => {
-      if (a !== "nop" && isLS(opOf(a))) out.push(`packet ${p + 1}: ${strip(a)} is not an ALU/branch instruction`);
+    packets.forEach(([a2, l], p) => {
+      if (a2 !== "nop" && isLS(opOf(a2))) out.push(`packet ${p + 1}: ${strip(a2)} is not an ALU/branch instruction`);
       if (l !== "nop" && !isLS(opOf(l))) out.push(`packet ${p + 1}: ${strip(l)} is not a load/store`);
-      if (a === "nop" || l === "nop") return;
-      const wa = deps(insOf(a)).writes;
+      if (a2 === "nop" || l === "nop") return;
+      const wa = deps(insOf(a2)).writes;
       const wl = deps(insOf(l)).writes;
       if (wa !== void 0 && wa === wl) out.push(`packet ${p + 1}: both instructions write register ${wa}`);
     });
@@ -1634,10 +1695,254 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
     }
     return { machine: m, packets: issued };
   }
+  function sameResult(original, packets, n) {
+    const a2 = newMachine({ s1: 4 * n, s2: 7 });
+    const b2 = newMachine({ s1: 4 * n, s2: 7 });
+    for (let i = 1; i <= n; i++) {
+      storeWord(a2.mem, 4 * i, 100 + i);
+      storeWord(b2.mem, 4 * i, 100 + i);
+    }
+    run(parse(original), a2);
+    runPackets(packets, b2);
+    for (let i = 1; i <= n; i++) if (loadWord(a2.mem, 4 * i) !== loadWord(b2.mem, 4 * i)) return `element ${i}: schedule gives ${loadWord(b2.mem, 4 * i)}, original ${loadWord(a2.mem, 4 * i)}`;
+    if (a2.regs[17] !== b2.regs[17]) return `$s1 ends at ${b2.regs[17]}, original ${a2.regs[17]}`;
+    return null;
+  }
   function ipc(packets) {
     const real = packets.flat().filter((s) => s !== "nop").length;
     return { instructions: real, cycles: packets.length, ipc: real / packets.length };
   }
+  function scheduleTable(packets) {
+    const code = (s) => s === "nop" ? "nop" : `\`${strip(s)}\``;
+    return [
+      "| Cycle | Label | ALU/branch | Load/store |",
+      "|---|---|---|---|",
+      ...packets.map((pk, i) => `| ${i + 1} | ${pk.map(labelOf).find(Boolean) ?? ""} | ${code(pk[0])} | ${code(pk[1])} |`)
+    ].join("\n");
+  }
+
+  // website/src/content/md.ts
+  var md = (s, ...v) => String.raw(s, ...v).replace(/\\`/g, "`");
+
+  // website/src/content/notes/multiple-issue.ts
+  var LOOP = `Loop: lw   $t0, 0($s1)      # $t0 = array element
+      addu $t0, $t0, $s2    # add scalar in $s2
+      sw   $t0, 0($s1)      # store result
+      addi $s1, $s1, -4     # decrement pointer
+      bne  $s1, $zero, Loop # branch if $s1 != 0`;
+  var SCHED = [
+    ["nop", "Loop: lw $t0, 0($s1)"],
+    ["addi $s1, $s1, -4", "nop"],
+    ["addu $t0, $t0, $s2", "nop"],
+    ["bne $s1, $zero, Loop", "sw $t0, 4($s1)"]
+  ];
+  var UNROLLED = [
+    ["Loop: addi $s1, $s1, -16", "lw $t0, 0($s1)"],
+    ["nop", "lw $t1, 12($s1)"],
+    ["addu $t0, $t0, $s2", "lw $t2, 8($s1)"],
+    ["addu $t1, $t1, $s2", "lw $t3, 4($s1)"],
+    ["addu $t2, $t2, $s2", "sw $t0, 16($s1)"],
+    ["addu $t3, $t3, $s2", "sw $t1, 12($s1)"],
+    ["nop", "sw $t2, 8($s1)"],
+    ["bne $s1, $zero, Loop", "sw $t3, 4($s1)"]
+  ];
+  var a = ipc(SCHED);
+  var b = ipc(UNROLLED);
+  var multipleIssueNote = md`
+## Instruction-level parallelism
+
+Pipelining already executes several instructions in parallel. This is **instruction-level parallelism (ILP)**. Two ways to increase it (slide 86):
+
+- **A deeper pipeline:** less work per stage, so a shorter clock cycle.
+- **Multiple issue:** replicate the pipeline stages, giving multiple pipelines, and start several instructions per clock cycle.
+
+With multiple issue, CPI < 1, so performance is quoted as **instructions per cycle (IPC)**:
+$$
+\text{IPC} = \frac{1}{\text{CPI}}
+$$
+Example: a 4 GHz, 4-way multiple-issue processor peaks at $4\times4 = 16$ billion instructions per second (16 BIPS), peak CPI = 0.25, peak IPC = 4. Dependencies reduce this in practice.
+
+## Static and dynamic multiple issue
+
+| | Static multiple issue | Dynamic multiple issue |
+|---|---|---|
+| Who groups instructions | the **compiler**, into "issue slots" | the **CPU**, which examines the instruction stream each cycle |
+| Who handles hazards | the compiler detects and avoids them | the CPU resolves them at run time with advanced techniques |
+| Compiler's role | essential | can help by reordering instructions |
+| Usual name | VLIW (very long instruction word) | superscalar |
+
+## Speculation
+
+**Speculation** means guessing what to do with an instruction (slide 88):
+1. Start the operation as soon as possible.
+2. Check whether the guess was right.
+3. If so, complete the operation. If not, roll back and do the right thing.
+
+It is common to both static and dynamic multiple issue. Examples:
+- speculate on a branch outcome; roll back if the path taken is different;
+- speculate on a load (e.g. load early); roll back if the location is updated.
+
+**Compiler vs hardware speculation (slide 89).**
+- The compiler can reorder instructions, e.g. move a load before a branch, and include "fix-up" instructions to recover from an incorrect guess.
+- The hardware can look ahead for instructions to execute, buffer their results until it knows they are actually needed, and flush the buffers on incorrect speculation.
+
+## Static multiple issue
+
+The compiler groups instructions into **issue packets**: groups of instructions that can be issued in a single cycle, determined by the pipeline resources they need. An issue packet is like one very long instruction specifying several concurrent operations: **VLIW**.
+
+**Scheduling (slide 91).** The compiler must remove some or all hazards:
+- reorder instructions into issue packets;
+- no dependencies within a packet;
+- possibly some dependencies between packets (this varies between ISAs, and the compiler must know);
+- pad with nop if necessary.
+
+## MIPS with static dual issue
+
+**Two-issue packets (slide 92):**
+- one ALU/branch instruction and one load/store instruction;
+- 64-bit aligned: ALU/branch first, then load/store;
+- an unused slot is padded with a nop.
+
+| Address | Instruction type | Pipeline stages |
+|---|---|---|
+| n | ALU/branch | IF ID EX MEM WB |
+| n + 4 | Load/store | IF ID EX MEM WB |
+| n + 8 | ALU/branch | starts one cycle later |
+| n + 12 | Load/store | starts one cycle later |
+
+The hardware adds a second register-file read port pair and write port, and a separate adder for the load/store address, so both instructions can run at once.
+
+**Hazards in the dual-issue MIPS (slide 94).** More instructions execute in parallel, so:
+- **EX data hazard:** single issue avoided stalls by forwarding, but now an ALU result cannot be used by a load/store **in the same packet**:
+
+  \`\`\`
+  add  $t0, $s0, $s1
+  lw   $s2, 0($t0)      # must go in the next packet: effectively a stall
+  \`\`\`
+
+- **Load-use hazard:** still one cycle of use latency, but that cycle now covers **two** instructions (the whole next packet). More aggressive scheduling is required.
+
+**Rules for a correct schedule**
+1. Each packet: at most one ALU/branch and one load/store.
+2. Within a packet, both instructions read their registers in the same cycle, so neither sees the other's result.
+3. A loaded register may not be used in the next packet (one-cycle load-use latency).
+4. An ALU result may be used in the next packet (forwarding).
+5. The branch is in the last packet of the loop; anything in the same packet still executes.
+
+## Scheduling example
+
+Schedule this loop for dual-issue MIPS (slide 95):
+
+\`\`\`
+${LOOP}
+\`\`\`
+
+${scheduleTable(SCHED)}
+
+**How the schedule was built**
+1. \`lw\` goes first (cycle 1); its result \`$t0\` can be used in cycle 3 at the earliest.
+2. \`addi\` does not depend on anything pending, so it fills the ALU slot of cycle 2.
+3. \`addu\` uses \`$t0\`: cycle 3.
+4. \`sw\` needs \`addu\`'s result: cycle 4. \`bne\` needs \`addi\`'s result (ready), so it shares cycle 4.
+5. Because \`addi\` has already subtracted 4 when \`sw\` runs, the store's offset changes from 0 to **4**: \`sw $t0, 4($s1)\` writes the same address as the original \`sw $t0, 0($s1)\`.
+
+$$
+\text{IPC} = \frac{${a.instructions}\ \text{instructions}}{${a.cycles}\ \text{cycles}} = ${a.ipc}
+$$
+compared with a peak IPC of 2.
+
+## Loop unrolling
+
+Replicate the loop body to expose more parallelism (slide 96):
+- it reduces loop-control overhead (one \`addi\` and one \`bne\` per several elements);
+- use **different registers** per replication, called **register renaming**, to avoid loop-carried **anti-dependencies**: a store followed by a load of the same register. These are also called **name dependences**: only the reuse of a register name links them, not a value.
+
+**Unrolled four times** (slide 97):
+
+${scheduleTable(UNROLLED)}
+
+- \`addi\` moves to the first packet and subtracts 16 (four elements). The \`lw\` in the same packet still uses the old \`$s1\` (packet rule 2), so its offset is 0. Later loads and stores use the new \`$s1\` with offsets 12, 8, 4 (loads) and 16, 12, 8, 4 (stores).
+- Each copy uses its own register: \`$t0\`, \`$t1\`, \`$t2\`, \`$t3\`.
+
+$$
+\text{IPC} = \frac{${b.instructions}}{${b.cycles}} = ${b.ipc}
+$$
+closer to 2, at the cost of registers and code size.
+
+(The slide prints the sixth packet's \`addu\` as \`addu $t3, $t4, $s2\`; it is \`addu $t3, $t3, $s2\`, as the pattern of the other three copies shows.)
+
+## Dynamic multiple issue: superscalar processors
+
+"Superscalar" processors (slide 98):
+- the CPU decides whether to issue 0, 1, 2, … instructions each cycle, avoiding structural and data hazards;
+- this avoids the need for compiler scheduling, though scheduling may still help;
+- the CPU ensures the code's meaning is preserved.
+
+**Dynamic pipeline scheduling (slide 99).** Let the CPU execute instructions **out of order** to avoid stalls, but **commit** results to registers in order.
+
+\`\`\`
+lw    $t0, 20($s2)
+addu  $t1, $t0, $t2     # waits for lw
+sub   $s4, $s4, $t3     # independent: can start while addu waits
+slti  $t5, $s4, 20
+\`\`\`
+
+## A dynamically scheduled CPU
+
+The slide's block diagram has three parts:
+
+1. **Instruction fetch and decode unit**, in order.
+2. **Reservation stations**, one group per functional unit (integer, floating point, load/store). They **hold pending operands** until an instruction can execute. They also **preserve dependencies**.
+3. **Functional units**, which execute out of order. Their results go to the commit unit and are **also sent to any waiting reservation stations**.
+4. **Commit unit**, in order. Its **reorder buffer** holds register writes until they can be committed in program order. It can **supply operands for issued instructions**.
+
+**Why dynamic scheduling? Why not just let the compiler schedule? (slide 101)**
+- Not all stalls are predictable, e.g. cache misses.
+- The compiler cannot always schedule around branches, because branch outcomes are decided dynamically.
+- Different implementations of an ISA have different latencies and hazards.
+
+## Does multiple issue work?
+
+Yes, but not as much as we would like (slide 102):
+- programs have real dependencies that limit ILP;
+- some dependencies are hard to eliminate, e.g. pointer aliasing;
+- some parallelism is hard to expose, given the limited window size during instruction issue;
+- memory delays and limited bandwidth make it hard to keep pipelines full.
+
+Speculation can help if done well.
+
+## Power efficiency
+
+The complexity of dynamic scheduling and speculation costs power, so **multiple simpler cores may be better** (slide 103):
+
+| Microprocessor | Year | Clock rate | Pipeline stages | Issue width | Out-of-order / speculation | Cores | Power |
+|---|---|---|---|---|---|---|---|
+| i486 | 1989 | 25 MHz | 5 | 1 | No | 1 | 5 W |
+| Pentium | 1993 | 66 MHz | 5 | 2 | No | 1 | 10 W |
+| Pentium Pro | 1997 | 200 MHz | 10 | 3 | Yes | 1 | 29 W |
+| P4 Willamette | 2001 | 2000 MHz | 22 | 3 | Yes | 1 | 75 W |
+| P4 Prescott | 2004 | 3600 MHz | 31 | 3 | Yes | 1 | 103 W |
+| Core | 2006 | 2930 MHz | 14 | 4 | Yes | 2 | 75 W |
+| UltraSparc III | 2003 | 1950 MHz | 14 | 4 | No | 1 | 90 W |
+| UltraSparc T1 | 2005 | 1200 MHz | 6 | 1 | No | 8 | 70 W |
+
+## Fallacies, pitfalls and conclusions
+
+**Fallacies.**
+- *Pipelining is easy.* The basic idea is easy; the devil is in the details, e.g. detecting data hazards.
+- *Pipelining is independent of technology.* More transistors make more advanced techniques feasible, so pipeline-related ISA design must take technology trends into account (e.g. predicated instructions).
+
+**Pitfall: poor ISA design can make pipelining harder.**
+- Complex instruction sets (VAX, IA-32) need significant overhead to pipeline, e.g. the IA-32 micro-op approach.
+- Complex addressing modes, with register-update side effects and memory indirection.
+- Delayed branches: advanced pipelines have long delay slots.
+
+**Concluding remarks.**
+- The ISA influences the design of the datapath and control, and vice versa.
+- Pipelining improves instruction throughput using parallelism; the latency of each instruction is not reduced.
+- Hazards: structural, data, control.
+- Multiple issue and dynamic scheduling exploit ILP, but dependencies limit the achievable parallelism, and complexity leads to the power wall.
+`;
 
   // website/src/lib/vm.ts
   var log22 = (n) => {
@@ -1653,7 +1958,7 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
   }
   function traceVM(opts) {
     const tlb = opts.tlb.map((e) => ({ ...e, lastUse: 0 }));
-    const pt = opts.pageTable.map((e) => ({ ...e }));
+    const pt2 = opts.pageTable.map((e) => ({ ...e }));
     let next = opts.nextPpn;
     let time = 0;
     tlb.forEach((e, i) => e.lastUse = -(tlb.length - i));
@@ -1671,26 +1976,257 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
         result = "TLB hit";
         ppn = hit.ppn;
       } else {
-        while (pt.length <= vpn) pt.push({ valid: false, ppn: null });
-        if (pt[vpn].valid && pt[vpn].ppn !== null) {
+        while (pt2.length <= vpn) pt2.push({ valid: false, ppn: null });
+        if (pt2[vpn].valid && pt2[vpn].ppn !== null) {
           result = "page table hit";
-          ppn = pt[vpn].ppn;
+          ppn = pt2[vpn].ppn;
         } else {
           result = "page fault";
           ppn = next++;
-          pt[vpn] = { valid: true, ppn };
+          pt2[vpn] = { valid: true, ppn };
         }
         let victim = tlb.findIndex((e) => !e.valid);
         if (victim < 0) {
-          victim = tlb.reduce((b, e, i) => e.lastUse < tlb[b].lastUse ? i : b, 0);
+          victim = tlb.reduce((b2, e, i) => e.lastUse < tlb[b2].lastUse ? i : b2, 0);
           evictedTag = tlb[victim].tag;
         }
         tlb[victim] = { valid: true, tag: vpn, ppn, lastUse: time };
       }
       steps.push({ va, vpn, offset, result, ppn, pa: ppn * opts.pageBytes + offset, evictedTag });
     }
-    return { steps, tlb, pageTable: pt };
+    return { steps, tlb, pageTable: pt2 };
   }
+
+  // website/src/content/notes/virtual-memory.ts
+  var VM_EXAMPLE = {
+    pageBytes: 4096,
+    tlb: [
+      { valid: true, tag: 2, ppn: 7 },
+      { valid: true, tag: 9, ppn: 1 },
+      { valid: true, tag: 0, ppn: 4 },
+      { valid: false, tag: 5, ppn: 3 }
+    ],
+    pageTable: [
+      { valid: true, ppn: 4 },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 7 },
+      { valid: true, ppn: 6 },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 3 },
+      { valid: false, ppn: null },
+      { valid: false, ppn: null },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 1 }
+    ],
+    nextPpn: 8,
+    addresses: [8200, 12500, 4e4, 4100, 9e3, 20480]
+  };
+  var run2 = traceVM(VM_EXAMPLE);
+  var traceTable = [
+    "| Virtual address | VPN = \u230AVA / 4096\u230B | Offset | Result | Physical page | Physical address |",
+    "|---|---|---|---|---|---|",
+    ...run2.steps.map((s) => `| ${s.va} | ${s.vpn} | ${s.offset} | ${s.result}${s.evictedTag !== void 0 ? ` (replaces TLB tag ${s.evictedTag})` : ""} | ${s.ppn} | ${s.pa} |`)
+  ].join("\n");
+  var tlbAfter = ["| Valid | Tag (VPN) | Physical page |", "|---|---|---|", ...run2.tlb.map((e) => `| ${e.valid ? 1 : 0} | ${e.tag} | ${e.ppn} |`)].join("\n");
+  var pt = pageTableSize(32, 4096, 4);
+  var virtualMemoryNote = md`
+## Virtual memory
+
+**Virtual memory** uses main memory as a "cache" for secondary (disk) storage (slide 56).
+
+- It is managed jointly by the CPU hardware and the operating system (OS).
+- Programs share main memory. Each gets a **private virtual address space** holding its frequently used code and data, **protected** from other programs.
+- The CPU and OS **translate virtual addresses to physical addresses**.
+
+The terms map onto cache terms:
+
+| Cache | Virtual memory |
+|---|---|
+| block | **page** |
+| miss | **page fault** |
+
+## Address translation
+
+Pages have a fixed size, e.g. 4 KiB (slide 57). An address splits into a **page number** and a **page offset**:
+$$
+\text{offset bits} = \log_2(\text{page size in bytes})
+$$
+$$
+\text{virtual page number (VPN) bits} = \text{virtual address bits} - \text{offset bits}
+$$
+$$
+\text{physical page number (PPN) bits} = \text{physical address bits} - \text{offset bits}
+$$
+
+\`\`\`fig
+vm-split
+\`\`\`
+
+Translation replaces the VPN with a PPN. The **page offset is not changed**: a page is placed whole, so the byte's position inside it stays the same.
+
+Equivalently, for a byte address: $\text{VPN} = \lfloor \text{VA} / \text{page size} \rfloor$ and $\text{offset} = \text{VA} \bmod \text{page size}$; then $\text{PA} = \text{PPN}\times\text{page size} + \text{offset}$.
+
+## Page fault penalty
+
+On a page fault, the page must be fetched from disk (slide 58):
+- this takes **millions of clock cycles**;
+- it is handled by OS code.
+
+So the design tries hard to **minimise the page-fault rate**:
+- **fully associative placement**: a page can go in any physical page;
+- **smart replacement algorithms**;
+- **never write-through, always write-back**.
+
+## Page tables
+
+The **page table** stores the placement information (slide 59).
+- It is an array of **page table entries (PTEs)**, indexed by the virtual page number.
+- The **page table register** in the CPU points to the page table in physical memory.
+- If the page is present in memory, the PTE stores the **physical page number**, plus other status bits (referenced, dirty, …).
+- If the page is not present, the PTE can refer to a location in the **swap space** on disk.
+
+\`\`\`fig
+vm-page-table
+\`\`\`
+
+**How the page table works, step by step:**
+1. Split the virtual address into VPN and offset.
+2. Use the page table register and the VPN to find the PTE.
+3. If the PTE's valid bit is 1, the page is in memory: physical address = PTE's PPN joined with the offset.
+4. If the valid bit is 0, the page is on disk: a **page fault**. The OS reads the page from disk into a physical page (replacing one if memory is full), updates the PTE, and the instruction is restarted.
+
+## Page table size
+
+A single-level page table has one entry per virtual page:
+$$
+\#\text{entries} = 2^{\text{VPN bits}},\qquad \text{size} = \#\text{entries}\times\text{PTE size}
+$$
+
+**Example.** 32-bit virtual address, 4 KiB pages, 4-byte PTEs.
+- Offset bits = $\log_2 4096 = 12$; VPN bits = $32 - 12 = ${pt.vpnBits}$.
+- Entries = $2^{${pt.vpnBits}}$ = ${pt.entries.toLocaleString("en-US")}.
+- Size = $2^{20}\times4\ \text{B} = 2^{22}\ \text{B} = ${pt.bytes / 2 ** 20}$ MiB per process.
+
+Each running program has its own page table, so this cost multiplies by the number of processes.
+
+## Replacement and writes
+
+To reduce the page-fault rate, prefer **least-recently used (LRU)** replacement (slide 62):
+- a **reference bit** (use bit) in the PTE is set to 1 on any access to the page;
+- the OS periodically clears it to 0;
+- a page with reference bit 0 has not been used recently, so it is a candidate for replacement.
+
+This is an approximation of LRU, cheap enough to do in software.
+
+Disk writes take millions of cycles, and a whole block is written at once, not individual locations. Write-through is impractical; use **write-back**. A **dirty bit** in the PTE is set when the page is written, so only dirty pages are written back on replacement.
+
+## Fast translation using a TLB
+
+Address translation would seem to need **extra memory references**: one to read the PTE, then the actual memory access (slide 63). But accesses to the page table have good locality. So the CPU keeps a fast cache of PTEs: the **translation look-aside buffer (TLB)**.
+
+Typical values: 16–512 PTEs, 0.5–1 cycle for a hit, 10–100 cycles for a miss, 0.01%–1% miss rate. Misses can be handled by hardware or software.
+
+A TLB entry holds: a **valid** bit, a **tag** (the virtual page number, or its upper bits for a set-associative TLB), the **physical page number**, and copies of the dirty and reference bits.
+
+- **Why a tag?** The TLB has far fewer entries than the page table, so an entry can hold the translation of many different virtual pages. The tag records which VPN the entry currently translates, exactly like a cache tag.
+- **The TLB is a cache of the page table, for the entries that map to physical pages only**: a page that is on disk has no physical page number to cache.
+
+## TLB misses
+
+If the page **is in memory** (slide 65):
+- load the PTE from memory into the TLB and retry;
+- this could be handled in hardware (complex for complicated page-table structures), or in software: raise a special exception with an optimised handler.
+
+If the page **is not in memory** (a page fault):
+- the OS fetches the page and updates the page table;
+- then the faulting instruction restarts.
+
+**TLB miss handler (slide 66).** A TLB miss indicates either that the page is present but its PTE is not in the TLB, or that the page is not present. The handler copies the PTE from memory to the TLB and restarts the instruction. If the page is not present, a page fault will then occur.
+
+**Page fault handler (slide 67):**
+1. Use the faulting virtual address to find the PTE.
+2. Locate the page on disk.
+3. Choose a page to replace; if it is dirty, write it to disk first.
+4. Read the page into memory and update the page table.
+5. Make the process runnable again.
+6. Restart from the faulting instruction.
+
+**Without a TLB,** every memory access would need an extra memory access for the PTE first: at least doubling the time of every load, store and instruction fetch.
+
+## Worked example: a TLB and page-table trace
+
+4 KiB pages, a 4-entry fully associative TLB with LRU replacement. On a page fault, the page is placed in the next free physical page, starting at ${VM_EXAMPLE.nextPpn}. Initial TLB (valid, tag, physical page): (1, 2, 7), (1, 9, 1), (1, 0, 4), (0, 5, 3). Page table (VPN: physical page or disk): 0: 4, 1: disk, 2: 7, 3: 6, 4: disk, 5: 3, 6–8: disk, 9: 1.
+
+${traceTable}
+
+**How each row is decided:**
+1. VPN = ⌊VA / 4096⌋.
+2. If a valid TLB entry has that tag: **TLB hit**.
+3. Otherwise look in the page table. Valid: **page table hit**; copy the entry into the TLB.
+4. Not valid: **page fault**; bring the page into the next free physical page, update the page table, and copy the entry into the TLB.
+5. When the TLB must load an entry, fill an invalid entry first, otherwise replace the least recently used one.
+
+TLB afterwards:
+
+${tlbAfter}
+
+## Virtual memory, TLB and cache together
+
+Virtual memory and caches work together as a hierarchy (slide 68). Data cannot be in the cache unless it is present in main memory. The OS keeps this true:
+- it flushes the contents of a page from the cache when it migrates that page to disk;
+- it modifies the page tables and TLB so that any access to data on the migrated page generates a page fault.
+
+\`\`\`fig
+vm-tlb-flow
+\`\`\`
+
+**How the TLB and the data cache differ**, although both are caches:
+
+| | TLB | Data cache |
+|---|---|---|
+| Caches | page-table entries (translations) | memory data |
+| Indexed/tagged by | virtual page number | physical address (in a physically addressed cache) |
+| Entry holds | physical page number + status bits | a block of data |
+| A miss means | translation not cached: walk the page table (maybe a page fault) | data not cached: fetch the block from memory |
+| Typical size | 16–512 entries, often fully associative | KiB to MiB, direct mapped or set associative |
+
+**Possible combinations of events (slide 71):**
+
+| TLB | Page table | Cache | Possible? |
+|---|---|---|---|
+| hit | hit | miss | yes, although the page table is never checked after a TLB hit |
+| miss | hit | hit | yes: TLB misses, the entry is found in the page table; after retry, the data is in the cache |
+| miss | hit | miss | yes: TLB misses, the entry is found in the page table; after retry, the data misses in the cache |
+| miss | miss | miss | yes: TLB misses and is followed by a page fault; after retry, the data must miss in the cache |
+| hit | miss | miss | impossible: a translation cannot be in the TLB if the page is not in memory |
+| hit | miss | hit | impossible: same reason |
+| miss | miss | hit | impossible: data cannot be in the cache if the page is not in memory |
+
+## Memory protection
+
+Different tasks can share parts of their virtual address spaces, but they need protection against errant access (slide 72). This requires OS assistance, with hardware support:
+- a privileged **supervisor mode** (kernel mode);
+- **privileged instructions**;
+- page tables and other state information accessible only in supervisor mode.
+
+Each process has its own page table, so a process can only reach physical pages its own page table maps.
+
+## The memory hierarchy: a common framework
+
+The same four questions apply at every level of the hierarchy (slides 73–77):
+
+| Question | Hardware caches | Virtual memory |
+|---|---|---|
+| **Block placement** | direct mapped (1 choice), n-way set associative (n choices), fully associative (any location). Higher associativity reduces the miss rate but increases complexity, cost and access time. | fully associative |
+| **Finding a block** | index, then compare tags: 1 comparison (direct mapped), n (n-way), #entries (fully associative) | a full lookup table (the page table): 0 tag comparisons, which makes full associativity feasible |
+| **Replacement** | LRU (costly for high associativity) or random (close to LRU, easier) | LRU approximation with hardware support (reference bits) |
+| **Write policy** | write-through (simplifies replacement, may need a write buffer) or write-back (more state) | only write-back is feasible, given disk write latency |
+
+## Pitfalls
+
+- **Extending the address range with segments** (e.g. Intel 80286): a segment is not always big enough, and address arithmetic becomes complicated.
+- **Implementing a virtual machine monitor on an ISA not designed for virtualisation**, e.g. one where non-privileged instructions can access hardware resources: either extend the ISA or require the guest OS not to use the problematic instructions.
+`;
 
   // website/src/figures/datapath.tsx
   var blocks = [
@@ -1805,7 +2341,7 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
   var JUMP_PARTS = /* @__PURE__ */ new Set(["shl2j", "jmux", "f-jump", "jaddr", "pc4-top", "pcsrc-jmux", "next-pc"]);
   function singleCycle(highlight = [], opts = {}) {
     const ws = opts.noJump ? [...wires.filter((w) => !JUMP_PARTS.has(w.id)), { id: "next-pc", pts: [[870, 90], [900, 90], [900, -10], [0, -10], [0, 290], [10, 290]] }] : wires;
-    const bs = opts.noJump ? blocks.filter((b) => !JUMP_PARTS.has(b.id)).map((b) => b.id === "control" ? { ...b, label: b.label.filter((l) => l !== "Jump") } : b) : blocks;
+    const bs = opts.noJump ? blocks.filter((b2) => !JUMP_PARTS.has(b2.id)).map((b2) => b2.id === "control" ? { ...b2, label: b2.label.filter((l) => l !== "Jump") } : b2) : blocks;
     const labels = opts.noJump ? signalLabels.filter((s) => s.text !== "Jump") : signalLabels;
     return {
       blocks: bs,
@@ -1840,8 +2376,13 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
     scheduleProblems,
     runPackets,
     ipc,
+    sameResult,
+    LOOP,
+    SCHED,
+    UNROLLED,
     traceVM,
     pageTableSize,
+    VM_EXAMPLE,
     DP: { blocks: dp.blocks, wires: dp.wires, notes: dp.notes, PATHS }
   };
 })();
@@ -1850,7 +2391,7 @@ const C = { b: "#58c4dd", y: "#f4d35e", g: "#83c167", r: "#fc6255", p: "#b48ead"
    Everything here is built for timeline scenes: each helper ADDS tweens to a timeline (c.tl),
    so stepping back seeks the timeline and every state rewinds cleanly. */
 
-const HOT = C.b, VAL = C.y, DIM = 0.12
+const HOT = C.b, VAL = C.y, DIM = 0.3, NEW = C.y, BAD = C.r
 // `$` becomes &#36; so a register name inside a caption is never read as $maths$.
 const mono = (s) => `<span class="mono">${String(s).replace(/\$/g, "&#36;")}</span>`
 const ptsD = (pts) => "M" + pts.map((p) => p.join(" ")).join(" L")
@@ -1896,14 +2437,17 @@ function Datapath(parent, o = {}) {
   const marker = (col) => { if (arrowId[col]) return arrowId[col]; const id = "dpa" + ++UID; const m = S_("marker", { id, viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, markerUnits: "userSpaceOnUse", orient: "auto" }, defs); S_("path", { d: "M0,0 L10,5 L0,10 z", fill: col }, m); return (arrowId[col] = id) }
   const T_ = (x, y, t, s, col, a = "middle", g) => { const e = S_("text", { x, y, "text-anchor": a, "dominant-baseline": "central", "font-size": s, fill: col }, g); e.textContent = t; e.style.fontFamily = "Inter"; return e }
   const exclude = new Set(o.hide || [])
-  const blocks = LIB.DP.blocks.filter((b) => !exclude.has(b.id)), wires = LIB.DP.wires.filter((w) => !exclude.has(w.id))
+  const X = o.extra || {}
+  const blocks = [...LIB.DP.blocks, ...(X.blocks || [])].filter((b) => !exclude.has(b.id)), wires = [...LIB.DP.wires, ...(X.wires || [])].filter((w) => !exclude.has(w.id))
+  const baseOf = (e) => (e.add === "x" ? BAD : e.add ? NEW : null)
   const gw = S_("g", {}, root), gb = S_("g", {}, root), gn = S_("g", {}, root)
   for (const w of wires) {
     const g = S_("g", {}, gw)
-    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: ink, "stroke-width": 1.6, ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(ink)})` }) }, g)
-    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: ink }, g)
-    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, mut, w.label.anchor ?? "middle", g)] : []
-    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts })
+    const wc = baseOf(w) || ink
+    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: wc, "stroke-width": w.add ? 2.2 : 1.6, ...(w.add ? { "stroke-dasharray": "6 3" } : {}), ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(wc)})` }) }, g)
+    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: wc }, g)
+    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, w.add ? wc : mut, w.label.anchor ?? "middle", g)] : []
+    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts, base: baseOf(w), bw: w.add ? 2.2 : 1.6 })
   }
   for (const b of blocks) {
     const g = S_("g", {}, gb), { x, y, w, h } = b
@@ -1911,20 +2455,27 @@ function Datapath(parent, o = {}) {
     if (b.kind === "alu") sh = S_("path", { d: `M${x} ${y} L${x + w} ${y + h * 0.25} L${x + w} ${y + h * 0.75} L${x} ${y + h} L${x} ${y + h * 0.6} L${x + w * 0.22} ${y + h / 2} L${x} ${y + h * 0.4} Z` }, g)
     else if (b.kind === "mux") sh = S_("rect", { x, y, width: w, height: h, rx: w / 2 }, g)
     else if (b.kind === "ellipse") sh = S_("ellipse", { cx: x + w / 2, cy: y + h / 2, rx: w / 2, ry: h / 2 }, g)
+    else if (b.kind === "not") { sh = S_("path", { d: `M${x} ${y} L${x + w - 6} ${y + h / 2} L${x} ${y + h} Z` }, g); S_("circle", { cx: x + w - 3, cy: y + h / 2, r: 3, fill: "#15181c", stroke: baseOf(b) || ink, "stroke-width": 1.4 }, g) }
+    else if (b.kind === "or") sh = S_("path", { d: `M${x} ${y} Q${x + w * 0.35} ${y + h / 2} ${x} ${y + h} Q${x + w * 0.75} ${y + h} ${x + w} ${y + h / 2} Q${x + w * 0.75} ${y} ${x} ${y} Z` }, g)
     else if (b.kind === "round") sh = S_("path", { d: `M${x} ${y} H${x + w - h / 2} A${h / 2} ${h / 2} 0 0 1 ${x + w - h / 2} ${y + h} H${x} Z` }, g)
     else sh = S_("rect", { x, y, width: w, height: h, rx: 4 }, g)
-    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", ink); sh.setAttribute("stroke-width", 1.6)
+    const bc = baseOf(b) || ink
+    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", bc); sh.setAttribute("stroke-width", b.add ? 2.2 : 1.6)
     const texts = [], size = b.size ?? 12
     const lab = b.kind === "mux" ? (b.label?.length ? b.label : ["M", "u", "x"]) : b.label || []
     if (b.id === "control") lab.forEach((l, i) => texts.push(T_(x + w / 2, y + 18 + i * 18.5, l, i ? 10 : 12, i ? mut : ink, "middle", g)))
-    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, ink, "middle", g)))
-    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, mut, p.anchor || "start", g))
-    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h] })
+    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : b.kind === "not" ? x + w * 0.4 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, bc, "middle", g)))
+    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, b.add ? bc : mut, p.anchor || "start", g))
+    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h], base: baseOf(b) })
   }
+  for (const n of X.notes || []) { const t = T_(n.at[0], n.at[1], n.text, n.size ?? 10, n.add === "x" ? BAD : NEW, n.anchor || "middle", gn); t.setAttribute("font-weight", 600); els.set(n.id, { g: t, texts: [t], kind: "n" }) }
   for (const n of LIB.DP.notes) if (!exclude.has("note:" + n.text)) { const t = T_(n.at[0], n.at[1], n.text, 9.5, "#6d737c", n.anchor || "middle", gn); els.set("note:" + n.text, { g: t, texts: [t], kind: "n" }) }
   const all = [...els.keys()]
+  const absent = new Set()
   const api = {
-    root, els, all, sc, ox, oy,
+    root, els, all, sc, ox, oy, absent,
+    /** Make ids absent (opacity 0) from pos; state() leaves absent ids alone until draw() brings them back. */
+    remove(tl, ids, pos) { const p = pos ?? tl.duration(); for (const id of ids) { const e = els.get(id); if (!e) continue; absent.add(id); tl.to(e.g, { opacity: 0, duration: p === 0 ? 0.01 : 0.4 }, p) } },
     /** Host coordinates of a datapath point (before any camera). */
     h: (x, y) => [ox + sc * x, oy + sc * y],
     /** Host rect of a set of ids (union of their boxes / wire points), padded. */
@@ -1939,12 +2490,13 @@ function Datapath(parent, o = {}) {
       const hot = new Set(s.hot || []), on = s.on === "all" ? null : new Set([...(s.on || []), ...hot]), col = s.col || HOT, dim = s.dim ?? DIM
       const p = pos ?? tl.duration()
       for (const [id, e] of els) {
+        if (absent.has(id)) continue
         const vis = on ? on.has(id) : true, h = hot.has(id)
         tl.to(e.g, { opacity: vis ? 1 : s.hide ? 0 : dim, duration: 0.6 }, p)
-        const c = h ? col : ink
-        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
-        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
-        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : ink }, duration: 0.5 }, p)
+        const c = h ? col : e.base || ink
+        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : e.bw || 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
+        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : e.base ? 2.2 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
+        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : e.base || ink }, duration: 0.5 }, p)
       }
     },
     /** Hide everything (for a draw-on build). */
@@ -1954,6 +2506,7 @@ function Datapath(parent, o = {}) {
       const p = o.pos ?? tl.duration()
       ids.forEach((id, i) => {
         const e = els.get(id); if (!e) return
+        absent.delete(id)
         const t = p + i * (o.stagger ?? 0.08)
         tl.to(e.g, { opacity: 1, duration: 0.01 }, t)
         if (e.kind === "w") tl.fromTo(e.path, { drawSVG: "0%" }, { drawSVG: "100%", duration: o.d ?? 0.7, ease: "power1.inOut", immediateRender: false }, t)
@@ -1996,15 +2549,18 @@ function dpTour(sl, frames, o = {}) {
   return TL(sl, caps, (c) => {
     const tl = c.tl
     if (o.build) dp.blank(tl)
+    if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
-      if (f.draw) dp.draw(tl, f.draw, { pos: p })
+      if (f.remove) dp.remove(tl, f.remove, p)
+      if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
       if (f.zoom === "all") camStates.push(cam.reset(tl, { pos: p }))
       else if (f.zoom) camStates.push(cam.to(tl, Array.isArray(f.zoom[0]) || typeof f.zoom[0] === "string" ? dp.rect(f.zoom, f.pad) : f.zoom, f.view, { pos: p }))
       else camStates.push(cam.state)
       for (const [ids, label, col] of f.flows || []) dp.flow(tl, ids, label, { pos: tl.duration(), col })
       for (const [x, y, html, w] of f.tags || []) dp.tag(tl, x, y, html, { w })
+      for (const id of f.pulse || []) dp.pulse(tl, id, p + 0.3)
       f.extra?.(tl, dp, cam)
       c.F()
     })
@@ -2074,7 +2630,7 @@ function cardScene(sl, items, frames, o = {}) {
     frames.forEach((f) => {
       const p = tl.duration()
       ;(f.show || []).forEach((id, i) => { tl.to(el[id], { opacity: 1, duration: 0.45 }, p + i * 0.12); tl.from(el[id], { y: 18, duration: 0.5, immediateRender: false }, p + i * 0.12) })
-      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.25, duration: 0.4 }, p)
+      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.4, duration: 0.4 }, p)
       for (const id of f.hide || []) tl.to(el[id], { opacity: 0, duration: 0.4 }, p)
       for (const id of f.hot || []) { const r = el[id].querySelector("rect"); tl.to(el[id], { opacity: 1, duration: 0.3 }, p); if (r) tl.to(r, { attr: { stroke: C.y, "stroke-width": 3.4 }, duration: 0.4 }, p) }
       for (const id of f.cool || []) { const r = el[id].querySelector("rect"); if (r) tl.to(r, { attr: { stroke: items[id][5]?.c || C.line, "stroke-width": 2.2 }, duration: 0.4 }, p) }
@@ -2178,9 +2734,9 @@ scenes.mux = (sl) => {
     c.F()
     tl.to([wa, wb, spark], { opacity: 0, duration: 0.4 }).to([mux, mt, i0, i1], { opacity: 1, duration: 0.4 }).to([na, nb], { opacity: 1, duration: 0.01 }).fromTo([na, nb], { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.7, immediateRender: false }, "<").to([sel, sLab], { opacity: 1, duration: 0.4 })
     c.F()
-    tl.to(nb, { opacity: 0.25, duration: 0.3 }).to(out, { opacity: 1, duration: 0.01 }).fromTo(out, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.5, immediateRender: false }).to(res, { opacity: 1, duration: 0.4 })
+    tl.to(nb, { opacity: 0.4, duration: 0.3 }).to(out, { opacity: 1, duration: 0.01 }).fromTo(out, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.5, immediateRender: false }).to(res, { opacity: 1, duration: 0.4 })
     c.F()
-    tl.set(sLab, { textContent: "S = 1" }).to(nb, { opacity: 1, duration: 0.3 }, "<").to(na, { opacity: 0.25, duration: 0.3 }, "<").to(res.querySelector("rect"), { attr: { stroke: C.p }, duration: 0.3 }, "<").set(res.querySelector("div div"), { textContent: "branch target" })
+    tl.set(sLab, { textContent: "S = 1" }).to(nb, { opacity: 1, duration: 0.3 }, "<").to(na, { opacity: 0.4, duration: 0.3 }, "<").to(res.querySelector("rect"), { attr: { stroke: C.p }, duration: 0.3 }, "<").set(res.querySelector("div div"), { textContent: "branch target" })
     tl.to(out, { attr: { stroke: C.p }, duration: 0.3 }, "<")
     c.F()
   })
@@ -2440,7 +2996,7 @@ scenes.jump = (sl) => {
     const tl = c.tl
     tl.set([lab, ...out], { opacity: 0 })
     tl.from([...top, ...fld], { opacity: 0, stagger: 0.008 })
-    tl.to(fld.slice(0, 6), { opacity: 0.25, duration: 0.3 })
+    tl.to(fld.slice(0, 6), { opacity: 0.4, duration: 0.3 })
     c.F()
     for (let i = 0; i < 4; i++) { tl.set(out[i], { opacity: 1, textContent: tb[i], fill: C.b }, "f0+=0.1"); tl.from(out[i], { y: 90 - 370, duration: 0.6, immediateRender: false }, "f0+=0.1") }
     for (let i = 0; i < 26; i++) { tl.set(out[4 + i], { opacity: 1, textContent: tb[4 + i], fill: "#ececec" }, "f0+=0.6"); tl.from(out[4 + i], { x: 2 * cw, y: 210 - 370, duration: 0.7, immediateRender: false }, `f0+=${0.6 + i * 0.015}`) }
@@ -2484,6 +3040,148 @@ scenes.perf = (sl) => {
     tl.to(wastes, { opacity: 1, stagger: 0.15, duration: 0.4 })
     c.F()
   })
+}
+
+/* ══════════════ Build it yourself: constructing the datapath, and extending a given one ══════════════
+   New parts are drawn in yellow (dashed wires); a conflict (two sources wanting one input) is drawn in red. */
+const XW = (id, pts, o = {}) => ({ id, pts, add: true, ...o })
+const EXTRA = {
+  blocks: [
+    { id: "jrmux", kind: "mux", x: 990, y: 25, w: 20, h: 70, size: 9, add: true },
+    { id: "bn-not", kind: "not", x: 880, y: 281, w: 22, h: 18, label: [], add: true },
+    { id: "bn-and", kind: "round", x: 912, y: 262, w: 34, h: 34, label: ["AND"], size: 9, add: true },
+    { id: "bn-or", kind: "or", x: 878, y: 196, w: 36, h: 40, label: ["OR"], size: 9, add: true },
+    { id: "jal-rd", kind: "mux", x: 380, y: 362, w: 20, h: 86, size: 9, add: true },
+    { id: "jal-mtr", kind: "mux", x: 920, y: 350, w: 20, h: 90, size: 9, add: true },
+  ],
+  wires: [
+    // the R-type-only datapath: direct wires, no muxes
+    XW("r-next", [[170, 130], [200, 130], [200, -10], [0, -10], [0, 290], [10, 290]], { add: false }),
+    XW("r-rd2", [[560, 395], [635, 395], [635, 418], [650, 418]], { add: false }),
+    XW("r-rd", [[225, 425], [370, 425], [370, 410], [420, 410]], { add: false, label: { at: [232, 415], text: "Instruction [15–11]", anchor: "start", size: 10.5 } }),
+    XW("r-wb", [[720, 385], [745, 385], [745, 312], [960, 312], [960, 545], [400, 545], [400, 435], [420, 435]], { add: false }),
+    // conflicts
+    XW("x-se", [[512, 490], [635, 490], [635, 418], [650, 418]], { add: "x" }),
+    XW("x-mem", [[890, 365], [975, 365], [975, 552], [395, 552], [395, 440], [420, 440]], { add: "x" }),
+    XW("x-rt", [[335, 360], [335, 410], [420, 410]], { add: "x", dot: true }),
+    // beq + j onto a given datapath: temporary next-PC wire from the PCSrc mux
+    XW("b-next1", [[870, 90], [985, 90], [985, -10], [0, -10], [0, 290], [10, 290]], { add: false }),
+    // jr
+    XW("jr-rs", [[600, 352], [600, 300], [975, 300], [975, 80], [990, 80]], { dot: true }),
+    XW("jr-in", [[960, 50], [990, 50]]),
+    XW("jr-out", [[1010, 60], [1025, 60], [1025, -10], [0, -10], [0, 290], [10, 290]]),
+    // bne
+    XW("bn-z", [[760, 300], [872, 300], [872, 290], [880, 290]], { dot: true }),
+    XW("bn-n", [[902, 290], [912, 290]]),
+    XW("bn-c", [[898, 270], [912, 270]], { arrow: "end" }),
+    XW("bn-a1", [[828, 263], [860, 263], [860, 206], [878, 206]]),
+    XW("bn-a2", [[946, 279], [958, 279], [958, 250], [870, 250], [870, 226], [878, 226]]),
+    XW("bn-out", [[914, 216], [925, 216], [925, 135], [860, 135], [860, 120]], { label: { at: [930, 160], text: "PCSrc", anchor: "start", size: 10.5 } }),
+    // jal
+    XW("jal-31", [[350, 440], [380, 440]], { label: { at: [345, 440], text: "31", anchor: "end", size: 11 } }),
+    XW("jal-pc4", [[905, 470], [905, 425], [920, 425]], { label: { at: [905, 482], text: "PC + 4", size: 10.5 } }),
+  ],
+  notes: [
+    { id: "n-jr", at: [1000, 108], text: "JR" },
+    { id: "n-bne", at: [894, 270], text: "BNE", anchor: "end" },
+    { id: "n-ext", at: [466, 461], text: "ExtOp: 0 sign, 1 zero", size: 9 },
+  ],
+}
+const NEWIDS = [...EXTRA.blocks.map((b) => b.id), ...EXTRA.wires.map((w) => w.id), ...EXTRA.notes.map((n) => n.id)]
+const DPB = { ...DPO, extra: EXTRA }
+const NEXT_IDS = ["se-shl", "shl2b", "shl-addb", "pc4-addb", "addb", "addb-pcsrc", "zero", "and", "and-pcsrc", "pcsrc", "pcsrc-jmux", "jmux", "f-jump", "shl2j", "jaddr", "pc4-top", "next-pc", "pc4", "note:Branch", "note:Jump"]
+const R_SET = ["pc", "im", "pc-im", "add4", "four", "pc-add4", "r-next", "regs", "im-bus", "bus", "f-rs", "f-rt", "alu", "rd1", "r-rd2", "aluctl", "f-funct", "aluctl-alu", "r-rd", "r-wb", "control", "f-op", "note:RegWrite", "note:ALUOp"]
+const ALL_IDS = [...LIB.DP.blocks.map((b) => b.id), ...LIB.DP.wires.map((w) => w.id), ...LIB.DP.notes.map((n) => "note:" + n.text), ...NEWIDS]
+const minus = (a, b) => a.filter((x) => !b.includes(x))
+const Q = (t) => `<b class="cy">?</b> ${t}`
+
+/* A · R-type from nothing: ask what add needs, then wire only that. */
+scenes.buildR = (sl) => dpTour(sl, [
+  { draw: ["pc", "im", "pc-im"], hot: ["pc", "im", "pc-im"], on: "all", zoom: Z.fetch, view: V, cap: (P) => R("Build a datapath for <b>add rd, rs, rt</b>, asking at each step: what does the instruction need next?<br><br>Step 1 · every instruction must be <b>fetched</b>: the PC addresses the instruction memory.", 30, P(70, 300)) },
+  { draw: ["add4", "four", "pc-add4"], hot: ["add4", "four", "pc-add4"], on: "all", zoom: Z.fetch, view: V, cap: (P) => R(Q("Step 2 · where is the <b>next</b> instruction? 4 bytes later: an adder computes PC + 4…"), 30, P(145, 130)) },
+  { draw: ["r-next"], hot: ["r-next"], on: "all", zoom: "all", cap: (P) => R("…and PC + 4 goes back into the PC at the clock edge. For add, nothing else ever changes the PC.", 30, P(100, -10)) },
+  { draw: ["regs"], hot: ["regs"], on: "all", zoom: Z.regs, view: V, pulse: ["regs"], cap: (P) => R(Q("Step 3 · add needs two register values: a register file. Which wires tell it <b>which</b> registers to read?"), 30, P(425, 345)) },
+  { draw: ["im-bus", "bus", "f-rs", "f-rt"], hot: ["f-rs", "f-rt"], on: "all", zoom: Z.regs, view: V, cap: (P) => R("The <b>rs</b> field (bits 25–21) → Read register 1, the <b>rt</b> field (20–16) → Read register 2. The instruction's bits are just wires fanned out.", 30, P(300, 345)) },
+  { draw: ["alu"], hot: ["alu"], on: "all", zoom: Z.exec, view: V, pulse: ["alu"], cap: (P) => R(Q("Step 4 · the values must be added: an ALU. Where do its two inputs come from?"), 30, P(680, 385)) },
+  { draw: ["rd1", "r-rd2"], hot: ["rd1", "r-rd2"], on: "all", zoom: Z.exec, view: V, cap: (P) => R("Read data 1 → top input, Read data 2 → bottom input. Straight wires: each input has <b>one</b> source.", 30, P(600, 395)) },
+  { draw: ["aluctl", "f-funct", "aluctl-alu"], hot: ["aluctl", "f-funct", "aluctl-alu"], on: "all", zoom: Z.exec, view: V, cap: (P) => R("Which operation? The <b>funct</b> field (bits 5–0) goes to ALU control: 32 → add, 34 → subtract, 42 → slt…", 30, P(675, 490)) },
+  { hot: ["regs"], on: "all", zoom: "all", cap: (P) => R(Q("Step 5 · the result is written back. Which <b>register</b> number, and which <b>data</b>?"), 30, P(430, 420)) },
+  { draw: ["r-rd", "r-wb"], hot: ["r-rd", "r-wb"], on: "all", zoom: "all", cap: (P) => R("Register: the <b>rd</b> field (15–11). Data: the ALU result, looped back to Write data.", 30, P(700, 545)) },
+  { draw: ["control", "f-op", "note:RegWrite", "note:ALUOp"], hot: ["control"], on: "all", zoom: "all", cap: (P) => R("Control decodes the opcode: RegWrite = 1 so the write happens, ALUOp = 10 for R-type.<br><br>Done. <b>No muxes</b>: so far every input has exactly one source. Next: add lw and sw.", 30, P(420, 190)) },
+], { dp: DPB, absent: ALL_IDS })
+
+/* B · Add lw and sw: each conflict (two sources, one input) becomes a mux. */
+scenes.buildI = (sl) => dpTour(sl, [
+  { on: "all", zoom: "all", cap: R("Start from the R-type datapath. Add <b>lw rt, offset(rs)</b>:<br>R[rt] ← Mem[R[rs] + sign-ext(offset)].<br><br>Reuse what exists; add only what's missing.", 30) },
+  { draw: ["f-imm", "signext"], hot: ["f-imm", "signext"], on: "all", zoom: Z.exec, view: V, cap: (P) => R("The address is R[rs] + offset. R[rs] is already Read data 1. The 16-bit offset (bits 15–0) must be <b>sign-extended</b> to 32 bits.", 30, P(466, 490)) },
+  { draw: ["x-se"], hot: ["x-se", "r-rd2"], col: BAD, on: "all", zoom: Z.exec, view: V, cap: (P) => R(Q("The offset must enter the ALU's second input, but Read data 2 is <b>already</b> wired there. Two sources, one input: a <b>conflict</b>."), 30, P(645, 418)) },
+  { remove: ["r-rd2", "x-se"], draw: ["rd2", "se-out", "alusrc", "alusrc-alu", "note:ALUSrc"], hot: ["alusrc", "rd2", "se-out"], on: "all", zoom: Z.exec, view: V, cap: (P) => R("Fix: a <b>multiplexer</b>. ALUSrc = 0 picks the register (add), 1 picks the offset (lw). This is the whole method: <b>every conflict becomes a mux</b>.", 30, P(610, 410)) },
+  { draw: ["dmem", "alu-dmem", "note:MemRead"], hot: ["dmem", "alu-dmem"], on: "all", zoom: Z.mem, view: V, cap: (P) => R("The ALU result is now an <b>address</b>: wire it to a data memory (MemRead = 1).", 30, P(770, 385)) },
+  { draw: ["x-mem"], hot: ["x-mem", "r-wb"], col: BAD, on: "all", zoom: "all", cap: (P) => R(Q("Register Write data: the ALU result (add) or the memory word (lw)? Two sources again."), 30, P(420, 438)) },
+  { remove: ["r-wb", "x-mem"], draw: ["alu-bypass", "dmem-mux", "memtoreg", "wb", "note:MemtoReg"], hot: ["memtoreg", "alu-bypass", "dmem-mux"], on: "all", zoom: "all", cap: (P) => R("<b>MemtoReg</b> mux: 0 = ALU result, 1 = memory data.", 30, P(930, 380)) },
+  { draw: ["x-rt"], hot: ["x-rt", "r-rd"], col: BAD, on: "all", zoom: Z.regs, view: V, cap: (P) => R(Q("Write register: add writes <b>rd</b> (bits 15–11), lw writes <b>rt</b> (20–16). Conflict."), 30, P(420, 410)) },
+  { remove: ["r-rd", "x-rt"], draw: ["f-rd", "f-rt-mux", "regdst", "regdst-wr", "note:RegDst"], hot: ["regdst", "f-rt-mux", "f-rd"], on: "all", zoom: Z.regs, view: V, cap: (P) => R("<b>RegDst</b> mux: 0 = rt (lw), 1 = rd (R-type).", 30, P(390, 410)) },
+  { draw: ["rd2-dmem", "note:MemWrite"], hot: ["rd2-dmem", "dmem"], on: "all", zoom: "all", cap: (P) => R("Add <b>sw</b>: Mem[R[rs] + offset] ← R[rt]. Read data 2 → memory Write data. Only one source wants that input, so <b>no mux</b>, just a wire.", 30, P(680, 460)) },
+  { on: "all", zoom: "all", cap: R("R-type + lw + sw with three muxes. The exam recipe for “draw the datapath for add, lw, beq…”: draw the <b>union</b> of their paths, and put a mux wherever two sources meet.", 30) },
+], { dp: DPB, absent: minus(ALL_IDS, R_SET) })
+
+/* C · A given datapath without branch or jump ('21-22); add beq, then j ('23-24). */
+scenes.buildB = (sl) => dpTour(sl, [
+  { on: "all", zoom: "all", cap: R("Often the datapath is <b>given</b> and you extend it. Here: no branch, no jump; PC + 4 is the only next PC.<br><br>Add <b>beq rs, rt, offset</b>: if R[rs] = R[rt], PC ← PC + 4 + offset × 4.", 30) },
+  { hot: ["rd1", "rd2", "alusrc", "alusrc-alu", "alu"], on: "all", zoom: "all", cap: (P) => R(Q("Compare the registers: what already exists? The ALU gets both (ALUSrc = 0). Subtract them…"), 30, P(680, 385)) },
+  { draw: ["zero"], hot: ["zero", "alu"], on: "all", zoom: "all", cap: (P) => R("…and use the ALU's <b>Zero</b> output: 1 when they are equal.", 30, P(740, 357)) },
+  { hot: ["signext", "f-imm", "se-out"], on: "all", zoom: "all", cap: (P) => R(Q("Target address: the offset is <b>already</b> sign-extended (for lw/sw). Reuse it."), 30, P(466, 490)) },
+  { draw: ["se-shl", "shl2b", "pc4", "pc4-addb", "shl-addb", "addb"], hot: ["se-shl", "shl2b", "shl-addb", "addb", "pc4-addb"], on: "all", zoom: "all", cap: (P) => R("Shift left 2 (words → bytes) and a <b>second adder</b>: (PC + 4) + offset × 4. The main ALU can't do it: it is busy comparing.", 30, P(770, 190)) },
+  { hot: ["r-next", "addb"], col: BAD, on: "all", zoom: "all", cap: (P) => R(Q("The PC now has two candidates: PC + 4 and the target. Two sources, one input…"), 30, P(100, -10)) },
+  { remove: ["r-next"], draw: ["pcsrc", "addb-pcsrc", "b-next1", "and", "and-pcsrc", "note:Branch"], hot: ["pcsrc", "and", "and-pcsrc"], on: "all", zoom: "all", cap: (P) => R("…a <b>PCSrc</b> mux, selected by <b>Branch AND Zero</b>: take the target only for a beq whose registers are equal.", 30, P(860, 90)) },
+  { draw: ["f-jump"], hot: ["f-jump"], on: "all", zoom: "all", cap: (P) => R("Now <b>j address</b>: PC ← PC+4[31–28] : address : 00. The 26-bit address field (bits 25–0) comes off the instruction bus.", 30, P(320, 30)) },
+  { draw: ["shl2j", "pc4-top", "jaddr"], hot: ["shl2j", "pc4-top", "jaddr"], on: "all", zoom: "all", cap: (P) => R("Shift it left 2 (28 bits), put PC + 4's top 4 bits in front: the 32-bit jump address.", 30, P(600, 30)) },
+  { remove: ["b-next1"], draw: ["jmux", "pcsrc-jmux", "next-pc", "note:Jump"], hot: ["jmux", "next-pc"], on: "all", zoom: "all", cap: (P) => R("Two candidates for the PC again: one more mux, selected by <b>Jump</b>.", 30, P(950, 50)) },
+  { on: "all", zoom: "all", cap: R("The full datapath. To add any instruction X:<br>1 · write X's register transfer<br>2 · find the existing path<br>3 · add only what's missing<br>4 · mux where sources meet<br>5 · name new control signals", 30) },
+], { dp: DPB, absent: [...NEXT_IDS, ...minus(NEWIDS, ["r-next", "b-next1"]), "b-next1"] })
+
+/* D · Exam-style custom instructions on the full datapath (pick one). */
+const DPC = { scale: 0.98, x: 15, y: 28, extra: EXTRA }
+const CUSTOM = {
+  jr: [
+    { on: "all", zoom: "all", cap: R("<b>jr rs</b> ('22-23, '18-19, '12-13): PC ← R[rs].<br>R-format, funct = 8.<br><br>Step 1: write what it does.", 30) },
+    { hot: ["f-rs", "regs", "rd1"], on: "all", cap: (P) => R("Step 2: what exists? R[rs] is already read: <b>Read data 1</b>.", 30, P(580, 352)) },
+    { hot: ["jmux", "next-pc"], on: "all", cap: (P) => R(Q("Step 3: it must reach the PC, but the PC's input already comes from the Jump mux. Two sources…"), 30, P(970, 40)) },
+    { remove: ["next-pc"], draw: ["jr-in", "jr-rs", "jrmux", "jr-out", "n-jr"], hot: ["jrmux", "jr-rs", "jr-in", "jr-out"], on: "all", zoom: ["jmux", "jrmux", "pcsrc", "jr-in", "n-jr"], pad: 60, view: [0, 0, 1060, 590],  cap: (P) => R("Step 4: one more mux after the Jump mux; input 1 = Read data 1. New signal <b>JR</b>, decoded from funct = 8 (main control sees only opcode 0, like any R-type), and RegWrite must be forced to 0.", 30, P(1000, 60)) },
+  ],
+  bne: [
+    { on: "all", zoom: "all", cap: R("<b>bne rs, rt, offset</b> ('22-23, '18-19, '12-13): if R[rs] ≠ R[rt], PC ← PC + 4 + offset × 4.", 30) },
+    { hot: ["rd1", "rd2", "alu", "zero", "se-shl", "shl2b", "shl-addb", "addb", "addb-pcsrc", "pcsrc"], on: "all", cap: (P) => R("Everything beq uses is reused: subtract, Zero, the target adder, the PCSrc mux.", 30, P(770, 190)) },
+    { hot: ["zero", "and", "and-pcsrc"], on: "all", cap: (P) => R(Q("Only the <b>condition</b> differs: branch when Zero = <b>0</b>."), 30, P(800, 263)) },
+    { remove: ["and-pcsrc"], draw: ["bn-z", "bn-not", "bn-n", "bn-c", "n-bne", "bn-and", "bn-a1", "bn-a2", "bn-or", "bn-out"], hot: ["bn-not", "bn-and", "bn-or"], on: "all", zoom: ["and", "bn-or", "bn-and", "bn-not", "pcsrc", "bn-z"], pad: 30, view: [0, 0, 1060, 590],  cap: (P) => R("PCSrc = (Branch · Zero) + (<b>BNE</b> · ¬Zero): a NOT, an AND and an OR, plus a new control signal BNE.<br><br>With only 2×1 muxes ('22-23): a mux picks Zero or ¬Zero (select = BNE) before the existing AND.", 30, P(900, 250)) },
+  ],
+  jal: [
+    { on: "all", zoom: "all", cap: R("<b>jal target</b> ('18-19, '12-13): R[31] ← PC + 4, then jump.", 30) },
+    { hot: ["f-jump", "shl2j", "jaddr", "pc4-top", "jmux", "next-pc"], on: "all", cap: (P) => R("The jump half is exactly <b>j</b>: reuse it (Jump = 1).", 30, P(600, 30)) },
+    { hot: ["regdst", "regs", "memtoreg", "wb"], on: "all", cap: (P) => R(Q("New: write PC + 4 into register 31. Write register needs a third choice (31); Write data needs a third choice (PC + 4)."), 30, P(430, 420)) },
+    { remove: ["regdst", "memtoreg"], draw: ["jal-rd", "jal-31", "jal-mtr", "jal-pc4"], hot: ["jal-rd", "jal-mtr", "add4"], on: "all", cap: (P) => R("Widen RegDst and MemtoReg to <b>3-input muxes</b> (2-bit selects): RegDst = 2 → 31, MemtoReg = 2 → PC + 4 (from the PC adder). RegWrite = 1.", 30, P(930, 425)) },
+  ],
+  addi: [
+    { on: "all", zoom: "all", cap: R("<b>addi rt, rs, imm</b>: R[rt] ← R[rs] + sign-ext(imm).", 30) },
+    { hot: ["f-rs", "regs", "rd1", "f-imm", "signext", "se-out", "alusrc", "alusrc-alu", "alu", "alu-bypass", "memtoreg", "wb", "f-rt-mux", "regdst", "regdst-wr"], on: "all", cap: (P) => R("lw's address calculation, then R-type's write-back: every piece exists. <b>No new hardware</b>.<br><br>Control: RegDst = 0, ALUSrc = 1, MemtoReg = 0, RegWrite = 1, MemRead = MemWrite = Branch = 0, ALUOp = 00 (add).", 30, P(680, 385)) },
+  ],
+  ori: [
+    { on: "all", zoom: "all", cap: R("<b>ori rt, rs, imm</b> ('20-21 asks for its active path): R[rt] ← R[rs] | zero-ext(imm).", 30) },
+    { hot: ["f-rs", "regs", "rd1", "f-imm", "signext", "se-out", "alusrc", "alusrc-alu", "alu", "alu-bypass", "memtoreg", "wb", "f-rt-mux", "regdst", "regdst-wr"], on: "all", cap: (P) => R("The same path as addi…", 30, P(680, 385)) },
+    { draw: ["n-ext"], hot: ["signext", "aluctl"], on: "all", zoom: ["signext", "n-ext", "aluctl", "alusrc", "alu"], pad: 30, view: [0, 0, 1060, 590],  cap: (P) => R("…but the immediate is <b>zero</b>-extended, and the ALU must OR. Make the extender selectable (<b>ExtOp</b>) and give ALUOp a new code so ALU control outputs OR (0001).", 30, P(466, 470)) },
+  ],
+  slt: [
+    { on: "all", zoom: "all", cap: R("<b>slt rd, rs, rt</b> ('18-19): R[rd] ← (R[rs] < R[rt]) ? 1 : 0.", 30) },
+    { hot: P_["R-format"], on: "all", cap: (P) => R("R-format: exactly add's path. The ALU already has set-on-less-than (funct 42 → ALU control 0111). <b>No new hardware, no new control</b>: ALUOp = 10 like every R-type.", 30, P(680, 385)) },
+  ],
+}
+scenes.custom = (sl, api) => {
+  const keys = Object.keys(CUSTOM)
+  let pick = 0, inst
+  const make = () => { $(".h", sl).innerHTML = ""; inst = dpTour(sl, CUSTOM[keys[pick]].map((f) => (f.hot ? { ...f, on: [...f.hot, ...(f.draw || [])] } : f)), { dp: DPC, absent: NEWIDS }) }
+  ctrlBtns(sl, keys, (i) => { pick = i; inst.tl.kill(); make(); api.refresh(0) })
+  make()
+  return { count: () => inst.count(), go: (k, a) => inst.go(k, a), leave: () => inst.leave() }
 }
 
 
@@ -2554,11 +3252,12 @@ const menu = $("#menu")
   let html = "", sec = null
   slides.forEach((sl, i) => {
     if (sl.dataset.sec !== sec) { if (sec !== null) html += "</div>"; sec = sl.dataset.sec; html += `<div class="sec">${sec}</div><div class="grid">` }
-    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}</a>`
+    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}${sl.dataset.exam === "core" ? '<i class="mst">★</i>' : ""}</a>`
   })
   $("#menuList").innerHTML = html + "</div>"
   $$("#menuList a").forEach((a) => (a.onclick = (e) => { e.preventDefault(); menu.classList.remove("open"); go(+a.dataset.i, 0) }))
 })()
+$$(".exam .exb").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); b.parentElement.classList.toggle("open") }; b.onpointerdown = (e) => e.stopPropagation() })
 const toggleMenu = () => menu.classList.toggle("open")
 $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }

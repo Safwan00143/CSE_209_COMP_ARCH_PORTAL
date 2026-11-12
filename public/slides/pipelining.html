@@ -170,6 +170,22 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .inp { background: #1b1f24; border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 12px; font-family: "JetBrains Mono", Consolas, monospace; font-size: 18px; color: var(--ink); }
 .bitcell { font-family: "JetBrains Mono", Consolas, monospace; }
 
+/* exam relevance badge */
+.exam { position: absolute; right: 110px; top: 50px; z-index: 25; font-family: Inter, sans-serif; font-size: 17px; }
+.exb { all: unset; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; padding: 6px 15px; border-radius: 999px; border: 1.5px solid; letter-spacing: .01em; white-space: nowrap; }
+.ex-core .exb { background: #2f2710; border-color: #e8b23a; color: #f4d35e; font-weight: 600; }
+.ex-some .exb { border-color: #59626d; color: #cfd3d8; }
+.ex-glance .exb { border-color: #2c3138; color: #7d848d; }
+.exb .yrs { font-weight: 500; } .exb .more { opacity: .7; font-weight: 500; }
+.exp { display: none; position: absolute; right: 0; top: 46px; width: 540px; background: #15181c; border: 1.5px solid #3a3f47; border-radius: 14px; padding: 14px 18px; font-size: 18px; line-height: 1.5; color: #dfe3e8; box-shadow: 0 12px 34px #000a; }
+.exam.open .exp, .exam:hover .exp { display: block; }
+.exr b { color: #f4d35e; font-weight: 600; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.exn { color: #a7aeb6; margin-bottom: 6px; font-style: italic; }
+.exlegend { color: #9aa1aa; }
+.exk { display: inline-block; padding: 1px 10px; border-radius: 999px; border: 1.5px solid; font-size: .9em; }
+.exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
+.mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -244,7 +260,7 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
     if (!rd) return
     const sl = document.querySelector(".slide.active")
     if (!sl) return
-    rd.querySelector(".t").textContent = sl.dataset.title || ""
+    rd.querySelector(".t").textContent = (sl.dataset.exam === "core" ? "★ " : sl.dataset.exam === "glance" ? "Glance · " : "") + (sl.dataset.title || "")
     rd.querySelector(".n").textContent = document.querySelector("#count")?.textContent || ""
     const cap = sl.querySelector(":scope > .cap"), c = rd.querySelector(".c")
     if (cap) {
@@ -294,140 +310,163 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h1 class="ttl">Pipelining</h1>
   <p class="dim sub" style="max-width:1000px;margin-top:22px">Overlapping instructions like a laundry: the five MIPS stages, hazards and how forwarding, stalls and prediction handle them, and multiple issue.</p>
   <div class="h abs" style="left:110px;top:450px;width:1380px;height:300px"></div>
+  <p class="small abs exlegend" style="left:110px;bottom:104px"><span class="exk core">★ Exam</span> asked in past papers (sessions shown; tap for the questions) &nbsp; <span class="exk some">Asked</span> once or twice &nbsp; <span class="exk glance">Glance</span> not asked: read once</p>
   <p class="small dim abs hint" style="left:110px;bottom:60px">→ / ← step · ☰ or G: slide menu · S: speed · F: full screen · captions appear next to what they describe</p>
 </section>
-<section class="slide" data-scene="laundry" data-title="The laundry analogy" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · p. 2">
+<section class="slide" data-scene="laundry" data-title="The laundry analogy" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · p. 2" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · Pipelining</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Pipelining: overlap the steps</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="stages" data-title="The five MIPS stages (zoom)" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · pp. 3–4, 33">
+<section class="slide" data-scene="stages" data-title="The five MIPS stages (zoom)" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · pp. 3–4, 33" data-exam="some" data-examtxt="asked ’13-14">
   <div class="kicker">1 · Pipelining</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’13-14</span></button><div class="exp"><div class="exr"><b>2013-14</b>The five MIPS pipeline stages</div></div></div>
   <h2>Five stages, one step each</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="speedup" data-title="Pipeline speed-up (slider)" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · pp. 5–8">
+<section class="slide" data-scene="speedup" data-title="Pipeline speed-up (slider)" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · pp. 5–8" data-exam="core" data-examtxt="★ exam ’17-18 · ’15-16 · ’13-14">
   <div class="kicker">1 · Pipelining</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’15-16 · ’13-14</span></button><div class="exp"><div class="exr"><b>2017-18</b>lw stage times: speed-up, + 3,000,000 lw</div><div class="exr"><b>2015-16</b>Same, + 2,000,000 lw</div><div class="exr"><b>2013-14</b>Same, + 1,000,000 lw</div></div></div>
   <h2>Pipeline performance</h2>
   <div class="ctrls abs" style="left:110px;top:680px;width:1000px"></div>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="isa" data-title="ISA design for pipelining" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · p. 9">
+<section class="slide" data-scene="isa" data-title="ISA design for pipelining" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · p. 9" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · Pipelining</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>MIPS was designed for pipelining</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="structural" data-title="Hazards; structural hazards" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 10–11">
+<section class="slide" data-scene="structural" data-title="Hazards; structural hazards" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 10–11" data-exam="some" data-examtxt="asked ’16-17 · ’14-15 · ’11-12">
   <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’16-17 · ’14-15 · ’11-12</span></button><div class="exp"><div class="exr"><b>2016-17</b>Structural hazard; hazards in a code</div><div class="exr"><b>2014-15</b>Structural hazard</div><div class="exr"><b>2011-12</b>Types of pipeline hazard</div></div></div>
   <h2>Hazards, and the structural kind</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="forward" data-title="Data hazards and forwarding" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 12–16">
+<section class="slide" data-scene="forward" data-title="Data hazards and forwarding" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 12–16" data-exam="core" data-examtxt="★ exam ’22-23 · ’20-21 · ’19-20">
   <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’20-21 · ’19-20</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2022-23</b>Pipeline without, then with forwarding</div><div class="exr"><b>2020-21</b>lw + chain of adds: forwarding conditions</div><div class="exr"><b>2019-20</b>Pipeline for A=B+C; D=A+D</div><div class="exr"><b>2013-14</b>Count data hazards</div></div></div>
   <h2>Data hazards: stall or forward</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="loaduse" data-title="Load-use hazard" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 17–21">
+<section class="slide" data-scene="loaduse" data-title="Load-use hazard" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 17–21" data-exam="core" data-examtxt="★ exam ’22-23 · ’17-18 · ’15-16">
   <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’17-18 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2022-23</b>Hazard detection conditions</div><div class="exr"><b>2017-18</b>Load-use detection and stall</div><div class="exr"><b>2015-16</b>Load-use detection</div><div class="exr"><b>2012-13</b>A hazard forwarding cannot solve</div></div></div>
   <h2>Load-use: forwarding is not enough</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="sched" data-title="Code scheduling" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 22–24">
+<section class="slide" data-scene="sched" data-title="Code scheduling" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 22–24" data-exam="core" data-examtxt="★ exam ’22-23 · ’21-22 · ’19-20">
   <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’21-22 · ’19-20</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2022-23</b>A=B+C; D=A+E: cycles, reschedule</div><div class="exr"><b>2021-22</b>lw/add/sw code: cycles, scheduling</div><div class="exr"><b>2019-20</b>Reorder to cut stalls</div><div class="exr"><b>2017-18</b>A=B+C; D=A+E</div><div class="exr"><b>2015-16</b>A=B+C; D=A+E</div></div></div>
   <h2>Reorder code to avoid stalls</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="control" data-title="Control hazards and prediction" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 25–31">
+<section class="slide" data-scene="control" data-title="Control hazards and prediction" data-sec="2 · Hazards" data-ref="Ch. 4 Part 2 · pp. 25–31" data-exam="some" data-examtxt="asked ’17-18 · ’15-16 · ’12-13">
   <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’17-18 · ’15-16 · ’12-13</span></button><div class="exp"><div class="exr"><b>2017-18</b>Penalty with a perfect predictor</div><div class="exr"><b>2015-16</b>Penalty with a perfect predictor</div><div class="exr"><b>2012-13</b>What is a branch hazard</div></div></div>
   <h2>Control hazards: predict not taken</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="pregs" data-title="Pipeline registers" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 33–34">
+<section class="slide" data-scene="pregs" data-title="Pipeline registers" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 33–34" data-exam="some" data-examtxt="asked ’16-17 · ’14-15 · ’11-12">
   <div class="kicker">3 · Pipelined datapath</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’16-17 · ’14-15 · ’11-12</span></button><div class="exp"><div class="exr"><b>2016-17</b>Add pipeline registers to the datapath</div><div class="exr"><b>2014-15</b>Add pipeline registers + forwarding</div><div class="exr"><b>2011-12</b>Contents of IF/ID and ID/EX</div></div></div>
   <h2>Pipeline registers</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="lwflow" data-title="lw through the stages (and a bug)" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 35–45">
+<section class="slide" data-scene="lwflow" data-title="lw through the stages (and a bug)" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 35–45" data-exam="core" data-examtxt="★ exam ’15-16 · ’13-14 · ’11-12">
   <div class="kicker">3 · Pipelined datapath</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’15-16 · ’13-14 · ’11-12</span></button><div class="exp"><div class="exr"><b>2015-16</b>Pipelined datapath and control for lw</div><div class="exr"><b>2013-14</b>Pipelined datapath and control for lw</div><div class="exr"><b>2011-12</b>What lw and add do in EX and MEM</div></div></div>
   <h2>lw, stage by stage</h2>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="diagrams" data-title="Multi-cycle and single-cycle diagrams" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 46–49">
+<section class="slide" data-scene="diagrams" data-title="Multi-cycle and single-cycle diagrams" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 46–49" data-exam="some" data-examtxt="asked ’22-23">
   <div class="kicker">3 · Pipelined datapath</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’22-23</span></button><div class="exp"><div class="exn">You draw these diagrams in most hazard questions.</div><div class="exr"><b>2022-23</b>Construct the execution pipeline</div></div></div>
   <h2>Two ways to draw a pipeline</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="pctl" data-title="Pipelined control" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 50–52">
+<section class="slide" data-scene="pctl" data-title="Pipelined control" data-sec="3 · Pipelined datapath" data-ref="Ch. 4 Part 2 · pp. 50–52" data-exam="some" data-examtxt="asked ’15-16 · ’13-14">
   <div class="kicker">3 · Pipelined datapath</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’15-16 · ’13-14</span></button><div class="exp"><div class="exr"><b>2015-16</b>Control for lw in the pipeline</div><div class="exr"><b>2013-14</b>Control for lw in the pipeline</div></div></div>
   <h2>Control travels with the instruction</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="fwdEdit" data-title="Forwarding detector (edit the code)" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 53–61, 65">
+<section class="slide" data-scene="fwdEdit" data-title="Forwarding detector (edit the code)" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 53–61, 65" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
   <div class="kicker">4 · Forwarding and stalls</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>Design the complete forwarding unit</div><div class="exr"><b>2022-23</b>Forwarding condition ins1 → ins2</div><div class="exr"><b>2021-22</b>Complete forwarding unit</div><div class="exr"><b>2019-20</b>Conditions for EX and MEM hazards</div><div class="exr"><b>2017-18</b>Complete forwarding unit</div><div class="exr"><b>2012-13</b>Detect hazards; forwarding unit</div></div></div>
   <h2>Detecting the need to forward</h2>
   <div class="ctrls abs" style="left:1120px;top:140px;width:370px"></div>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="double" data-title="Double data hazard" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 62–64">
+<section class="slide" data-scene="double" data-title="Double data hazard" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 62–64" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’17-18">
   <div class="kicker">4 · Forwarding and stalls</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’17-18</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2023-24</b>Forwarding unit with double data hazard</div><div class="exr"><b>2021-22</b>Forwarding with double data hazard</div><div class="exr"><b>2017-18</b>Double data hazard</div><div class="exr"><b>2015-16</b>Double data hazard equations</div><div class="exr"><b>2011-12</b>Double data hazard example</div></div></div>
   <h2>Double data hazard</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="stall" data-title="Hazard detection and the bubble" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 66–76">
+<section class="slide" data-scene="stall" data-title="Hazard detection and the bubble" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 66–76" data-exam="core" data-examtxt="★ exam ’22-23 · ’17-18 · ’15-16">
   <div class="kicker">4 · Forwarding and stalls</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’17-18 · ’15-16</span></button><div class="exp"><div class="exr"><b>2022-23</b>Complete hazard detection unit</div><div class="exr"><b>2017-18</b>Load-use detection and stall</div><div class="exr"><b>2015-16</b>Load-use detection</div></div></div>
   <h2>How the pipeline stalls</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="branch" data-title="Branch hazards (pick a case)" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · pp. 77–81">
+<section class="slide" data-scene="branch" data-title="Branch hazards (pick a case)" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · pp. 77–81" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
   <div class="kicker">5 · Branches</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>Stalls and cycles, branch in ID</div><div class="exr"><b>2022-23</b>Components added in ID; flush and stall together</div><div class="exr"><b>2021-22</b>Branch data hazards: 0, 1, 2 stalls</div><div class="exr"><b>2018-19</b>Flush and stall at once?</div><div class="exr"><b>2017-18</b>Branch data hazards: 1 and 2 stalls</div><div class="exr"><b>2013-14</b>Branch data hazards</div></div></div>
   <h2>Branches decided in ID</h2>
   <div class="ctrls abs" style="left:110px;top:160px;"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="predict" data-title="1-bit vs 2-bit prediction (type a history)" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · pp. 82–85">
+<section class="slide" data-scene="predict" data-title="1-bit vs 2-bit prediction (type a history)" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · pp. 82–85" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’19-20">
   <div class="kicker">5 · Branches</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’19-20</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>1-bit predictor on nested loops</div><div class="exr"><b>2021-22</b>1-bit predictor on nested loops</div><div class="exr"><b>2019-20</b>2-bit predictor FSM</div><div class="exr"><b>2017-18</b>1-bit predictor on nested loops</div><div class="exr"><b>2013-14</b>1-bit predictor</div><div class="exr"><b>2011-12</b>2-bit predictor accuracy</div></div></div>
   <h2>Dynamic branch prediction</h2>
   <div class="ctrls abs" style="left:110px;top:160px;"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="ilp" data-title="ILP and multiple issue" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 86–89">
+<section class="slide" data-scene="ilp" data-title="ILP and multiple issue" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 86–89" data-exam="some" data-examtxt="asked ’14-15">
   <div class="kicker">6 · Multiple issue</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’14-15</span></button><div class="exp"><div class="exr"><b>2014-15</b>Superscalar vs VLIW</div></div></div>
   <h2>Instruction-level parallelism</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="dual" data-title="Static dual issue and unrolling" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 90–97">
+<section class="slide" data-scene="dual" data-title="Static dual issue and unrolling" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 90–97" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’20-21">
   <div class="kicker">6 · Multiple issue</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’20-21</span></button><div class="exp"><div class="exr"><b>2023-24</b>Dual-issue schedule; IPC</div><div class="exr"><b>2021-22</b>Dual-issue schedule; IPC</div><div class="exr"><b>2020-21</b>Unroll for maximum IPC</div></div></div>
   <h2>Static dual issue and loop unrolling</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="dynamic" data-title="Dynamic scheduling" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 98–101">
+<section class="slide" data-scene="dynamic" data-title="Dynamic scheduling" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 98–101" data-exam="some" data-examtxt="asked ’21-22">
   <div class="kicker">6 · Multiple issue</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’21-22</span></button><div class="exp"><div class="exr"><b>2021-22</b>Dynamically scheduled CPU block diagram</div></div></div>
   <h2>Dynamic scheduling</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="wrap" data-title="Fallacies and conclusions" data-sec="7 · Wrap-up" data-ref="Ch. 4 Part 2 · pp. 102–111">
+<section class="slide" data-scene="wrap" data-title="Fallacies and conclusions" data-sec="7 · Wrap-up" data-ref="Ch. 4 Part 2 · pp. 102–111" data-exam="glance" data-examtxt="glance">
   <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Fallacies, pitfalls, conclusions</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
@@ -1940,7 +1979,7 @@ The complexity of dynamic scheduling and speculation costs power, so **multiple 
   }
   function traceVM(opts) {
     const tlb = opts.tlb.map((e) => ({ ...e, lastUse: 0 }));
-    const pt = opts.pageTable.map((e) => ({ ...e }));
+    const pt2 = opts.pageTable.map((e) => ({ ...e }));
     let next = opts.nextPpn;
     let time = 0;
     tlb.forEach((e, i) => e.lastUse = -(tlb.length - i));
@@ -1958,14 +1997,14 @@ The complexity of dynamic scheduling and speculation costs power, so **multiple 
         result = "TLB hit";
         ppn = hit.ppn;
       } else {
-        while (pt.length <= vpn) pt.push({ valid: false, ppn: null });
-        if (pt[vpn].valid && pt[vpn].ppn !== null) {
+        while (pt2.length <= vpn) pt2.push({ valid: false, ppn: null });
+        if (pt2[vpn].valid && pt2[vpn].ppn !== null) {
           result = "page table hit";
-          ppn = pt[vpn].ppn;
+          ppn = pt2[vpn].ppn;
         } else {
           result = "page fault";
           ppn = next++;
-          pt[vpn] = { valid: true, ppn };
+          pt2[vpn] = { valid: true, ppn };
         }
         let victim = tlb.findIndex((e) => !e.valid);
         if (victim < 0) {
@@ -1976,8 +2015,239 @@ The complexity of dynamic scheduling and speculation costs power, so **multiple 
       }
       steps.push({ va, vpn, offset, result, ppn, pa: ppn * opts.pageBytes + offset, evictedTag });
     }
-    return { steps, tlb, pageTable: pt };
+    return { steps, tlb, pageTable: pt2 };
   }
+
+  // website/src/content/notes/virtual-memory.ts
+  var VM_EXAMPLE = {
+    pageBytes: 4096,
+    tlb: [
+      { valid: true, tag: 2, ppn: 7 },
+      { valid: true, tag: 9, ppn: 1 },
+      { valid: true, tag: 0, ppn: 4 },
+      { valid: false, tag: 5, ppn: 3 }
+    ],
+    pageTable: [
+      { valid: true, ppn: 4 },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 7 },
+      { valid: true, ppn: 6 },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 3 },
+      { valid: false, ppn: null },
+      { valid: false, ppn: null },
+      { valid: false, ppn: null },
+      { valid: true, ppn: 1 }
+    ],
+    nextPpn: 8,
+    addresses: [8200, 12500, 4e4, 4100, 9e3, 20480]
+  };
+  var run2 = traceVM(VM_EXAMPLE);
+  var traceTable = [
+    "| Virtual address | VPN = \u230AVA / 4096\u230B | Offset | Result | Physical page | Physical address |",
+    "|---|---|---|---|---|---|",
+    ...run2.steps.map((s) => `| ${s.va} | ${s.vpn} | ${s.offset} | ${s.result}${s.evictedTag !== void 0 ? ` (replaces TLB tag ${s.evictedTag})` : ""} | ${s.ppn} | ${s.pa} |`)
+  ].join("\n");
+  var tlbAfter = ["| Valid | Tag (VPN) | Physical page |", "|---|---|---|", ...run2.tlb.map((e) => `| ${e.valid ? 1 : 0} | ${e.tag} | ${e.ppn} |`)].join("\n");
+  var pt = pageTableSize(32, 4096, 4);
+  var virtualMemoryNote = md`
+## Virtual memory
+
+**Virtual memory** uses main memory as a "cache" for secondary (disk) storage (slide 56).
+
+- It is managed jointly by the CPU hardware and the operating system (OS).
+- Programs share main memory. Each gets a **private virtual address space** holding its frequently used code and data, **protected** from other programs.
+- The CPU and OS **translate virtual addresses to physical addresses**.
+
+The terms map onto cache terms:
+
+| Cache | Virtual memory |
+|---|---|
+| block | **page** |
+| miss | **page fault** |
+
+## Address translation
+
+Pages have a fixed size, e.g. 4 KiB (slide 57). An address splits into a **page number** and a **page offset**:
+$$
+\text{offset bits} = \log_2(\text{page size in bytes})
+$$
+$$
+\text{virtual page number (VPN) bits} = \text{virtual address bits} - \text{offset bits}
+$$
+$$
+\text{physical page number (PPN) bits} = \text{physical address bits} - \text{offset bits}
+$$
+
+\`\`\`fig
+vm-split
+\`\`\`
+
+Translation replaces the VPN with a PPN. The **page offset is not changed**: a page is placed whole, so the byte's position inside it stays the same.
+
+Equivalently, for a byte address: $\text{VPN} = \lfloor \text{VA} / \text{page size} \rfloor$ and $\text{offset} = \text{VA} \bmod \text{page size}$; then $\text{PA} = \text{PPN}\times\text{page size} + \text{offset}$.
+
+## Page fault penalty
+
+On a page fault, the page must be fetched from disk (slide 58):
+- this takes **millions of clock cycles**;
+- it is handled by OS code.
+
+So the design tries hard to **minimise the page-fault rate**:
+- **fully associative placement**: a page can go in any physical page;
+- **smart replacement algorithms**;
+- **never write-through, always write-back**.
+
+## Page tables
+
+The **page table** stores the placement information (slide 59).
+- It is an array of **page table entries (PTEs)**, indexed by the virtual page number.
+- The **page table register** in the CPU points to the page table in physical memory.
+- If the page is present in memory, the PTE stores the **physical page number**, plus other status bits (referenced, dirty, …).
+- If the page is not present, the PTE can refer to a location in the **swap space** on disk.
+
+\`\`\`fig
+vm-page-table
+\`\`\`
+
+**How the page table works, step by step:**
+1. Split the virtual address into VPN and offset.
+2. Use the page table register and the VPN to find the PTE.
+3. If the PTE's valid bit is 1, the page is in memory: physical address = PTE's PPN joined with the offset.
+4. If the valid bit is 0, the page is on disk: a **page fault**. The OS reads the page from disk into a physical page (replacing one if memory is full), updates the PTE, and the instruction is restarted.
+
+## Page table size
+
+A single-level page table has one entry per virtual page:
+$$
+\#\text{entries} = 2^{\text{VPN bits}},\qquad \text{size} = \#\text{entries}\times\text{PTE size}
+$$
+
+**Example.** 32-bit virtual address, 4 KiB pages, 4-byte PTEs.
+- Offset bits = $\log_2 4096 = 12$; VPN bits = $32 - 12 = ${pt.vpnBits}$.
+- Entries = $2^{${pt.vpnBits}}$ = ${pt.entries.toLocaleString("en-US")}.
+- Size = $2^{20}\times4\ \text{B} = 2^{22}\ \text{B} = ${pt.bytes / 2 ** 20}$ MiB per process.
+
+Each running program has its own page table, so this cost multiplies by the number of processes.
+
+## Replacement and writes
+
+To reduce the page-fault rate, prefer **least-recently used (LRU)** replacement (slide 62):
+- a **reference bit** (use bit) in the PTE is set to 1 on any access to the page;
+- the OS periodically clears it to 0;
+- a page with reference bit 0 has not been used recently, so it is a candidate for replacement.
+
+This is an approximation of LRU, cheap enough to do in software.
+
+Disk writes take millions of cycles, and a whole block is written at once, not individual locations. Write-through is impractical; use **write-back**. A **dirty bit** in the PTE is set when the page is written, so only dirty pages are written back on replacement.
+
+## Fast translation using a TLB
+
+Address translation would seem to need **extra memory references**: one to read the PTE, then the actual memory access (slide 63). But accesses to the page table have good locality. So the CPU keeps a fast cache of PTEs: the **translation look-aside buffer (TLB)**.
+
+Typical values: 16–512 PTEs, 0.5–1 cycle for a hit, 10–100 cycles for a miss, 0.01%–1% miss rate. Misses can be handled by hardware or software.
+
+A TLB entry holds: a **valid** bit, a **tag** (the virtual page number, or its upper bits for a set-associative TLB), the **physical page number**, and copies of the dirty and reference bits.
+
+- **Why a tag?** The TLB has far fewer entries than the page table, so an entry can hold the translation of many different virtual pages. The tag records which VPN the entry currently translates, exactly like a cache tag.
+- **The TLB is a cache of the page table, for the entries that map to physical pages only**: a page that is on disk has no physical page number to cache.
+
+## TLB misses
+
+If the page **is in memory** (slide 65):
+- load the PTE from memory into the TLB and retry;
+- this could be handled in hardware (complex for complicated page-table structures), or in software: raise a special exception with an optimised handler.
+
+If the page **is not in memory** (a page fault):
+- the OS fetches the page and updates the page table;
+- then the faulting instruction restarts.
+
+**TLB miss handler (slide 66).** A TLB miss indicates either that the page is present but its PTE is not in the TLB, or that the page is not present. The handler copies the PTE from memory to the TLB and restarts the instruction. If the page is not present, a page fault will then occur.
+
+**Page fault handler (slide 67):**
+1. Use the faulting virtual address to find the PTE.
+2. Locate the page on disk.
+3. Choose a page to replace; if it is dirty, write it to disk first.
+4. Read the page into memory and update the page table.
+5. Make the process runnable again.
+6. Restart from the faulting instruction.
+
+**Without a TLB,** every memory access would need an extra memory access for the PTE first: at least doubling the time of every load, store and instruction fetch.
+
+## Worked example: a TLB and page-table trace
+
+4 KiB pages, a 4-entry fully associative TLB with LRU replacement. On a page fault, the page is placed in the next free physical page, starting at ${VM_EXAMPLE.nextPpn}. Initial TLB (valid, tag, physical page): (1, 2, 7), (1, 9, 1), (1, 0, 4), (0, 5, 3). Page table (VPN: physical page or disk): 0: 4, 1: disk, 2: 7, 3: 6, 4: disk, 5: 3, 6–8: disk, 9: 1.
+
+${traceTable}
+
+**How each row is decided:**
+1. VPN = ⌊VA / 4096⌋.
+2. If a valid TLB entry has that tag: **TLB hit**.
+3. Otherwise look in the page table. Valid: **page table hit**; copy the entry into the TLB.
+4. Not valid: **page fault**; bring the page into the next free physical page, update the page table, and copy the entry into the TLB.
+5. When the TLB must load an entry, fill an invalid entry first, otherwise replace the least recently used one.
+
+TLB afterwards:
+
+${tlbAfter}
+
+## Virtual memory, TLB and cache together
+
+Virtual memory and caches work together as a hierarchy (slide 68). Data cannot be in the cache unless it is present in main memory. The OS keeps this true:
+- it flushes the contents of a page from the cache when it migrates that page to disk;
+- it modifies the page tables and TLB so that any access to data on the migrated page generates a page fault.
+
+\`\`\`fig
+vm-tlb-flow
+\`\`\`
+
+**How the TLB and the data cache differ**, although both are caches:
+
+| | TLB | Data cache |
+|---|---|---|
+| Caches | page-table entries (translations) | memory data |
+| Indexed/tagged by | virtual page number | physical address (in a physically addressed cache) |
+| Entry holds | physical page number + status bits | a block of data |
+| A miss means | translation not cached: walk the page table (maybe a page fault) | data not cached: fetch the block from memory |
+| Typical size | 16–512 entries, often fully associative | KiB to MiB, direct mapped or set associative |
+
+**Possible combinations of events (slide 71):**
+
+| TLB | Page table | Cache | Possible? |
+|---|---|---|---|
+| hit | hit | miss | yes, although the page table is never checked after a TLB hit |
+| miss | hit | hit | yes: TLB misses, the entry is found in the page table; after retry, the data is in the cache |
+| miss | hit | miss | yes: TLB misses, the entry is found in the page table; after retry, the data misses in the cache |
+| miss | miss | miss | yes: TLB misses and is followed by a page fault; after retry, the data must miss in the cache |
+| hit | miss | miss | impossible: a translation cannot be in the TLB if the page is not in memory |
+| hit | miss | hit | impossible: same reason |
+| miss | miss | hit | impossible: data cannot be in the cache if the page is not in memory |
+
+## Memory protection
+
+Different tasks can share parts of their virtual address spaces, but they need protection against errant access (slide 72). This requires OS assistance, with hardware support:
+- a privileged **supervisor mode** (kernel mode);
+- **privileged instructions**;
+- page tables and other state information accessible only in supervisor mode.
+
+Each process has its own page table, so a process can only reach physical pages its own page table maps.
+
+## The memory hierarchy: a common framework
+
+The same four questions apply at every level of the hierarchy (slides 73–77):
+
+| Question | Hardware caches | Virtual memory |
+|---|---|---|
+| **Block placement** | direct mapped (1 choice), n-way set associative (n choices), fully associative (any location). Higher associativity reduces the miss rate but increases complexity, cost and access time. | fully associative |
+| **Finding a block** | index, then compare tags: 1 comparison (direct mapped), n (n-way), #entries (fully associative) | a full lookup table (the page table): 0 tag comparisons, which makes full associativity feasible |
+| **Replacement** | LRU (costly for high associativity) or random (close to LRU, easier) | LRU approximation with hardware support (reference bits) |
+| **Write policy** | write-through (simplifies replacement, may need a write buffer) or write-back (more state) | only write-back is feasible, given disk write latency |
+
+## Pitfalls
+
+- **Extending the address range with segments** (e.g. Intel 80286): a segment is not always big enough, and address arithmetic becomes complicated.
+- **Implementing a virtual machine monitor on an ISA not designed for virtualisation**, e.g. one where non-privileged instructions can access hardware resources: either extend the ISA or require the guest OS not to use the problematic instructions.
+`;
 
   // website/src/figures/datapath.tsx
   var blocks = [
@@ -2133,6 +2403,7 @@ The complexity of dynamic scheduling and speculation costs power, so **multiple 
     UNROLLED,
     traceVM,
     pageTableSize,
+    VM_EXAMPLE,
     DP: { blocks: dp.blocks, wires: dp.wires, notes: dp.notes, PATHS }
   };
 })();
@@ -2141,7 +2412,7 @@ The complexity of dynamic scheduling and speculation costs power, so **multiple 
    Everything here is built for timeline scenes: each helper ADDS tweens to a timeline (c.tl),
    so stepping back seeks the timeline and every state rewinds cleanly. */
 
-const HOT = C.b, VAL = C.y, DIM = 0.12
+const HOT = C.b, VAL = C.y, DIM = 0.3, NEW = C.y, BAD = C.r
 // `$` becomes &#36; so a register name inside a caption is never read as $maths$.
 const mono = (s) => `<span class="mono">${String(s).replace(/\$/g, "&#36;")}</span>`
 const ptsD = (pts) => "M" + pts.map((p) => p.join(" ")).join(" L")
@@ -2187,14 +2458,17 @@ function Datapath(parent, o = {}) {
   const marker = (col) => { if (arrowId[col]) return arrowId[col]; const id = "dpa" + ++UID; const m = S_("marker", { id, viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, markerUnits: "userSpaceOnUse", orient: "auto" }, defs); S_("path", { d: "M0,0 L10,5 L0,10 z", fill: col }, m); return (arrowId[col] = id) }
   const T_ = (x, y, t, s, col, a = "middle", g) => { const e = S_("text", { x, y, "text-anchor": a, "dominant-baseline": "central", "font-size": s, fill: col }, g); e.textContent = t; e.style.fontFamily = "Inter"; return e }
   const exclude = new Set(o.hide || [])
-  const blocks = LIB.DP.blocks.filter((b) => !exclude.has(b.id)), wires = LIB.DP.wires.filter((w) => !exclude.has(w.id))
+  const X = o.extra || {}
+  const blocks = [...LIB.DP.blocks, ...(X.blocks || [])].filter((b) => !exclude.has(b.id)), wires = [...LIB.DP.wires, ...(X.wires || [])].filter((w) => !exclude.has(w.id))
+  const baseOf = (e) => (e.add === "x" ? BAD : e.add ? NEW : null)
   const gw = S_("g", {}, root), gb = S_("g", {}, root), gn = S_("g", {}, root)
   for (const w of wires) {
     const g = S_("g", {}, gw)
-    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: ink, "stroke-width": 1.6, ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(ink)})` }) }, g)
-    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: ink }, g)
-    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, mut, w.label.anchor ?? "middle", g)] : []
-    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts })
+    const wc = baseOf(w) || ink
+    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: wc, "stroke-width": w.add ? 2.2 : 1.6, ...(w.add ? { "stroke-dasharray": "6 3" } : {}), ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(wc)})` }) }, g)
+    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: wc }, g)
+    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, w.add ? wc : mut, w.label.anchor ?? "middle", g)] : []
+    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts, base: baseOf(w), bw: w.add ? 2.2 : 1.6 })
   }
   for (const b of blocks) {
     const g = S_("g", {}, gb), { x, y, w, h } = b
@@ -2202,20 +2476,27 @@ function Datapath(parent, o = {}) {
     if (b.kind === "alu") sh = S_("path", { d: `M${x} ${y} L${x + w} ${y + h * 0.25} L${x + w} ${y + h * 0.75} L${x} ${y + h} L${x} ${y + h * 0.6} L${x + w * 0.22} ${y + h / 2} L${x} ${y + h * 0.4} Z` }, g)
     else if (b.kind === "mux") sh = S_("rect", { x, y, width: w, height: h, rx: w / 2 }, g)
     else if (b.kind === "ellipse") sh = S_("ellipse", { cx: x + w / 2, cy: y + h / 2, rx: w / 2, ry: h / 2 }, g)
+    else if (b.kind === "not") { sh = S_("path", { d: `M${x} ${y} L${x + w - 6} ${y + h / 2} L${x} ${y + h} Z` }, g); S_("circle", { cx: x + w - 3, cy: y + h / 2, r: 3, fill: "#15181c", stroke: baseOf(b) || ink, "stroke-width": 1.4 }, g) }
+    else if (b.kind === "or") sh = S_("path", { d: `M${x} ${y} Q${x + w * 0.35} ${y + h / 2} ${x} ${y + h} Q${x + w * 0.75} ${y + h} ${x + w} ${y + h / 2} Q${x + w * 0.75} ${y} ${x} ${y} Z` }, g)
     else if (b.kind === "round") sh = S_("path", { d: `M${x} ${y} H${x + w - h / 2} A${h / 2} ${h / 2} 0 0 1 ${x + w - h / 2} ${y + h} H${x} Z` }, g)
     else sh = S_("rect", { x, y, width: w, height: h, rx: 4 }, g)
-    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", ink); sh.setAttribute("stroke-width", 1.6)
+    const bc = baseOf(b) || ink
+    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", bc); sh.setAttribute("stroke-width", b.add ? 2.2 : 1.6)
     const texts = [], size = b.size ?? 12
     const lab = b.kind === "mux" ? (b.label?.length ? b.label : ["M", "u", "x"]) : b.label || []
     if (b.id === "control") lab.forEach((l, i) => texts.push(T_(x + w / 2, y + 18 + i * 18.5, l, i ? 10 : 12, i ? mut : ink, "middle", g)))
-    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, ink, "middle", g)))
-    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, mut, p.anchor || "start", g))
-    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h] })
+    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : b.kind === "not" ? x + w * 0.4 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, bc, "middle", g)))
+    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, b.add ? bc : mut, p.anchor || "start", g))
+    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h], base: baseOf(b) })
   }
+  for (const n of X.notes || []) { const t = T_(n.at[0], n.at[1], n.text, n.size ?? 10, n.add === "x" ? BAD : NEW, n.anchor || "middle", gn); t.setAttribute("font-weight", 600); els.set(n.id, { g: t, texts: [t], kind: "n" }) }
   for (const n of LIB.DP.notes) if (!exclude.has("note:" + n.text)) { const t = T_(n.at[0], n.at[1], n.text, 9.5, "#6d737c", n.anchor || "middle", gn); els.set("note:" + n.text, { g: t, texts: [t], kind: "n" }) }
   const all = [...els.keys()]
+  const absent = new Set()
   const api = {
-    root, els, all, sc, ox, oy,
+    root, els, all, sc, ox, oy, absent,
+    /** Make ids absent (opacity 0) from pos; state() leaves absent ids alone until draw() brings them back. */
+    remove(tl, ids, pos) { const p = pos ?? tl.duration(); for (const id of ids) { const e = els.get(id); if (!e) continue; absent.add(id); tl.to(e.g, { opacity: 0, duration: p === 0 ? 0.01 : 0.4 }, p) } },
     /** Host coordinates of a datapath point (before any camera). */
     h: (x, y) => [ox + sc * x, oy + sc * y],
     /** Host rect of a set of ids (union of their boxes / wire points), padded. */
@@ -2230,12 +2511,13 @@ function Datapath(parent, o = {}) {
       const hot = new Set(s.hot || []), on = s.on === "all" ? null : new Set([...(s.on || []), ...hot]), col = s.col || HOT, dim = s.dim ?? DIM
       const p = pos ?? tl.duration()
       for (const [id, e] of els) {
+        if (absent.has(id)) continue
         const vis = on ? on.has(id) : true, h = hot.has(id)
         tl.to(e.g, { opacity: vis ? 1 : s.hide ? 0 : dim, duration: 0.6 }, p)
-        const c = h ? col : ink
-        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
-        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
-        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : ink }, duration: 0.5 }, p)
+        const c = h ? col : e.base || ink
+        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : e.bw || 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
+        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : e.base ? 2.2 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
+        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : e.base || ink }, duration: 0.5 }, p)
       }
     },
     /** Hide everything (for a draw-on build). */
@@ -2245,6 +2527,7 @@ function Datapath(parent, o = {}) {
       const p = o.pos ?? tl.duration()
       ids.forEach((id, i) => {
         const e = els.get(id); if (!e) return
+        absent.delete(id)
         const t = p + i * (o.stagger ?? 0.08)
         tl.to(e.g, { opacity: 1, duration: 0.01 }, t)
         if (e.kind === "w") tl.fromTo(e.path, { drawSVG: "0%" }, { drawSVG: "100%", duration: o.d ?? 0.7, ease: "power1.inOut", immediateRender: false }, t)
@@ -2287,15 +2570,18 @@ function dpTour(sl, frames, o = {}) {
   return TL(sl, caps, (c) => {
     const tl = c.tl
     if (o.build) dp.blank(tl)
+    if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
-      if (f.draw) dp.draw(tl, f.draw, { pos: p })
+      if (f.remove) dp.remove(tl, f.remove, p)
+      if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
       if (f.zoom === "all") camStates.push(cam.reset(tl, { pos: p }))
       else if (f.zoom) camStates.push(cam.to(tl, Array.isArray(f.zoom[0]) || typeof f.zoom[0] === "string" ? dp.rect(f.zoom, f.pad) : f.zoom, f.view, { pos: p }))
       else camStates.push(cam.state)
       for (const [ids, label, col] of f.flows || []) dp.flow(tl, ids, label, { pos: tl.duration(), col })
       for (const [x, y, html, w] of f.tags || []) dp.tag(tl, x, y, html, { w })
+      for (const id of f.pulse || []) dp.pulse(tl, id, p + 0.3)
       f.extra?.(tl, dp, cam)
       c.F()
     })
@@ -2365,7 +2651,7 @@ function cardScene(sl, items, frames, o = {}) {
     frames.forEach((f) => {
       const p = tl.duration()
       ;(f.show || []).forEach((id, i) => { tl.to(el[id], { opacity: 1, duration: 0.45 }, p + i * 0.12); tl.from(el[id], { y: 18, duration: 0.5, immediateRender: false }, p + i * 0.12) })
-      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.25, duration: 0.4 }, p)
+      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.4, duration: 0.4 }, p)
       for (const id of f.hide || []) tl.to(el[id], { opacity: 0, duration: 0.4 }, p)
       for (const id of f.hot || []) { const r = el[id].querySelector("rect"); tl.to(el[id], { opacity: 1, duration: 0.3 }, p); if (r) tl.to(r, { attr: { stroke: C.y, "stroke-width": 3.4 }, duration: 0.4 }, p) }
       for (const id of f.cool || []) { const r = el[id].querySelector("rect"); if (r) tl.to(r, { attr: { stroke: items[id][5]?.c || C.line, "stroke-width": 2.2 }, duration: 0.4 }, p) }
@@ -2727,9 +3013,9 @@ scenes.pctl = (sl) => {
     c.F()
     tl.to(grp, { opacity: 1, stagger: 0.15, duration: 0.3 }).to(grp, { x: 560, stagger: 0.08, duration: 0.8, ease: "power2.inOut" })
     c.F()
-    tl.to(grp[0], { opacity: 0.15, scale: 0.9, duration: 0.4 }).to(grp.slice(1), { x: 830, stagger: 0.08, duration: 0.8, ease: "power2.inOut" })
+    tl.to(grp[0], { opacity: 0.3, scale: 0.9, duration: 0.4 }).to(grp.slice(1), { x: 830, stagger: 0.08, duration: 0.8, ease: "power2.inOut" })
     c.F()
-    tl.to(grp[1], { opacity: 0.15, duration: 0.4 }).to(grp[2], { x: 1090, duration: 0.8, ease: "power2.inOut" }).to(grp[2], { opacity: 0.15, duration: 0.4 }, ">0.3")
+    tl.to(grp[1], { opacity: 0.3, duration: 0.4 }).to(grp[2], { x: 1090, duration: 0.8, ease: "power2.inOut" }).to(grp[2], { opacity: 0.3, duration: 0.4 }, ">0.3")
     c.F()
   })
 }
@@ -2781,7 +3067,7 @@ scenes.double = (sl) => {
     c.F()
     const r1 = ring(tl, svg, grid, 1, 4, C.y), r2 = ring(tl, svg, grid, 0, 4, C.d)
     c.F()
-    tl.to(r2, { opacity: 0.2 })
+    tl.to(r2, { opacity: 0.35 })
     for (const a of grid.arrows) { tl.set(a.el, { opacity: 1 }); tl.fromTo(a.el, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.5, immediateRender: false }) }
     c.F()
   })
@@ -3028,11 +3314,12 @@ const menu = $("#menu")
   let html = "", sec = null
   slides.forEach((sl, i) => {
     if (sl.dataset.sec !== sec) { if (sec !== null) html += "</div>"; sec = sl.dataset.sec; html += `<div class="sec">${sec}</div><div class="grid">` }
-    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}</a>`
+    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}${sl.dataset.exam === "core" ? '<i class="mst">★</i>' : ""}</a>`
   })
   $("#menuList").innerHTML = html + "</div>"
   $$("#menuList a").forEach((a) => (a.onclick = (e) => { e.preventDefault(); menu.classList.remove("open"); go(+a.dataset.i, 0) }))
 })()
+$$(".exam .exb").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); b.parentElement.classList.toggle("open") }; b.onpointerdown = (e) => e.stopPropagation() })
 const toggleMenu = () => menu.classList.toggle("open")
 $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }

@@ -170,6 +170,22 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .inp { background: #1b1f24; border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 12px; font-family: "JetBrains Mono", Consolas, monospace; font-size: 18px; color: var(--ink); }
 .bitcell { font-family: "JetBrains Mono", Consolas, monospace; }
 
+/* exam relevance badge */
+.exam { position: absolute; right: 110px; top: 50px; z-index: 25; font-family: Inter, sans-serif; font-size: 17px; }
+.exb { all: unset; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; padding: 6px 15px; border-radius: 999px; border: 1.5px solid; letter-spacing: .01em; white-space: nowrap; }
+.ex-core .exb { background: #2f2710; border-color: #e8b23a; color: #f4d35e; font-weight: 600; }
+.ex-some .exb { border-color: #59626d; color: #cfd3d8; }
+.ex-glance .exb { border-color: #2c3138; color: #7d848d; }
+.exb .yrs { font-weight: 500; } .exb .more { opacity: .7; font-weight: 500; }
+.exp { display: none; position: absolute; right: 0; top: 46px; width: 540px; background: #15181c; border: 1.5px solid #3a3f47; border-radius: 14px; padding: 14px 18px; font-size: 18px; line-height: 1.5; color: #dfe3e8; box-shadow: 0 12px 34px #000a; }
+.exam.open .exp, .exam:hover .exp { display: block; }
+.exr b { color: #f4d35e; font-weight: 600; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.exn { color: #a7aeb6; margin-bottom: 6px; font-style: italic; }
+.exlegend { color: #9aa1aa; }
+.exk { display: inline-block; padding: 1px 10px; border-radius: 999px; border: 1.5px solid; font-size: .9em; }
+.exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
+.mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -244,7 +260,7 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
     if (!rd) return
     const sl = document.querySelector(".slide.active")
     if (!sl) return
-    rd.querySelector(".t").textContent = sl.dataset.title || ""
+    rd.querySelector(".t").textContent = (sl.dataset.exam === "core" ? "★ " : sl.dataset.exam === "glance" ? "Glance · " : "") + (sl.dataset.title || "")
     rd.querySelector(".n").textContent = document.querySelector("#count")?.textContent || ""
     const cap = sl.querySelector(":scope > .cap"), c = rd.querySelector(".c")
     if (cap) {
@@ -294,86 +310,100 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h1 class="ttl">Graphics and<br>Computing GPUs</h1>
   <p class="dim sub" style="max-width:1000px;margin-top:22px">Why GPUs are built from many simple cores, how they sit beside the CPU, the graphics pipeline, the unified architecture, and CUDA's grids, blocks and threads.</p>
   <div class="h abs" style="left:110px;top:450px;width:1380px;height:300px"></div>
+  <p class="small abs exlegend" style="left:110px;bottom:104px"><span class="exk core">★ Exam</span> asked in past papers (sessions shown; tap for the questions) &nbsp; <span class="exk some">Asked</span> once or twice &nbsp; <span class="exk glance">Glance</span> not asked: read once</p>
   <p class="small dim abs hint" style="left:110px;bottom:60px">→ / ← step · ☰ or G: slide menu · S: speed · F: full screen · captions appear next to what they describe</p>
 </section>
-<section class="slide" data-scene="cpugpu" data-title="CPU vs GPU" data-sec="1 · What a GPU is" data-ref="GPUs · pp. 2, 24">
+<section class="slide" data-scene="cpugpu" data-title="CPU vs GPU" data-sec="1 · What a GPU is" data-ref="GPUs · pp. 2, 24" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · What a GPU is</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Few big cores vs many small ones</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="evolution" data-title="Evolution of the GPU" data-sec="1 · What a GPU is" data-ref="GPUs · p. 3">
+<section class="slide" data-scene="evolution" data-title="Evolution of the GPU" data-sec="1 · What a GPU is" data-ref="GPUs · p. 3" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · What a GPU is</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>From VGA controller to GPU</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="hetero" data-title="Heterogeneous systems" data-sec="1 · What a GPU is" data-ref="GPUs · p. 4">
+<section class="slide" data-scene="hetero" data-title="Heterogeneous systems" data-sec="1 · What a GPU is" data-ref="GPUs · p. 4" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · What a GPU is</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>CPU and GPU together</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="systems" data-title="System architectures (pick one)" data-sec="2 · System architecture" data-ref="GPUs · pp. 11–16">
+<section class="slide" data-scene="systems" data-title="System architectures (pick one)" data-sec="2 · System architecture" data-ref="GPUs · pp. 11–16" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
   <div class="kicker">2 · System architecture</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exr"><b>2023-24</b>Intel and AMD PCs with a discrete GPU</div><div class="exr"><b>2021-22</b>CPU–GPU connection diagrams</div></div></div>
   <h2>Where the GPU sits</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="addr" data-title="Address spaces" data-sec="2 · System architecture" data-ref="GPUs · pp. 17–19">
+<section class="slide" data-scene="addr" data-title="Address spaces" data-sec="2 · System architecture" data-ref="GPUs · pp. 17–19" data-exam="some" data-examtxt="asked ’23-24">
   <div class="kicker">2 · System architecture</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24</span></button><div class="exp"><div class="exr"><b>2023-24</b>How CPU and GPU access each other's memory</div></div></div>
   <h2>Reaching each other's memory</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="pipeline" data-title="The graphics pipeline" data-sec="3 · Graphics" data-ref="GPUs · pp. 5–6, 20, 26">
+<section class="slide" data-scene="pipeline" data-title="The graphics pipeline" data-sec="3 · Graphics" data-ref="GPUs · pp. 5–6, 20, 26" data-exam="glance" data-examtxt="glance">
   <div class="kicker">3 · Graphics</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>The logical graphics pipeline</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="unified" data-title="Why a unified array (pick a frame)" data-sec="3 · Graphics" data-ref="GPUs · p. 21">
+<section class="slide" data-scene="unified" data-title="Why a unified array (pick a frame)" data-sec="3 · Graphics" data-ref="GPUs · p. 21" data-exam="glance" data-examtxt="glance">
   <div class="kicker">3 · Graphics</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Unified processor array</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="tesla" data-title="GeForce 8800 (zoom into an SM)" data-sec="3 · Graphics" data-ref="GPUs · pp. 22–24">
+<section class="slide" data-scene="tesla" data-title="GeForce 8800 (zoom into an SM)" data-sec="3 · Graphics" data-ref="GPUs · pp. 22–24" data-exam="some" data-examtxt="asked ’23-24 · ’21-22">
   <div class="kicker">3 · Graphics</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exr"><b>2023-24</b>Mapping to SPs and SMs</div><div class="exr"><b>2021-22</b>Mapping to SPs and SMs</div></div></div>
   <h2>Tesla: SMs and SP cores</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="cuda" data-title="CUDA: grid, block, thread" data-sec="4 · CUDA" data-ref="GPUs · pp. 7–8, 27–28">
+<section class="slide" data-scene="cuda" data-title="CUDA: grid, block, thread" data-sec="4 · CUDA" data-ref="GPUs · pp. 7–8, 27–28" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
   <div class="kicker">4 · CUDA</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exr"><b>2023-24</b>Kernel, grid, thread block</div><div class="exr"><b>2021-22</b>Kernel, grid, block</div></div></div>
   <h2>The CUDA programming model</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="saxpy" data-title="SAXPY (type n and block size)" data-sec="4 · CUDA" data-ref="GPUs · p. 30">
+<section class="slide" data-scene="saxpy" data-title="SAXPY (type n and block size)" data-sec="4 · CUDA" data-ref="GPUs · p. 30" data-exam="some" data-examtxt="asked ’23-24">
   <div class="kicker">4 · CUDA</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24</span></button><div class="exp"><div class="exn">The kernel idea is asked; SAXPY itself is an example.</div><div class="exr"><b>2023-24</b>CUDA kernel</div></div></div>
   <h2>SAXPY in CUDA</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="scale" data-title="Transparent scalability (2 or 4 SMs)" data-sec="4 · CUDA" data-ref="GPUs · pp. 9, 29, 31">
+<section class="slide" data-scene="scale" data-title="Transparent scalability (2 or 4 SMs)" data-sec="4 · CUDA" data-ref="GPUs · pp. 9, 29, 31" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
   <div class="kicker">4 · CUDA</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exr"><b>2023-24</b>Mapping blocks to SMs</div><div class="exr"><b>2021-22</b>Mapping blocks to SMs</div></div></div>
   <h2>Blocks onto SMs</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="memory" data-title="Memory levels and barriers" data-sec="4 · CUDA" data-ref="GPUs · pp. 32–34">
+<section class="slide" data-scene="memory" data-title="Memory levels and barriers" data-sec="4 · CUDA" data-ref="GPUs · pp. 32–34" data-exam="glance" data-examtxt="glance">
   <div class="kicker">4 · CUDA</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Memory and synchronisation</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="wrap" data-title="What drives GPU design" data-sec="5 · Wrap-up" data-ref="GPUs · p. 35">
+<section class="slide" data-scene="wrap" data-title="What drives GPU design" data-sec="5 · Wrap-up" data-ref="GPUs · p. 35" data-exam="glance" data-examtxt="glance">
   <div class="kicker">5 · Wrap-up</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>What drives GPU design</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
@@ -2319,7 +2349,7 @@ The same four questions apply at every level of the hierarchy (slides 73–77):
    Everything here is built for timeline scenes: each helper ADDS tweens to a timeline (c.tl),
    so stepping back seeks the timeline and every state rewinds cleanly. */
 
-const HOT = C.b, VAL = C.y, DIM = 0.12
+const HOT = C.b, VAL = C.y, DIM = 0.3, NEW = C.y, BAD = C.r
 // `$` becomes &#36; so a register name inside a caption is never read as $maths$.
 const mono = (s) => `<span class="mono">${String(s).replace(/\$/g, "&#36;")}</span>`
 const ptsD = (pts) => "M" + pts.map((p) => p.join(" ")).join(" L")
@@ -2365,14 +2395,17 @@ function Datapath(parent, o = {}) {
   const marker = (col) => { if (arrowId[col]) return arrowId[col]; const id = "dpa" + ++UID; const m = S_("marker", { id, viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, markerUnits: "userSpaceOnUse", orient: "auto" }, defs); S_("path", { d: "M0,0 L10,5 L0,10 z", fill: col }, m); return (arrowId[col] = id) }
   const T_ = (x, y, t, s, col, a = "middle", g) => { const e = S_("text", { x, y, "text-anchor": a, "dominant-baseline": "central", "font-size": s, fill: col }, g); e.textContent = t; e.style.fontFamily = "Inter"; return e }
   const exclude = new Set(o.hide || [])
-  const blocks = LIB.DP.blocks.filter((b) => !exclude.has(b.id)), wires = LIB.DP.wires.filter((w) => !exclude.has(w.id))
+  const X = o.extra || {}
+  const blocks = [...LIB.DP.blocks, ...(X.blocks || [])].filter((b) => !exclude.has(b.id)), wires = [...LIB.DP.wires, ...(X.wires || [])].filter((w) => !exclude.has(w.id))
+  const baseOf = (e) => (e.add === "x" ? BAD : e.add ? NEW : null)
   const gw = S_("g", {}, root), gb = S_("g", {}, root), gn = S_("g", {}, root)
   for (const w of wires) {
     const g = S_("g", {}, gw)
-    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: ink, "stroke-width": 1.6, ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(ink)})` }) }, g)
-    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: ink }, g)
-    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, mut, w.label.anchor ?? "middle", g)] : []
-    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts })
+    const wc = baseOf(w) || ink
+    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: wc, "stroke-width": w.add ? 2.2 : 1.6, ...(w.add ? { "stroke-dasharray": "6 3" } : {}), ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(wc)})` }) }, g)
+    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: wc }, g)
+    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, w.add ? wc : mut, w.label.anchor ?? "middle", g)] : []
+    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts, base: baseOf(w), bw: w.add ? 2.2 : 1.6 })
   }
   for (const b of blocks) {
     const g = S_("g", {}, gb), { x, y, w, h } = b
@@ -2380,20 +2413,27 @@ function Datapath(parent, o = {}) {
     if (b.kind === "alu") sh = S_("path", { d: `M${x} ${y} L${x + w} ${y + h * 0.25} L${x + w} ${y + h * 0.75} L${x} ${y + h} L${x} ${y + h * 0.6} L${x + w * 0.22} ${y + h / 2} L${x} ${y + h * 0.4} Z` }, g)
     else if (b.kind === "mux") sh = S_("rect", { x, y, width: w, height: h, rx: w / 2 }, g)
     else if (b.kind === "ellipse") sh = S_("ellipse", { cx: x + w / 2, cy: y + h / 2, rx: w / 2, ry: h / 2 }, g)
+    else if (b.kind === "not") { sh = S_("path", { d: `M${x} ${y} L${x + w - 6} ${y + h / 2} L${x} ${y + h} Z` }, g); S_("circle", { cx: x + w - 3, cy: y + h / 2, r: 3, fill: "#15181c", stroke: baseOf(b) || ink, "stroke-width": 1.4 }, g) }
+    else if (b.kind === "or") sh = S_("path", { d: `M${x} ${y} Q${x + w * 0.35} ${y + h / 2} ${x} ${y + h} Q${x + w * 0.75} ${y + h} ${x + w} ${y + h / 2} Q${x + w * 0.75} ${y} ${x} ${y} Z` }, g)
     else if (b.kind === "round") sh = S_("path", { d: `M${x} ${y} H${x + w - h / 2} A${h / 2} ${h / 2} 0 0 1 ${x + w - h / 2} ${y + h} H${x} Z` }, g)
     else sh = S_("rect", { x, y, width: w, height: h, rx: 4 }, g)
-    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", ink); sh.setAttribute("stroke-width", 1.6)
+    const bc = baseOf(b) || ink
+    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", bc); sh.setAttribute("stroke-width", b.add ? 2.2 : 1.6)
     const texts = [], size = b.size ?? 12
     const lab = b.kind === "mux" ? (b.label?.length ? b.label : ["M", "u", "x"]) : b.label || []
     if (b.id === "control") lab.forEach((l, i) => texts.push(T_(x + w / 2, y + 18 + i * 18.5, l, i ? 10 : 12, i ? mut : ink, "middle", g)))
-    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, ink, "middle", g)))
-    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, mut, p.anchor || "start", g))
-    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h] })
+    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : b.kind === "not" ? x + w * 0.4 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, bc, "middle", g)))
+    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, b.add ? bc : mut, p.anchor || "start", g))
+    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h], base: baseOf(b) })
   }
+  for (const n of X.notes || []) { const t = T_(n.at[0], n.at[1], n.text, n.size ?? 10, n.add === "x" ? BAD : NEW, n.anchor || "middle", gn); t.setAttribute("font-weight", 600); els.set(n.id, { g: t, texts: [t], kind: "n" }) }
   for (const n of LIB.DP.notes) if (!exclude.has("note:" + n.text)) { const t = T_(n.at[0], n.at[1], n.text, 9.5, "#6d737c", n.anchor || "middle", gn); els.set("note:" + n.text, { g: t, texts: [t], kind: "n" }) }
   const all = [...els.keys()]
+  const absent = new Set()
   const api = {
-    root, els, all, sc, ox, oy,
+    root, els, all, sc, ox, oy, absent,
+    /** Make ids absent (opacity 0) from pos; state() leaves absent ids alone until draw() brings them back. */
+    remove(tl, ids, pos) { const p = pos ?? tl.duration(); for (const id of ids) { const e = els.get(id); if (!e) continue; absent.add(id); tl.to(e.g, { opacity: 0, duration: p === 0 ? 0.01 : 0.4 }, p) } },
     /** Host coordinates of a datapath point (before any camera). */
     h: (x, y) => [ox + sc * x, oy + sc * y],
     /** Host rect of a set of ids (union of their boxes / wire points), padded. */
@@ -2408,12 +2448,13 @@ function Datapath(parent, o = {}) {
       const hot = new Set(s.hot || []), on = s.on === "all" ? null : new Set([...(s.on || []), ...hot]), col = s.col || HOT, dim = s.dim ?? DIM
       const p = pos ?? tl.duration()
       for (const [id, e] of els) {
+        if (absent.has(id)) continue
         const vis = on ? on.has(id) : true, h = hot.has(id)
         tl.to(e.g, { opacity: vis ? 1 : s.hide ? 0 : dim, duration: 0.6 }, p)
-        const c = h ? col : ink
-        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
-        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
-        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : ink }, duration: 0.5 }, p)
+        const c = h ? col : e.base || ink
+        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : e.bw || 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
+        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : e.base ? 2.2 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
+        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : e.base || ink }, duration: 0.5 }, p)
       }
     },
     /** Hide everything (for a draw-on build). */
@@ -2423,6 +2464,7 @@ function Datapath(parent, o = {}) {
       const p = o.pos ?? tl.duration()
       ids.forEach((id, i) => {
         const e = els.get(id); if (!e) return
+        absent.delete(id)
         const t = p + i * (o.stagger ?? 0.08)
         tl.to(e.g, { opacity: 1, duration: 0.01 }, t)
         if (e.kind === "w") tl.fromTo(e.path, { drawSVG: "0%" }, { drawSVG: "100%", duration: o.d ?? 0.7, ease: "power1.inOut", immediateRender: false }, t)
@@ -2465,15 +2507,18 @@ function dpTour(sl, frames, o = {}) {
   return TL(sl, caps, (c) => {
     const tl = c.tl
     if (o.build) dp.blank(tl)
+    if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
-      if (f.draw) dp.draw(tl, f.draw, { pos: p })
+      if (f.remove) dp.remove(tl, f.remove, p)
+      if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
       if (f.zoom === "all") camStates.push(cam.reset(tl, { pos: p }))
       else if (f.zoom) camStates.push(cam.to(tl, Array.isArray(f.zoom[0]) || typeof f.zoom[0] === "string" ? dp.rect(f.zoom, f.pad) : f.zoom, f.view, { pos: p }))
       else camStates.push(cam.state)
       for (const [ids, label, col] of f.flows || []) dp.flow(tl, ids, label, { pos: tl.duration(), col })
       for (const [x, y, html, w] of f.tags || []) dp.tag(tl, x, y, html, { w })
+      for (const id of f.pulse || []) dp.pulse(tl, id, p + 0.3)
       f.extra?.(tl, dp, cam)
       c.F()
     })
@@ -2543,7 +2588,7 @@ function cardScene(sl, items, frames, o = {}) {
     frames.forEach((f) => {
       const p = tl.duration()
       ;(f.show || []).forEach((id, i) => { tl.to(el[id], { opacity: 1, duration: 0.45 }, p + i * 0.12); tl.from(el[id], { y: 18, duration: 0.5, immediateRender: false }, p + i * 0.12) })
-      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.25, duration: 0.4 }, p)
+      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.4, duration: 0.4 }, p)
       for (const id of f.hide || []) tl.to(el[id], { opacity: 0, duration: 0.4 }, p)
       for (const id of f.hot || []) { const r = el[id].querySelector("rect"); tl.to(el[id], { opacity: 1, duration: 0.3 }, p); if (r) tl.to(r, { attr: { stroke: C.y, "stroke-width": 3.4 }, duration: 0.4 }, p) }
       for (const id of f.cool || []) { const r = el[id].querySelector("rect"); if (r) tl.to(r, { attr: { stroke: items[id][5]?.c || C.line, "stroke-width": 2.2 }, duration: 0.4 }, p) }
@@ -2675,8 +2720,8 @@ scenes.systems = (sl, api) => {
     const cs = cases[keys[pick]]
     inst = TL(sl, [at(cs.t, 0, 415, 1300)], (c) => {
       const tl = c.tl
-      for (const [k, n] of Object.entries(N)) tl.to(n, { opacity: cs.show.includes(k) ? 1 : 0.07, duration: 0.5 }, 0)
-      for (const [k, w] of Object.entries(W)) tl.to(w, { opacity: cs.wires.includes(k) ? 1 : 0.05, duration: 0.5 }, 0)
+      for (const [k, n] of Object.entries(N)) tl.to(n, { opacity: cs.show.includes(k) ? 1 : 0.15, duration: 0.5 }, 0)
+      for (const [k, w] of Object.entries(W)) tl.to(w, { opacity: cs.wires.includes(k) ? 1 : 0.12, duration: 0.5 }, 0)
       tl.to(N.cpu, { x: cs.move ? 200 : 0, duration: 0.6 }, 0).to(N.cpu.querySelector("div div"), { duration: 0.01, textContent: cs.move ? "CPU + memory controller" : "CPU" }, 0)
       tl.to(W.pcie, { x: 0, duration: 0.01 }, 0)
       tl.to(N.mem.querySelector("rect"), { attr: { "stroke-width": cs.uma ? 4.5 : 2.2 }, duration: 0.4 }, 0.3)
@@ -2754,7 +2799,7 @@ scenes.pipeline = (sl) => {
     hot(2); tl.to(tri, { opacity: 1, duration: 0.01 }).fromTo(tri, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.8, immediateRender: false }); c.F()
     hot(3); tl.to(frag, { opacity: 1, x: 30, y: -10, duration: 0.2, stagger: 0.01 }, ">"); c.F()
     hot(4); tl.to(frag.map((f) => f), { attr: { fill: C.g, stroke: C.g }, duration: 0.3, stagger: { each: 0.008, from: "random" } }); c.F()
-    hot(5); tl.to([...P, tri], { opacity: 0.2, duration: 0.4 }); c.F()
+    hot(5); tl.to([...P, tri], { opacity: 0.35, duration: 0.4 }); c.F()
   })
 }
 
@@ -2821,7 +2866,7 @@ scenes.tesla = (sl) => {
     tl.set(labs, { opacity: 0 })
     tl.from(sms.map((s) => s.g), { opacity: 0, scale: 0.9, transformOrigin: "50% 50%", stagger: 0.05 })
     c.F()
-    tl.to([...sms.slice(1).map((s) => s.g), chip], { opacity: 0.1, duration: 0.5 })
+    tl.to([...sms.slice(1).map((s) => s.g), chip], { opacity: 0.28, duration: 0.5 })
     cam.to(tl, [s0.x - 5, s0.y - 5, 185, 210], [0, 0, 840, 580], { pos: "<" })
     tl.to(labs, { opacity: 1, duration: 0.4 })
     c.F()
@@ -2870,7 +2915,7 @@ kernel&lt;&lt;&lt;nBlocks, nThreads&gt;&gt;&gt;(...);</pre>`, { s: 19, j: "flex-
     c.F()
     tl.to(grid, { opacity: 1, duration: 0.3 }).to(blocks.map((b) => b.g), { opacity: 1, stagger: 0.1, duration: 0.3 })
     c.F()
-    tl.to([codeEl, ...blocks.slice(1).map((b) => b.g)], { opacity: 0.08, duration: 0.4 })
+    tl.to([codeEl, ...blocks.slice(1).map((b) => b.g)], { opacity: 0.28, duration: 0.4 })
     cam.to(tl, [b0.x - 6, b0.y - 6, 212, 162], [0, 0, 840, 580], { pos: "<" })
     tl.to(tl0, { opacity: 1, duration: 0.3 }).to(b0.th, { attr: { fill: C.g }, duration: 0.15, stagger: 0.04 })
     c.F()
@@ -2919,7 +2964,7 @@ scenes.saxpy = (sl, api) => {
       c.F()
       tl.to(ex.r, { attr: { stroke: C.y, "stroke-width": 3.5, fill: C.y + "44" }, duration: 0.4 })
       c.F()
-      if (idle.length) tl.to(idle.map((t) => t.g), { opacity: 0.25, duration: 0.4 }).to(idle.map((t) => t.r), { attr: { stroke: C.r }, duration: 0.3 }, "<")
+      if (idle.length) tl.to(idle.map((t) => t.g), { opacity: 0.4, duration: 0.4 }).to(idle.map((t) => t.r), { attr: { stroke: C.r }, duration: 0.3 }, "<")
       else tl.to({}, { duration: 0.2 })
       c.F()
       tl.to(ex.r, { attr: { stroke: C.line, "stroke-width": 2.2, fill: "#1a1d22" }, duration: 0.2 })
@@ -2955,7 +3000,7 @@ scenes.scale = (sl, api) => {
         const s = i % nSM, r = Math.floor(i / nSM)
         const p = 0.3 + r * 1.0
         tl.to(b, { x: sms[s] - (20 + i * 160) + 20, y: 165 + (r % 3) * 66, duration: 0.6, ease: "power2.inOut" }, p)
-        if (r) tl.to(blocks[i - nSM], { opacity: 0.2, duration: 0.3 }, p)
+        if (r) tl.to(blocks[i - nSM], { opacity: 0.35, duration: 0.3 }, p)
         tl.set(tick, { textContent: `round ${r + 1} of ${rounds}` }, p)
       })
       c.F()
@@ -3083,11 +3128,12 @@ const menu = $("#menu")
   let html = "", sec = null
   slides.forEach((sl, i) => {
     if (sl.dataset.sec !== sec) { if (sec !== null) html += "</div>"; sec = sl.dataset.sec; html += `<div class="sec">${sec}</div><div class="grid">` }
-    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}</a>`
+    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}${sl.dataset.exam === "core" ? '<i class="mst">★</i>' : ""}</a>`
   })
   $("#menuList").innerHTML = html + "</div>"
   $$("#menuList a").forEach((a) => (a.onclick = (e) => { e.preventDefault(); menu.classList.remove("open"); go(+a.dataset.i, 0) }))
 })()
+$$(".exam .exb").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); b.parentElement.classList.toggle("open") }; b.onpointerdown = (e) => e.stopPropagation() })
 const toggleMenu = () => menu.classList.toggle("open")
 $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }

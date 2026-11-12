@@ -170,6 +170,22 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .inp { background: #1b1f24; border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 12px; font-family: "JetBrains Mono", Consolas, monospace; font-size: 18px; color: var(--ink); }
 .bitcell { font-family: "JetBrains Mono", Consolas, monospace; }
 
+/* exam relevance badge */
+.exam { position: absolute; right: 110px; top: 50px; z-index: 25; font-family: Inter, sans-serif; font-size: 17px; }
+.exb { all: unset; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; padding: 6px 15px; border-radius: 999px; border: 1.5px solid; letter-spacing: .01em; white-space: nowrap; }
+.ex-core .exb { background: #2f2710; border-color: #e8b23a; color: #f4d35e; font-weight: 600; }
+.ex-some .exb { border-color: #59626d; color: #cfd3d8; }
+.ex-glance .exb { border-color: #2c3138; color: #7d848d; }
+.exb .yrs { font-weight: 500; } .exb .more { opacity: .7; font-weight: 500; }
+.exp { display: none; position: absolute; right: 0; top: 46px; width: 540px; background: #15181c; border: 1.5px solid #3a3f47; border-radius: 14px; padding: 14px 18px; font-size: 18px; line-height: 1.5; color: #dfe3e8; box-shadow: 0 12px 34px #000a; }
+.exam.open .exp, .exam:hover .exp { display: block; }
+.exr b { color: #f4d35e; font-weight: 600; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.exn { color: #a7aeb6; margin-bottom: 6px; font-style: italic; }
+.exlegend { color: #9aa1aa; }
+.exk { display: inline-block; padding: 1px 10px; border-radius: 999px; border: 1.5px solid; font-size: .9em; }
+.exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
+.mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -244,7 +260,7 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
     if (!rd) return
     const sl = document.querySelector(".slide.active")
     if (!sl) return
-    rd.querySelector(".t").textContent = sl.dataset.title || ""
+    rd.querySelector(".t").textContent = (sl.dataset.exam === "core" ? "★ " : sl.dataset.exam === "glance" ? "Glance · " : "") + (sl.dataset.title || "")
     rd.querySelector(".n").textContent = document.querySelector("#count")?.textContent || ""
     const cap = sl.querySelector(":scope > .cap"), c = rd.querySelector(".c")
     if (cap) {
@@ -294,136 +310,158 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h1 class="ttl">Large and Fast:<br>Exploiting Memory Hierarchy</h1>
   <p class="dim sub" style="max-width:1000px;margin-top:22px">Locality, caches (direct-mapped to fully associative), cache performance, virtual memory with the TLB, and keeping multicore caches coherent.</p>
   <div class="h abs" style="left:110px;top:450px;width:1380px;height:300px"></div>
+  <p class="small abs exlegend" style="left:110px;bottom:104px"><span class="exk core">★ Exam</span> asked in past papers (sessions shown; tap for the questions) &nbsp; <span class="exk some">Asked</span> once or twice &nbsp; <span class="exk glance">Glance</span> not asked: read once</p>
   <p class="small dim abs hint" style="left:110px;bottom:60px">→ / ← step · ☰ or G: slide menu · S: speed · F: full screen · captions appear next to what they describe</p>
 </section>
-<section class="slide" data-scene="locality" data-title="Principle of locality" data-sec="1 · Locality" data-ref="Ch. 5 · p. 2">
+<section class="slide" data-scene="locality" data-title="Principle of locality" data-sec="1 · Locality" data-ref="Ch. 5 · p. 2" data-exam="some" data-examtxt="asked ’17-18 · ’16-17 · ’13-14">
   <div class="kicker">1 · Locality</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’17-18 · ’16-17 · ’13-14</span></button><div class="exp"><div class="exr"><b>2017-18</b>Spatial and temporal locality</div><div class="exr"><b>2016-17</b>Locality and the hierarchy</div><div class="exr"><b>2013-14</b>Temporal and spatial locality</div></div></div>
   <h2>Programs reuse, and move in order</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="levels" data-title="Hits, misses and blocks" data-sec="1 · Locality" data-ref="Ch. 5 · pp. 3–4">
+<section class="slide" data-scene="levels" data-title="Hits, misses and blocks" data-sec="1 · Locality" data-ref="Ch. 5 · pp. 3–4" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · Locality</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button><div class="exp"><div class="exn">Vocabulary used everywhere; asked directly only in 2011-12.</div></div></div>
   <h2>Two levels: hit, miss, block</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="tech" data-title="Memory technology" data-sec="2 · Technology" data-ref="Ch. 5 · pp. 5–12">
+<section class="slide" data-scene="tech" data-title="Memory technology" data-sec="2 · Technology" data-ref="Ch. 5 · pp. 5–12" data-exam="some" data-examtxt="asked ’14-15 · ’12-13">
   <div class="kicker">2 · Technology</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’14-15 · ’12-13</span></button><div class="exp"><div class="exn">Only the flash part was asked; the rest is a glance.</div><div class="exr"><b>2014-15</b>Flash memory</div><div class="exr"><b>2012-13</b>NAND vs NOR flash</div></div></div>
   <h2>Memory technologies</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="disk" data-title="Disk access time (sliders)" data-sec="2 · Technology" data-ref="Ch. 5 · pp. 13–16">
+<section class="slide" data-scene="disk" data-title="Disk access time (sliders)" data-sec="2 · Technology" data-ref="Ch. 5 · pp. 13–16" data-exam="core" data-examtxt="★ exam ’17-18 · ’12-13 · ’11-12">
   <div class="kicker">2 · Technology</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’12-13 · ’11-12</span></button><div class="exp"><div class="exr"><b>2017-18</b>Disk read time at 10,000 rpm</div><div class="exr"><b>2012-13</b>512-byte sector at 15,000 rpm</div><div class="exr"><b>2011-12</b>Components of disk access time</div></div></div>
   <h2>Disk sector access time</h2>
   <div class="ctrls abs" style="left:110px;top:690px;width:1200px"></div>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="direct" data-title="Direct-mapped placement" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 17–19">
+<section class="slide" data-scene="direct" data-title="Direct-mapped placement" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 17–19" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23">
   <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23</span></button><div class="exp"><div class="exn">Needed for every cache trace question.</div><div class="exr"><b>2023-24</b>Direct-mapped trace</div><div class="exr"><b>2022-23</b>Direct-mapped and 2-way trace</div></div></div>
   <h2>Direct-mapped cache</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="trace" data-title="Cache example (edit the addresses)" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 20–25">
+<section class="slide" data-scene="trace" data-title="Cache example (edit the addresses)" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 20–25" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’15-16">
   <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Direct-mapped trace of 12 addresses</div><div class="exr"><b>2022-23</b>8-block direct-mapped and 2-way trace</div><div class="exr"><b>2015-16</b>Direct-mapped trace</div><div class="exr"><b>2012-13</b>Misses by type</div></div></div>
   <h2>Cache example, access by access</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:900px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="split" data-title="Address subdivision (type an address)" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 26–27">
+<section class="slide" data-scene="split" data-title="Address subdivision (type an address)" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 26–27" data-exam="core" data-examtxt="★ exam ’22-23 · ’20-21 · ’19-20">
   <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’20-21 · ’19-20</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2022-23</b>Total bits: 8-way, 4K blocks</div><div class="exr"><b>2020-21</b>Address split; index of an address</div><div class="exr"><b>2019-20</b>Tag bits; total bits</div><div class="exr"><b>2018-19</b>Cache size and overhead</div><div class="exr"><b>2016-17</b>Address formats</div><div class="exr"><b>2011-12</b>Tag bits and total size</div></div></div>
   <h2>Tag, index, offset</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:900px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="blocksize" data-title="Block size; cache misses" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 28–29">
+<section class="slide" data-scene="blocksize" data-title="Block size; cache misses" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 28–29" data-exam="some" data-examtxt="asked ’23-24">
   <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24</span></button><div class="exp"><div class="exr"><b>2023-24</b>Larger blocks; early restart; critical word first</div></div></div>
   <h2>Block size considerations</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="writes" data-title="Write-through and write-back" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 30–32">
+<section class="slide" data-scene="writes" data-title="Write-through and write-back" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 30–32" data-exam="core" data-examtxt="★ exam ’23-24 · ’17-18 · ’15-16">
   <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’17-18 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Write buffer</div><div class="exr"><b>2017-18</b>Write-through, write-back, write miss</div><div class="exr"><b>2015-16</b>Write-through, write-back, write miss</div><div class="exr"><b>2012-13</b>Write-back advantages</div></div></div>
   <h2>Handling writes</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="cpi" data-title="CPI with cache stalls (slider)" data-sec="4 · Performance" data-ref="Ch. 5 · pp. 33–35">
+<section class="slide" data-scene="cpi" data-title="CPI with cache stalls (slider)" data-sec="4 · Performance" data-ref="Ch. 5 · pp. 33–35" data-exam="core" data-examtxt="★ exam ’18-19 · ’17-18 · ’15-16">
   <div class="kicker">4 · Performance</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’18-19 · ’17-18 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2018-19</b>Three processors: stall cycles</div><div class="exr"><b>2017-18</b>Speed-up of a perfect cache</div><div class="exr"><b>2015-16</b>Speed-up of a perfect cache</div><div class="exr"><b>2011-12</b>Speed-up of a perfect cache</div></div></div>
   <h2>Cache performance</h2>
   <div class="ctrls abs" style="left:110px;top:690px;width:600px"></div>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="amat" data-title="Average memory access time" data-sec="4 · Performance" data-ref="Ch. 5 · p. 36">
+<section class="slide" data-scene="amat" data-title="Average memory access time" data-sec="4 · Performance" data-ref="Ch. 5 · p. 36" data-exam="glance" data-examtxt="glance">
   <div class="kicker">4 · Performance</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button><div class="exp"><div class="exn">Not asked directly; useful for multilevel questions.</div></div></div>
   <h2>Average memory access time</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="assoc" data-title="Associativity compared (edit the sequence)" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 38–43">
+<section class="slide" data-scene="assoc" data-title="Associativity compared (edit the sequence)" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 38–43" data-exam="core" data-examtxt="★ exam ’22-23 · ’21-22 · ’19-20">
   <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’21-22 · ’19-20</span><span class="more">+4</span></button><div class="exp"><div class="exr"><b>2022-23</b>Direct-mapped vs 2-way trace</div><div class="exr"><b>2021-22</b>FA, 2-way, DM misses</div><div class="exr"><b>2019-20</b>DM, 2-way, 4-way</div><div class="exr"><b>2017-18</b>FA, 2-way, DM misses</div><div class="exr"><b>2015-16</b>FA, 2-way, DM</div><div class="exr"><b>2013-14</b>2-way LRU</div><div class="exr"><b>2011-12</b>FA, 2-way, DM misses</div></div></div>
   <h2>Direct-mapped vs set vs fully associative</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:900px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="setlookup" data-title="Set-associative lookup" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 44–45">
+<section class="slide" data-scene="setlookup" data-title="Set-associative lookup" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 44–45" data-exam="some" data-examtxt="asked ’12-13 · ’11-12">
   <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’12-13 · ’11-12</span></button><div class="exp"><div class="exr"><b>2012-13</b>Sets for 2/4/8-way</div><div class="exr"><b>2011-12</b>DM, set-associative, fully associative</div></div></div>
   <h2>Finding a block in a set</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="multilevel" data-title="Multilevel caches" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 46–49">
+<section class="slide" data-scene="multilevel" data-title="Multilevel caches" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 46–49" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
   <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>Add L2, then L3</div><div class="exr"><b>2022-23</b>One level vs L2; L1+L2 vs L1+L2+L3</div><div class="exr"><b>2021-22</b>L2 then L3 speed-up</div><div class="exr"><b>2017-18</b>L2 then L3 speed-up</div><div class="exr"><b>2015-16</b>L2 speed-up</div><div class="exr"><b>2012-13</b>L1, + DM L2, + 8-way L2</div></div></div>
   <h2>Multilevel caches</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="blocking" data-title="Software blocking (DGEMM)" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 51–55">
+<section class="slide" data-scene="blocking" data-title="Software blocking (DGEMM)" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 51–55" data-exam="glance" data-examtxt="glance">
   <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Software optimisation by blocking</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="vm" data-title="Virtual memory and page tables" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 56–62">
+<section class="slide" data-scene="vm" data-title="Virtual memory and page tables" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 56–62" data-exam="core" data-examtxt="★ exam ’22-23 · ’21-22 · ’17-18">
   <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’21-22 · ’17-18</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2022-23</b>Page table sizes</div><div class="exr"><b>2021-22</b>How the page table works</div><div class="exr"><b>2017-18</b>How the page table works</div><div class="exr"><b>2015-16</b>How the page table works</div><div class="exr"><b>2013-14</b>Page table size</div></div></div>
   <h2>Virtual memory: translation</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="tlb" data-title="TLB trace" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 63–67">
+<section class="slide" data-scene="tlb" data-title="TLB trace" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 63–67" data-exam="core" data-examtxt="★ exam ’23-24 · ’19-20 · ’17-18">
   <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’19-20 · ’17-18</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Trace addresses through TLB and page table</div><div class="exr"><b>2019-20</b>TLB tag bits; TLB miss handling</div><div class="exr"><b>2017-18</b>What is a TLB</div><div class="exr"><b>2013-14</b>TLB miss procedure</div></div></div>
   <h2>The TLB, access by access</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="flow" data-title="TLB and cache together (pick a case)" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 68–71">
+<section class="slide" data-scene="flow" data-title="TLB and cache together (pick a case)" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 68–71" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’18-19">
   <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’18-19</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2023-24</b>TLB–cache flow for read and write</div><div class="exr"><b>2021-22</b>Which hit/miss combinations are possible</div><div class="exr"><b>2018-19</b>Read/write flowchart</div><div class="exr"><b>2017-18</b>TLB and cache for a write</div><div class="exr"><b>2015-16</b>Flowchart for read and write</div></div></div>
   <h2>TLB and cache interaction</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="threec" data-title="The three Cs" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 73–79">
+<section class="slide" data-scene="threec" data-title="The three Cs" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 73–79" data-exam="some" data-examtxt="asked ’17-18 · ’12-13">
   <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’17-18 · ’12-13</span></button><div class="exp"><div class="exr"><b>2017-18</b>Three sources of misses</div><div class="exr"><b>2012-13</b>Misses by type</div></div></div>
   <h2>Sources of misses and trade-offs</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="coherence" data-title="Cache coherence" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 80–85">
+<section class="slide" data-scene="coherence" data-title="Cache coherence" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 80–85" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’15-16">
   <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Coherence problem; snooping example</div><div class="exr"><b>2021-22</b>Snooping example</div><div class="exr"><b>2015-16</b>Coherence methods</div><div class="exr"><b>2013-14</b>Three coherence conditions</div></div></div>
   <h2>Cache coherence in multicores</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="wrap" data-title="Concluding remarks" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 86–93">
+<section class="slide" data-scene="wrap" data-title="Concluding remarks" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 86–93" data-exam="glance" data-examtxt="glance">
   <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
   <h2>Concluding remarks</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
@@ -2369,7 +2407,7 @@ The same four questions apply at every level of the hierarchy (slides 73–77):
    Everything here is built for timeline scenes: each helper ADDS tweens to a timeline (c.tl),
    so stepping back seeks the timeline and every state rewinds cleanly. */
 
-const HOT = C.b, VAL = C.y, DIM = 0.12
+const HOT = C.b, VAL = C.y, DIM = 0.3, NEW = C.y, BAD = C.r
 // `$` becomes &#36; so a register name inside a caption is never read as $maths$.
 const mono = (s) => `<span class="mono">${String(s).replace(/\$/g, "&#36;")}</span>`
 const ptsD = (pts) => "M" + pts.map((p) => p.join(" ")).join(" L")
@@ -2415,14 +2453,17 @@ function Datapath(parent, o = {}) {
   const marker = (col) => { if (arrowId[col]) return arrowId[col]; const id = "dpa" + ++UID; const m = S_("marker", { id, viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, markerUnits: "userSpaceOnUse", orient: "auto" }, defs); S_("path", { d: "M0,0 L10,5 L0,10 z", fill: col }, m); return (arrowId[col] = id) }
   const T_ = (x, y, t, s, col, a = "middle", g) => { const e = S_("text", { x, y, "text-anchor": a, "dominant-baseline": "central", "font-size": s, fill: col }, g); e.textContent = t; e.style.fontFamily = "Inter"; return e }
   const exclude = new Set(o.hide || [])
-  const blocks = LIB.DP.blocks.filter((b) => !exclude.has(b.id)), wires = LIB.DP.wires.filter((w) => !exclude.has(w.id))
+  const X = o.extra || {}
+  const blocks = [...LIB.DP.blocks, ...(X.blocks || [])].filter((b) => !exclude.has(b.id)), wires = [...LIB.DP.wires, ...(X.wires || [])].filter((w) => !exclude.has(w.id))
+  const baseOf = (e) => (e.add === "x" ? BAD : e.add ? NEW : null)
   const gw = S_("g", {}, root), gb = S_("g", {}, root), gn = S_("g", {}, root)
   for (const w of wires) {
     const g = S_("g", {}, gw)
-    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: ink, "stroke-width": 1.6, ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(ink)})` }) }, g)
-    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: ink }, g)
-    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, mut, w.label.anchor ?? "middle", g)] : []
-    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts })
+    const wc = baseOf(w) || ink
+    const path = S_("path", { d: ptsD(w.pts), fill: "none", stroke: wc, "stroke-width": w.add ? 2.2 : 1.6, ...(w.add ? { "stroke-dasharray": "6 3" } : {}), ...(w.arrow === "none" ? {} : { "marker-end": `url(#${marker(wc)})` }) }, g)
+    if (w.dot) S_("circle", { cx: w.pts[0][0], cy: w.pts[0][1], r: 2.6, fill: wc }, g)
+    const texts = w.label ? [T_(w.label.at[0], w.label.at[1], w.label.text, w.label.size ?? 10.5, w.add ? wc : mut, w.label.anchor ?? "middle", g)] : []
+    els.set(w.id, { g, path, texts, kind: "w", arrow: w.arrow !== "none", pts: w.pts, base: baseOf(w), bw: w.add ? 2.2 : 1.6 })
   }
   for (const b of blocks) {
     const g = S_("g", {}, gb), { x, y, w, h } = b
@@ -2430,20 +2471,27 @@ function Datapath(parent, o = {}) {
     if (b.kind === "alu") sh = S_("path", { d: `M${x} ${y} L${x + w} ${y + h * 0.25} L${x + w} ${y + h * 0.75} L${x} ${y + h} L${x} ${y + h * 0.6} L${x + w * 0.22} ${y + h / 2} L${x} ${y + h * 0.4} Z` }, g)
     else if (b.kind === "mux") sh = S_("rect", { x, y, width: w, height: h, rx: w / 2 }, g)
     else if (b.kind === "ellipse") sh = S_("ellipse", { cx: x + w / 2, cy: y + h / 2, rx: w / 2, ry: h / 2 }, g)
+    else if (b.kind === "not") { sh = S_("path", { d: `M${x} ${y} L${x + w - 6} ${y + h / 2} L${x} ${y + h} Z` }, g); S_("circle", { cx: x + w - 3, cy: y + h / 2, r: 3, fill: "#15181c", stroke: baseOf(b) || ink, "stroke-width": 1.4 }, g) }
+    else if (b.kind === "or") sh = S_("path", { d: `M${x} ${y} Q${x + w * 0.35} ${y + h / 2} ${x} ${y + h} Q${x + w * 0.75} ${y + h} ${x + w} ${y + h / 2} Q${x + w * 0.75} ${y} ${x} ${y} Z` }, g)
     else if (b.kind === "round") sh = S_("path", { d: `M${x} ${y} H${x + w - h / 2} A${h / 2} ${h / 2} 0 0 1 ${x + w - h / 2} ${y + h} H${x} Z` }, g)
     else sh = S_("rect", { x, y, width: w, height: h, rx: 4 }, g)
-    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", ink); sh.setAttribute("stroke-width", 1.6)
+    const bc = baseOf(b) || ink
+    sh.setAttribute("fill", "#15181c"); sh.setAttribute("stroke", bc); sh.setAttribute("stroke-width", b.add ? 2.2 : 1.6)
     const texts = [], size = b.size ?? 12
     const lab = b.kind === "mux" ? (b.label?.length ? b.label : ["M", "u", "x"]) : b.label || []
     if (b.id === "control") lab.forEach((l, i) => texts.push(T_(x + w / 2, y + 18 + i * 18.5, l, i ? 10 : 12, i ? mut : ink, "middle", g)))
-    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, ink, "middle", g)))
-    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, mut, p.anchor || "start", g))
-    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h] })
+    else lab.forEach((l, i) => texts.push(T_(b.kind === "alu" ? x + w * 0.56 : b.kind === "not" ? x + w * 0.4 : x + w / 2, y + h / 2 + (i - (lab.length - 1) / 2) * (b.kind === "mux" ? size : size * 1.25), l, b.kind === "mux" ? size - 1 : size, bc, "middle", g)))
+    for (const p of b.ports || []) texts.push(T_(x + p.at[0], y + p.at[1], p.text, 9.5, b.add ? bc : mut, p.anchor || "start", g))
+    els.set(b.id, { g, shape: sh, texts, kind: "b", box: [x, y, w, h], base: baseOf(b) })
   }
+  for (const n of X.notes || []) { const t = T_(n.at[0], n.at[1], n.text, n.size ?? 10, n.add === "x" ? BAD : NEW, n.anchor || "middle", gn); t.setAttribute("font-weight", 600); els.set(n.id, { g: t, texts: [t], kind: "n" }) }
   for (const n of LIB.DP.notes) if (!exclude.has("note:" + n.text)) { const t = T_(n.at[0], n.at[1], n.text, 9.5, "#6d737c", n.anchor || "middle", gn); els.set("note:" + n.text, { g: t, texts: [t], kind: "n" }) }
   const all = [...els.keys()]
+  const absent = new Set()
   const api = {
-    root, els, all, sc, ox, oy,
+    root, els, all, sc, ox, oy, absent,
+    /** Make ids absent (opacity 0) from pos; state() leaves absent ids alone until draw() brings them back. */
+    remove(tl, ids, pos) { const p = pos ?? tl.duration(); for (const id of ids) { const e = els.get(id); if (!e) continue; absent.add(id); tl.to(e.g, { opacity: 0, duration: p === 0 ? 0.01 : 0.4 }, p) } },
     /** Host coordinates of a datapath point (before any camera). */
     h: (x, y) => [ox + sc * x, oy + sc * y],
     /** Host rect of a set of ids (union of their boxes / wire points), padded. */
@@ -2458,12 +2506,13 @@ function Datapath(parent, o = {}) {
       const hot = new Set(s.hot || []), on = s.on === "all" ? null : new Set([...(s.on || []), ...hot]), col = s.col || HOT, dim = s.dim ?? DIM
       const p = pos ?? tl.duration()
       for (const [id, e] of els) {
+        if (absent.has(id)) continue
         const vis = on ? on.has(id) : true, h = hot.has(id)
         tl.to(e.g, { opacity: vis ? 1 : s.hide ? 0 : dim, duration: 0.6 }, p)
-        const c = h ? col : ink
-        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
-        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
-        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : ink }, duration: 0.5 }, p)
+        const c = h ? col : e.base || ink
+        if (e.kind === "w") { tl.to(e.path, { attr: { stroke: c, "stroke-width": h ? 3 : e.bw || 1.6 }, duration: 0.5 }, p); if (e.arrow) tl.set(e.path, { attr: { "marker-end": `url(#${marker(c)})` } }, p) }
+        if (e.kind === "b") tl.to(e.shape, { attr: { stroke: c, "stroke-width": h ? 2.8 : e.base ? 2.2 : 1.6, fill: h ? "#16262d" : "#15181c" }, duration: 0.5 }, p)
+        if (e.kind === "b" && e.texts[0] && id !== "control") tl.to(e.texts.filter((t) => t.getAttribute("fill") !== mut), { attr: { fill: h ? col : e.base || ink }, duration: 0.5 }, p)
       }
     },
     /** Hide everything (for a draw-on build). */
@@ -2473,6 +2522,7 @@ function Datapath(parent, o = {}) {
       const p = o.pos ?? tl.duration()
       ids.forEach((id, i) => {
         const e = els.get(id); if (!e) return
+        absent.delete(id)
         const t = p + i * (o.stagger ?? 0.08)
         tl.to(e.g, { opacity: 1, duration: 0.01 }, t)
         if (e.kind === "w") tl.fromTo(e.path, { drawSVG: "0%" }, { drawSVG: "100%", duration: o.d ?? 0.7, ease: "power1.inOut", immediateRender: false }, t)
@@ -2515,15 +2565,18 @@ function dpTour(sl, frames, o = {}) {
   return TL(sl, caps, (c) => {
     const tl = c.tl
     if (o.build) dp.blank(tl)
+    if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
-      if (f.draw) dp.draw(tl, f.draw, { pos: p })
+      if (f.remove) dp.remove(tl, f.remove, p)
+      if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
       if (f.zoom === "all") camStates.push(cam.reset(tl, { pos: p }))
       else if (f.zoom) camStates.push(cam.to(tl, Array.isArray(f.zoom[0]) || typeof f.zoom[0] === "string" ? dp.rect(f.zoom, f.pad) : f.zoom, f.view, { pos: p }))
       else camStates.push(cam.state)
       for (const [ids, label, col] of f.flows || []) dp.flow(tl, ids, label, { pos: tl.duration(), col })
       for (const [x, y, html, w] of f.tags || []) dp.tag(tl, x, y, html, { w })
+      for (const id of f.pulse || []) dp.pulse(tl, id, p + 0.3)
       f.extra?.(tl, dp, cam)
       c.F()
     })
@@ -2593,7 +2646,7 @@ function cardScene(sl, items, frames, o = {}) {
     frames.forEach((f) => {
       const p = tl.duration()
       ;(f.show || []).forEach((id, i) => { tl.to(el[id], { opacity: 1, duration: 0.45 }, p + i * 0.12); tl.from(el[id], { y: 18, duration: 0.5, immediateRender: false }, p + i * 0.12) })
-      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.25, duration: 0.4 }, p)
+      for (const id of f.dim || []) tl.to(el[id], { opacity: 0.4, duration: 0.4 }, p)
       for (const id of f.hide || []) tl.to(el[id], { opacity: 0, duration: 0.4 }, p)
       for (const id of f.hot || []) { const r = el[id].querySelector("rect"); tl.to(el[id], { opacity: 1, duration: 0.3 }, p); if (r) tl.to(r, { attr: { stroke: C.y, "stroke-width": 3.4 }, duration: 0.4 }, p) }
       for (const id of f.cool || []) { const r = el[id].querySelector("rect"); if (r) tl.to(r, { attr: { stroke: items[id][5]?.c || C.line, "stroke-width": 2.2 }, duration: 0.4 }, p) }
@@ -2621,7 +2674,7 @@ scenes.title = (sl) => {
   const lv = [["Registers", C.r], ["Cache (SRAM)", C.y], ["Main memory (DRAM)", C.g], ["Flash / disk", C.b]]
   const els = lv.map(([t, c], i) => K.node(560 - 90 - i * 110, i * 66, 180 + i * 220, 56, t, { c, r: 10, s: 20 }))
   let loop
-  return { count: () => 1, go() { loop?.kill(); loop = gsap.timeline({ repeat: -1, repeatDelay: 2 }).fromTo(els, { opacity: 0, y: -20 }, { opacity: 1, y: 0, stagger: 0.3, duration: 0.5 }).to(els, { opacity: 0.25, duration: 0.6 }, "+=1.5") }, leave() { loop?.kill() } }
+  return { count: () => 1, go() { loop?.kill(); loop = gsap.timeline({ repeat: -1, repeatDelay: 2 }).fromTo(els, { opacity: 0, y: -20 }, { opacity: 1, y: 0, stagger: 0.3, duration: 0.5 }).to(els, { opacity: 0.4, duration: 0.6 }, "+=1.5") }, leave() { loop?.kill() } }
 }
 
 /* 2 · Locality (p. 2): an address stream plotted over time. */
@@ -2645,9 +2698,9 @@ scenes.locality = (sl) => {
     tl.set(dots, { opacity: 0 })
     dots.forEach((d, i) => tl.to(d, { opacity: 1, duration: 0.05 }, i * 0.035))
     c.F()
-    tl.to(dots.filter((_, i) => pts[i].kind === "d"), { opacity: 0.15, duration: 0.4 })
+    tl.to(dots.filter((_, i) => pts[i].kind === "d"), { opacity: 0.3, duration: 0.4 })
     c.F()
-    tl.to(dots.filter((_, i) => pts[i].kind === "d"), { opacity: 1, duration: 0.3 }).to(dots.filter((_, i) => pts[i].kind === "i"), { opacity: 0.15, duration: 0.4 }, "<")
+    tl.to(dots.filter((_, i) => pts[i].kind === "d"), { opacity: 1, duration: 0.3 }).to(dots.filter((_, i) => pts[i].kind === "i"), { opacity: 0.3, duration: 0.4 }, "<")
     c.F()
     tl.to(dots, { opacity: 1, duration: 0.4 })
     c.F()
@@ -3304,11 +3357,12 @@ const menu = $("#menu")
   let html = "", sec = null
   slides.forEach((sl, i) => {
     if (sl.dataset.sec !== sec) { if (sec !== null) html += "</div>"; sec = sl.dataset.sec; html += `<div class="sec">${sec}</div><div class="grid">` }
-    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}</a>`
+    html += `<a href="#${i + 1}.0" data-i="${i}"><span>${i + 1}</span>${sl.dataset.title}${sl.dataset.exam === "core" ? '<i class="mst">★</i>' : ""}</a>`
   })
   $("#menuList").innerHTML = html + "</div>"
   $$("#menuList a").forEach((a) => (a.onclick = (e) => { e.preventDefault(); menu.classList.remove("open"); go(+a.dataset.i, 0) }))
 })()
+$$(".exam .exb").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); b.parentElement.classList.toggle("open") }; b.onpointerdown = (e) => e.stopPropagation() })
 const toggleMenu = () => menu.classList.toggle("open")
 $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }

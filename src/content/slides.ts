@@ -19,13 +19,13 @@ export const decks: Deck[] = [
     title: "The Processor: Datapath and Control",
     teacher: "Rifat Sir",
     source: "Chapter 4, Part 1",
-    slides: 16,
-    summary: "The single-cycle MIPS datapath built piece by piece, with the camera zooming into each part, and the control signals for every instruction type.",
+    slides: 20,
+    summary: "The single-cycle MIPS datapath built piece by piece, the control signals for every instruction type, and how to build or extend a datapath the way exam questions ask.",
     topics: ["single-cycle"],
     highlights: [
+      "Build it yourself: R-type from nothing, then lw/sw, where every conflict becomes a mux",
+      "Extend a given datapath with beq and j, and add jr, bne, jal, addi, ori or slt",
       "Pick R-type, lw, sw, beq or j and watch only its path through the datapath light up",
-      "Zooms into fetch, the register file, the ALU, memory and the next-PC logic",
-      "Instruction formats split field by field; ALU control derived from ALUOp and funct",
     ],
   },
   {
