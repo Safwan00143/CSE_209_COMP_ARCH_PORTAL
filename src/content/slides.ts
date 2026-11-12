@@ -19,7 +19,7 @@ export const decks: Deck[] = [
     title: "The Processor: Datapath and Control",
     teacher: "Rifat Sir",
     source: "Chapter 4, Part 1",
-    slides: 20,
+    slides: 24,
     summary: "The single-cycle MIPS datapath built piece by piece, the control signals for every instruction type, and how to build or extend a datapath the way exam questions ask.",
     topics: ["single-cycle"],
     highlights: [
@@ -33,7 +33,7 @@ export const decks: Deck[] = [
     title: "Pipelining",
     teacher: "Rifat Sir",
     source: "Chapter 4, Part 2",
-    slides: 23,
+    slides: 32,
     summary: "The five-stage pipeline, hazards and their fixes (forwarding, stalls, prediction), the pipelined datapath stage by stage, and multiple issue.",
     topics: ["pipelining", "data-hazards", "branch-hazards", "multiple-issue"],
     highlights: [
@@ -47,7 +47,7 @@ export const decks: Deck[] = [
     title: "Large and Fast: Exploiting Memory Hierarchy",
     teacher: "Rifat Sir",
     source: "Chapter 5",
-    slides: 22,
+    slides: 34,
     summary: "Locality, direct-mapped and associative caches, cache performance, multilevel caches, virtual memory with the TLB, and cache coherence.",
     topics: ["memory-tech", "caches", "cache-performance", "virtual-memory", "coherence"],
     highlights: [
@@ -61,7 +61,7 @@ export const decks: Deck[] = [
     title: "Graphics and Computing GPUs",
     teacher: "Rifat Sir",
     source: "GPU lecture",
-    slides: 14,
+    slides: 17,
     summary: "Why GPUs use many simple cores, CPU–GPU system architectures, the graphics pipeline, the unified Tesla array, and CUDA's grids, blocks and threads.",
     topics: ["gpu"],
     highlights: [

@@ -186,6 +186,10 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
 .mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
 
+/* controls sit above the drawing layer and caption cards so they can be clicked and dragged */
+.ctrls { z-index: 12; }
+.ctrls input[type=range] { cursor: pointer; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -335,6 +339,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfSpeed" data-title="TF: lw speed-up" data-sec="1 · Pipelining" data-ref="2017-18 Q1(c)" data-exam="core" data-examtxt="★ exam ’17-18 · ’15-16 · ’13-14">
+  <div class="kicker">1 · Pipelining</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’15-16 · ’13-14</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2017-18</b>lw speed-up</div><div class="exr"><b>2015-16</b>lw speed-up</div><div class="exr"><b>2013-14</b>lw speed-up</div></div></div>
+  <h2>Past paper: lw speed-up</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="isa" data-title="ISA design for pipelining" data-sec="1 · Pipelining" data-ref="Ch. 4 Part 2 · p. 9" data-exam="glance" data-examtxt="glance">
   <div class="kicker">1 · Pipelining</div>
   <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
@@ -367,6 +378,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="kicker">2 · Hazards</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’21-22 · ’19-20</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2022-23</b>A=B+C; D=A+E: cycles, reschedule</div><div class="exr"><b>2021-22</b>lw/add/sw code: cycles, scheduling</div><div class="exr"><b>2019-20</b>Reorder to cut stalls</div><div class="exr"><b>2017-18</b>A=B+C; D=A+E</div><div class="exr"><b>2015-16</b>A=B+C; D=A+E</div></div></div>
   <h2>Reorder code to avoid stalls</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfFwd" data-title="TF: sub/and/or with and without forwarding" data-sec="2 · Hazards" data-ref="2022-23 Q1(a, b)" data-exam="core" data-examtxt="★ exam ’22-23 · ’19-20">
+  <div class="kicker">2 · Hazards</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’19-20</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2022-23</b>sub/and/or with and without forwarding</div><div class="exr"><b>2019-20</b>Pipeline with stalls and forwarding</div></div></div>
+  <h2>Past paper: sub/and/or with and without forwarding</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -413,10 +431,24 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="memcopy" data-title="Load → store: forwarding in MEM" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · p. 66" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">4 · Forwarding and stalls</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button><div class="exp"><div class="exn">Not asked so far; useful for forwarding-unit design.</div></div></div>
+  <h2>lw then sw: forward in MEM</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="double" data-title="Double data hazard" data-sec="4 · Forwarding and stalls" data-ref="Ch. 4 Part 2 · pp. 62–64" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’17-18">
   <div class="kicker">4 · Forwarding and stalls</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’17-18</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2023-24</b>Forwarding unit with double data hazard</div><div class="exr"><b>2021-22</b>Forwarding with double data hazard</div><div class="exr"><b>2017-18</b>Double data hazard</div><div class="exr"><b>2015-16</b>Double data hazard equations</div><div class="exr"><b>2011-12</b>Double data hazard example</div></div></div>
   <h2>Double data hazard</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfCond" data-title="TF: forwarding conditions" data-sec="4 · Forwarding and stalls" data-ref="2019-20 Q8(c)" data-exam="core" data-examtxt="★ exam ’22-23 · ’19-20">
+  <div class="kicker">4 · Forwarding and stalls</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’19-20</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2019-20</b>Forwarding conditions</div><div class="exr"><b>2022-23</b>Forwarding condition ins1 → ins2</div></div></div>
+  <h2>Past paper: forwarding conditions</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -435,12 +467,33 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfBrH" data-title="TF: data hazards for branches" data-sec="5 · Branches" data-ref="2021-22 Q1(c)" data-exam="core" data-examtxt="★ exam ’21-22 · ’17-18 · ’13-14">
+  <div class="kicker">5 · Branches</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’21-22 · ’17-18 · ’13-14</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2021-22</b>Branch data hazards: 0, 1, 2 stalls</div><div class="exr"><b>2017-18</b>1 and 2 stalls</div><div class="exr"><b>2013-14</b>0, 1, 2 stalls</div></div></div>
+  <h2>Past paper: data hazards for branches</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="predict" data-title="1-bit vs 2-bit prediction (type a history)" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · pp. 82–85" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’19-20">
   <div class="kicker">5 · Branches</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’19-20</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>1-bit predictor on nested loops</div><div class="exr"><b>2021-22</b>1-bit predictor on nested loops</div><div class="exr"><b>2019-20</b>2-bit predictor FSM</div><div class="exr"><b>2017-18</b>1-bit predictor on nested loops</div><div class="exr"><b>2013-14</b>1-bit predictor</div><div class="exr"><b>2011-12</b>2-bit predictor accuracy</div></div></div>
   <h2>Dynamic branch prediction</h2>
   <div class="ctrls abs" style="left:110px;top:160px;"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="btb" data-title="Branch target buffer" data-sec="5 · Branches" data-ref="Ch. 4 Part 2 · p. 85" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">5 · Branches</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
+  <h2>Calculating the branch target</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfPred" data-title="TF: 1-bit predictor on nested loops" data-sec="5 · Branches" data-ref="2021-22 Q1(d)" data-exam="core" data-examtxt="★ exam ’21-22 · ’17-18 · ’13-14">
+  <div class="kicker">5 · Branches</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’21-22 · ’17-18 · ’13-14</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2021-22</b>1-bit predictor, nested loops</div><div class="exr"><b>2017-18</b>Same</div><div class="exr"><b>2013-14</b>Same</div></div></div>
+  <h2>Past paper: 1-bit predictor on nested loops</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
 <section class="slide" data-scene="ilp" data-title="ILP and multiple issue" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 86–89" data-exam="some" data-examtxt="asked ’14-15">
@@ -457,10 +510,24 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfDual" data-title="TF: dual-issue schedule and IPC" data-sec="6 · Multiple issue" data-ref="2023-24 Q4(b)" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
+  <div class="kicker">6 · Multiple issue</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>Dual-issue schedule; IPC</div><div class="exr"><b>2021-22</b>Dual-issue schedule; IPC</div></div></div>
+  <h2>Past paper: dual-issue schedule and IPC</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="dynamic" data-title="Dynamic scheduling" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 98–101" data-exam="some" data-examtxt="asked ’21-22">
   <div class="kicker">6 · Multiple issue</div>
   <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’21-22</span></button><div class="exp"><div class="exr"><b>2021-22</b>Dynamically scheduled CPU block diagram</div></div></div>
   <h2>Dynamic scheduling</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="mipractice" data-title="Multiple issue in practice" data-sec="6 · Multiple issue" data-ref="Ch. 4 Part 2 · pp. 94, 102–108" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">6 · Multiple issue</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button><div class="exp"><div class="exn">The packet-hazard card helps with the dual-issue questions.</div></div></div>
+  <h2>Multiple issue in practice</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -2558,9 +2625,20 @@ function Datapath(parent, o = {}) {
 /* ─────────── Generic datapath tour scene ───────────
    frames: [{ on, hot, col, zoom: ids|rect|"all", view, flows: [[ids, label]], tags: [[x,y,html]], cap: (P) => at(...) }]
    P(x, y) gives the host point of a datapath point after that frame's camera move, for caption pointers. */
+/** Control-bit card: { title, rows: [[signal, value, isNew]], note } → HTML in host coordinates. */
+function ctlPanel(K, c, at = [1075, 300, 300]) {
+  const v = (x) => (x === "X" ? '<span style="color:#6d737c">X</span>' : String(x).includes("1") ? `<b style="color:#ececec">${x}</b>` : `<span style="color:#9aa1aa">${x}</span>`)
+  const cells = c.rows.map(([k, x, nw]) => `<div style="display:flex;justify-content:space-between;padding:2px 8px;border-radius:6px;${nw ? "background:#2f2710;" : ""}"><span style="color:${nw ? C.y : "#a7aeb6"}">${k}</span>${v(x)}</div>`).join("")
+  const html = `<div style="width:${at[2]}px;text-align:left;background:#15181cf2;border:1.5px solid #3a3f47;border-radius:14px;padding:10px 12px;font-size:17px;line-height:1.35;font-family:Inter">
+    <div style="color:${C.b};font-weight:600;margin-bottom:6px">Control bits · ${c.title}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;font-variant-numeric:tabular-nums">${cells}</div>${c.note ? `<div style="color:#a7aeb6;font-size:15px;margin-top:7px">${c.note}</div>` : ""}</div>`
+  return K.html(at[0], at[1], at[2] + 4, 290, html, { j: "flex-start", s: 17 })
+}
 function dpTour(sl, frames, o = {}) {
   const svg = hostSvg(sl, o.h || 580), cam = Camera(svg)
   const dp = Datapath(cam.g, o.dp)
+  const HK = kit(svg)
+  let lastCtl = null
   const camStates = []
   const caps = frames.map((f, i) => () => {
     const st = camStates[i]
@@ -2573,6 +2651,8 @@ function dpTour(sl, frames, o = {}) {
     if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
+      if (lastCtl) { tl.to(lastCtl, { opacity: 0, duration: 0.3 }, p); lastCtl = null }
+      if (f.ctl) { const el = ctlPanel(HK, f.ctl, o.ctlAt); el.firstChild.style.alignItems = "flex-start"; tl.set(el, { opacity: 0 }, 0); tl.to(el, { opacity: 1, duration: 0.5 }, p + 0.3); lastCtl = el }
       if (f.remove) dp.remove(tl, f.remove, p)
       if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
@@ -2667,6 +2747,16 @@ const ctrlBtns = (sl, labels, onPick, sel = 0) => {
   bt.innerHTML = labels.map((l, i) => `<button class="btn${i === sel ? " sel" : ""}" data-i="${i}">${l}</button>`).join("")
   $$("button", bt).forEach((b) => (b.onclick = () => { $$("button", bt).forEach((x) => x.classList.toggle("sel", x === b)); onPick(+b.dataset.i) }))
   return bt
+}
+
+/* ─────────── Past-paper (TF) question slide: the question first, then the answer card by card ─────────── */
+const TFL = (h) => `<div style="text-align:left;width:100%">${h}</div>`
+const tfPre = (s) => `<pre class="mono" style="margin:4px 0;font-size:17px;line-height:1.4;text-align:left">${s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split("$").join("&#36;")}</pre>`
+function tfScene(sl, o) {
+  const head = `<div style="font-size:14px;letter-spacing:.14em;color:#e8b23a;font-weight:700;margin-bottom:6px">PAST PAPER · ${o.src}${o.marks ? " · " + o.marks + " marks" : ""}</div>`
+  const items = { q: [0, 0, 1360, o.qh || 120, TFL(head + o.q), { c: "#e8b23a", s: o.qs || 20 }] }
+  for (const [id, v] of Object.entries(o.items)) { const [x, y, w, h, html, io = {}] = v; items[id] = [x, y, w, h, io.plain ? html : TFL(html), { s: 18, c: C.line, ...io }] }
+  return cardScene(sl, items, [{ show: ["q"], cap: at(o.try || "Try it yourself first, then step on for the answer.", 0, 470, 1300) }, ...o.frames])
 }
 
 /* ══════════════ Rifat Sir · Chapter 4 Part 2: pipelining ══════════════ */
@@ -2999,7 +3089,7 @@ scenes.pctl = (sl) => {
   ;["IF/ID", "ID/EX", "EX/MEM", "MEM/WB"].forEach((n, i) => { K.box(xs[i] + 232, 100, 26, 340, { r: 6, fill: "#1d2a31", c: C.b }); K.text(xs[i] + 245, 85, n, { a: "middle", s: 18, c: C.b }) })
   const ctl = K.node(290, 200, 180, 80, "Control", { c: C.p, s: 24 })
   const mk = (t, col, y) => K.node(0, 0, 160, 42, t, { c: col, s: 18, r: 8 })
-  const grp = [["EX: RegDst, ALUOp, ALUSrc", C.y], ["M: Branch, MemRead, MemWrite", C.p], ["WB: MemtoReg, RegWrite", C.g]].map(([t, col], i) => { const g = K.g(); K.node(0, 0, 250, 40, `<span style="font-size:16px">${t}</span>`, { c: col, r: 8, g }); gsap.set(g, { x: 300, y: 110 + i * 46 }); return g })
+  const grp = [["EX: RegDst, ALUOp, ALUSrc", C.y], ["M: Branch, MemRead, MemWrite", C.p], ["WB: MemtoReg, RegWrite", C.g]].map(([t, col], i) => { const g = K.g(); K.node(0, 0, 250, 40, `<span style="font-size:15px;white-space:nowrap">${t}</span>`, { c: col, r: 8, g }); gsap.set(g, { x: 300, y: 110 + i * 46 }); return g })
   const caps = [
     at("Control signals are generated in <b>ID</b>, from the opcode, exactly as in the single-cycle design.", 0, 470, 700, [380, 240]),
     at("They travel down the pipeline <b>with the instruction</b>, in three groups, inside the pipeline registers.", 0, 470, 700, [610, 160]),
@@ -3246,6 +3336,167 @@ scenes.wrap = (sl) => cardScene(sl, {
   { show: ["e"], cap: at("The chapter in one line: pipelining improves performance by increasing instruction throughput.", 0, 490, 1360, [680, 480]) },
 ])
 
+/* Lecture pages the first version skipped (pp. 66, 85, 94, 102–104): kept compact. */
+
+/* p. 66 · lw then sw of the same register: forward inside the MEM stage. */
+scenes.memcopy = (sl) => {
+  const svg = hostSvg(sl), K = kit(svg)
+  const st = ["IF", "ID", "EX", "MEM", "WB"], X = (c) => 340 + c * 150
+  K.html(0, 40, 320, 60, mono("lw $2, 20($1)"), { s: 24, j: "flex-end" })
+  K.html(0, 140, 320, 60, mono("sw $2, 15($3)"), { s: 24, j: "flex-end" })
+  for (let c = 1; c <= 6; c++) K.text(X(c - 1) + 65, 20, "cc " + c, { a: "middle", s: 16, c: C.d })
+  const r1 = st.map((s, i) => K.node(X(i), 40, 130, 60, s, { c: C.line, s: 20 }))
+  const r2 = st.map((s, i) => K.node(X(i + 1), 140, 130, 60, s, { c: C.line, s: 20 }))
+  const arr = K.arrow(`M${X(3) + 130} 100 C ${X(3) + 150} 120 ${X(4) - 20} 120 ${X(4)} 150`, C.g, { sw: 4 })
+  const caps = [
+    at("A memory-to-memory copy: load a word, then store it straight back. &#36;2 is needed by the very next instruction.", 0, 300, 1300),
+    at("<b>When is the data ready?</b> At the end of lw's MEM stage (cycle 4).", 0, 300, 1300, [X(3) + 65, 100]),
+    at("<b>When is it needed?</b> Only in sw's MEM stage (cycle 5), as the memory's write data: one cycle later.", 0, 300, 1300, [X(4) + 65, 200]),
+    at("So forward from the MEM/WB register to the data memory's write-data input: <b>no stall</b>. The basic forwarding unit forwards only into EX, so this needs one more forwarding mux at the memory input.", 0, 300, 1300, [X(4), 150]),
+  ]
+  return TL(sl, caps, (c) => {
+    const tl = c.tl
+    tl.set(arr, { opacity: 0 })
+    tl.from([...r1, ...r2], { opacity: 0, stagger: 0.05 })
+    c.F()
+    tl.to(r1[3].querySelector("rect"), { attr: { stroke: C.y, "stroke-width": 3.5 }, duration: 0.3 })
+    c.F()
+    tl.to(r2[3].querySelector("rect"), { attr: { stroke: C.b, "stroke-width": 3.5 }, duration: 0.3 })
+    c.F()
+    tl.to(arr, { opacity: 1, duration: 0.01 }).fromTo(arr, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.6, immediateRender: false })
+    c.F()
+  })
+}
+
+/* p. 85 · Branch target buffer: the target, fetched without waiting. */
+scenes.btb = (sl) => {
+  const svg = hostSvg(sl), K = kit(svg)
+  const pc = K.node(0, 120, 160, 70, "PC", { c: C.b })
+  const tbl = K.node(300, 40, 420, 240, "", { c: C.y })
+  K.text(320, 72, "Branch target buffer", { s: 20, c: C.y })
+  const rows = [["0x400010", "0x400040"], ["0x400024", "0x400008"], ["0x40003C", "0x400100"]].map(([a, b], i) => K.html(320, 92 + i * 52, 380, 46, `${mono(a)} → ${mono(b)}`, { s: 20 }))
+  const hit = K.box(312, 92 + 52, 396, 46, { r: 8, fill: "none", c: C.g, sw: 3 })
+  const a1 = K.arrow("M160 155 L298 167", C.b, { sw: 3 })
+  const nx = K.node(860, 120, 300, 70, "fetch the target next cycle", { c: C.g, s: 20 })
+  const a2 = K.arrow("M720 167 L858 155", C.g, { sw: 3 })
+  const caps = [
+    at("Even with a perfect predictor the <b>target address</b> must still be computed, which costs a 1-cycle penalty for a taken branch.", 0, 340, 1300),
+    at("A <b>branch target buffer</b> is a cache of target addresses, indexed by the PC while the instruction is being fetched.", 0, 340, 1300, [510, 160]),
+    at("On a hit, if the branch is predicted taken, the target is fetched immediately: no penalty.", 0, 340, 1300, [1010, 190]),
+  ]
+  return TL(sl, caps, (c) => {
+    const tl = c.tl
+    tl.set([tbl, ...rows, hit, a1, a2, nx], { opacity: 0 })
+    tl.from(pc, { opacity: 0 })
+    c.F()
+    tl.to([tbl, ...rows], { opacity: 1, stagger: 0.1, duration: 0.3 }).to(a1, { opacity: 1, duration: 0.3 }).to(hit, { opacity: 1, duration: 0.3 })
+    c.F()
+    tl.to([a2, nx], { opacity: 1, duration: 0.4 })
+    c.F()
+  })
+}
+
+/* pp. 94, 102–104 · Multiple issue in practice. */
+scenes.mipractice = (sl) => cardScene(sl, {
+  a: [0, 0, 660, 170, `<b>Hazards inside a packet</b><div class='tiny dim'>${mono("add $t0, $s0, $s1")} then ${mono("lw $s2, 0($t0)")}: the ALU result can't feed a load in the <b>same</b> packet → split into two packets. Load-use still costs 1 cycle, now = 2 instructions.</div>`, { c: C.y }],
+  b: [700, 0, 660, 170, "<b>Does multiple issue work?</b><div class='tiny dim'>Yes, but less than hoped: real dependences, pointer aliasing, a limited issue window, memory delays. Speculation helps if done well.</div>", { c: C.b }],
+  c: [0, 200, 660, 230, "<b>Power</b><div class='tiny dim' style='line-height:1.5'>i486 (1989): 5 stages, 1-issue, 5 W<br>Pentium 4 Prescott (2004): 31 stages, 103 W<br>Core (2006): 14 stages, 4-issue, 2 cores, 75 W<br>UltraSparc T1 (2005): 6 stages, 1-issue, 8 cores, 70 W</div>", { c: C.p }],
+  d: [700, 200, 660, 230, "<b>ARM Cortex-A8 vs Intel Core i7 920</b><div class='tiny dim' style='line-height:1.5'>2 W vs 130 W · 1 GHz vs 2.66 GHz · 1 vs 4 cores<br>both 14 stages, dynamic issue, 2-level branch prediction<br>A8: static in-order, 2 per cycle<br>i7: out-of-order with speculation, 4 per cycle</div>", { c: C.t }],
+}, [
+  { show: ["a"], cap: at("Useful for the dual-issue scheduling questions: what you can't pair.", 0, 470, 1300, [330, 170]) },
+  { show: ["b"], cap: at("Why real IPC stays well below the issue width.", 0, 470, 1300, [1030, 170]) },
+  { show: ["c", "d"], cap: at("Deeper and wider pipelines cost power, so designs moved to multiple simpler cores.", 0, 470, 1300) },
+])
+
+/* Past-paper questions, placed right after the topic they test. Answers follow the website's worked solutions. */
+
+scenes.tfSpeed = (sl) => tfScene(sl, {
+  src: "2017-18 Q1(c)", marks: 5, qh: 120,
+  q: "lw stage times: IF 200, register read 100, ALU 100, memory 200, register write 100 ps. For <span class='mono'>lw &#36;1, 100(&#36;0)</span>, <span class='mono'>lw &#36;2</span>, <span class='mono'>lw &#36;3</span>: the pipelined speed-up over single-cycle? And with 3,000,000 more lw?",
+  items: {
+    a: [0, 140, 440, 150, "<b>Clock periods</b><br>single-cycle: 700 ps (the whole lw)<br>pipelined: 200 ps (slowest stage)"],
+    b: [460, 140, 440, 150, "<b>3 instructions</b><br>3 × 700 = 2100 ps vs (3 + 4) × 200 = 1400 ps<br>speed-up = <b>1.5</b>"],
+    c: [920, 140, 440, 150, "<b>3,000,003 instructions</b><br>2,100,002,100 vs 600,001,400 ps<br>speed-up ≈ <b>3.5</b>"],
+    d: [0, 310, 1360, 120, "With many instructions the fill time vanishes and the speed-up → 700 / 200 = <b>3.5</b>, not 5: the stages are unbalanced, so the 100 ps stages still take a 200 ps cycle.", { s: 19 }],
+  },
+  frames: [
+    { show: ["a"], cap: at("Start with the two clock periods.", 0, 470, 1300) },
+    { show: ["b", "c"], cap: at("Pipelined time = (n + 4) cycles: 4 extra cycles to fill the pipeline.", 0, 470, 1300) },
+    { show: ["d"], cap: at("The point the question tests.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfFwd = (sl) => tfScene(sl, {
+  src: "2022-23 Q1(a, b)", marks: 28, qh: 110,
+  q: `${"<span class='mono'>sub &#36;2, &#36;1, &#36;3</span> · <span class='mono'>and &#36;2, &#36;2, &#36;5</span> · <span class='mono'>or &#36;6, &#36;2, &#36;7</span>"}<br>(a) Without forwarding: stalls and total cycles. (b) With forwarding: cycles, and explain the double data hazard.`,
+  items: {
+    a: [0, 130, 670, 150, "<b>(a) No forwarding</b><br>A consumer's ID can't come before its producer's WB.<br>and waits 2 cycles for sub; or waits 2 for and.<br>cycles = 3 + 4 + 4 = <b>11</b>"],
+    b: [690, 130, 670, 150, "<b>(b) Forwarding</b><br>and gets &#36;2 from EX/MEM (sub's result).<br>or gets &#36;2 from EX/MEM too (and's result, the newest).<br>cycles = 3 + 4 + 0 = <b>7</b>"],
+    c: [0, 300, 1360, 150, "<b>Double data hazard</b>: in cycle 5 or's &#36;2 matches <b>both</b> EX/MEM (and) and MEM/WB (sub). MEM/WB holds the stale value, so EX/MEM must win: forward from MEM/WB only if the EX/MEM condition is false.", { s: 19 }],
+  },
+  frames: [
+    { show: ["a"], cap: at("Count stalls from the write-in-first-half, read-in-second-half rule.", 0, 470, 1300) },
+    { show: ["b"], cap: at("Forwarding removes every stall here: all three are ALU instructions.", 0, 470, 1300) },
+    { show: ["c"], cap: at("The explanation the question asks for. The “Double data hazard” slide animates it.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfCond = (sl) => tfScene(sl, {
+  src: "2019-20 Q8(c)", marks: 12, qh: 90,
+  q: "<span class='mono'>sub &#36;2, &#36;1, &#36;3</span> → <span class='mono'>and &#36;12, &#36;2, &#36;5</span> (green) and → <span class='mono'>or &#36;13, &#36;6, &#36;2</span> (yellow). Write the forwarding condition for each path.",
+  items: {
+    a: [0, 110, 670, 230, "<b>Green: EX hazard</b> (&#36;2 is and's <b>rs</b>)" + tfPre("if (EX/MEM.RegWrite\n    and (EX/MEM.RegisterRd != 0)\n    and (EX/MEM.RegisterRd = ID/EX.RegisterRs))\n  ForwardA = 10")],
+    b: [690, 110, 670, 230, "<b>Yellow: MEM hazard</b> (&#36;2 is or's <b>rt</b>)" + tfPre("if (MEM/WB.RegWrite and (MEM/WB.RegisterRd != 0)\n    and not (EX/MEM.RegWrite and (EX/MEM.RegisterRd != 0)\n        and (EX/MEM.RegisterRd = ID/EX.RegisterRt))\n    and (MEM/WB.RegisterRd = ID/EX.RegisterRt))\n  ForwardB = 01")],
+    c: [0, 355, 1360, 90, "RegWrite: only a register-writing instruction can forward · Rd ≠ 0: &#36;zero is never written · the “not EX/MEM” clause: the newer value wins.", { s: 18 }],
+  },
+  frames: [
+    { show: ["a"], cap: at("Check which source the register is: rs → ForwardA, rt → ForwardB.", 0, 470, 1300) },
+    { show: ["b"], cap: at("The MEM hazard condition always carries the double-data-hazard clause.", 0, 470, 1300) },
+    { show: ["c"], cap: at("Say why each term is there.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfBrH = (sl) => tfScene(sl, {
+  src: "2021-22 Q1(c)", marks: 10, qh: 90,
+  q: "What is a data hazard for branches? Give MIPS examples that need (i) no stall, (ii) one stall, (iii) two stalls.",
+  items: {
+    a: [0, 110, 1360, 80, "With the branch decided in <b>ID</b>, its registers are needed two stages earlier than an ALU instruction needs them, so a recent producer may not be ready even with forwarding.", { s: 19 }],
+    b: [0, 205, 440, 240, "<b>(i) 0 stalls</b>: written by the 2nd or 3rd preceding ALU instruction" + tfPre("add $1, $2, $3\nadd $7, $8, $9\nbeq $1, $4, L")],
+    c: [460, 205, 440, 240, "<b>(ii) 1 stall</b>: the previous ALU instruction, or a load 2 before" + tfPre("add $1, $2, $3\nbeq $1, $4, L")],
+    d: [920, 205, 440, 240, "<b>(iii) 2 stalls</b>: the immediately preceding load" + tfPre("lw  $1, 0($2)\nbeq $1, $0, L")],
+  },
+  frames: [
+    { show: ["a"], cap: at("The definition.", 0, 470, 1300) },
+    { show: ["b", "c", "d"], cap: at("ALU results are ready after EX, loaded values after MEM; the branch's ID must come later.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfPred = (sl) => tfScene(sl, {
+  src: "2021-22 Q1(d) · also 2017-18, 2013-14", marks: 5, qh: 190,
+  q: "What goes wrong with a <b>1-bit predictor</b> on this code, and how can you fix it?" + tfPre("outer: ...\ninner: ...\n       beq $t0, $zero, inner\n       ...\n       beq $t1, $zero, outer"),
+  items: {
+    a: [0, 210, 670, 200, "<b>Problem</b>: the inner branch mispredicts <b>twice</b> per run of the inner loop: on the last iteration (predicted taken, falls through), and on the first iteration of the next run (the bit now says not taken)."],
+    b: [690, 210, 670, 200, "<b>Fix</b>: a <b>2-bit predictor</b>: the prediction changes only after two wrong guesses, so the single loop exit doesn't flip it. One misprediction per run instead of two."],
+  },
+  frames: [
+    { show: ["a"], cap: at("The 1-bit predictor remembers only the last outcome.", 0, 470, 1300) },
+    { show: ["b"], cap: at("Draw the 4-state diagram if asked; the “1-bit vs 2-bit” slide lets you try a history.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfDual = (sl) => tfScene(sl, {
+  src: "2023-24 Q4(b) · also 2021-22", marks: 15, qh: 185,
+  q: "Schedule for static dual-issue MIPS (one ALU/branch + one load/store per packet). What is the IPC? Which technique raises it, and how?" + tfPre("Loop: lw   $t0, 0($s1)\n      addu $t0, $t0, $s2\n      sw   $t0, 0($s1)\n      addi $s1, $s1, -4\n      bne  $s1, $zero, Loop"),
+  items: {
+    a: [0, 200, 760, 250, `<table class="ct" style="width:100%;font-size:18px"><tr><th>cycle</th><th>ALU/branch</th><th>load/store</th></tr>${LIB.SCHED.map((p, i) => `<tr><td>${i + 1}</td>${p.map((s) => `<td class="mono">${s === "nop" ? "<span class='dim'>nop</span>" : s.split("$").join("&#36;")}</td>`).join("")}</tr>`).join("")}</table>`, { plain: true }],
+    b: [780, 200, 580, 250, `<b>IPC</b> = ${LIB.ipc(LIB.SCHED).instructions} / ${LIB.ipc(LIB.SCHED).cycles} = <b>${LIB.ipc(LIB.SCHED).ipc}</b> (peak 2).<br><br><b>Loop unrolling</b> with register renaming: 4 copies using &#36;t0–&#36;t3, one addi/bne per 4 elements → IPC = ${LIB.ipc(LIB.UNROLLED).instructions} / ${LIB.ipc(LIB.UNROLLED).cycles} = <b>${LIB.ipc(LIB.UNROLLED).ipc}</b>.`],
+  },
+  frames: [
+    { show: ["a"], cap: at("addi moves up beside the load's wait; sw then needs offset 4 because &#36;s1 was already decremented.", 0, 470, 1300) },
+    { show: ["b"], cap: at("The “Static dual issue” slide shows the unrolled schedule.", 0, 470, 1300) },
+  ],
+})
+
 
 /* ══════════════════════ Engine ══════════════════════ */
 const slides = $$(".slide")
@@ -3325,7 +3576,7 @@ $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }
 
 addEventListener("keydown", (e) => {
-  const typing = e.target.matches?.("input[type=text], input:not([type]), textarea")
+  const typing = e.target.matches?.("input[type=text], input:not([type]), input[type=range], textarea")
   if (typing) { if (e.key === "Escape" || e.key === "Enter") e.target.blur(); return }
   if (e.target.matches?.("input[type=range]") && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) e.target.blur()
   if (menu.classList.contains("open")) { if (["Escape", "g", "G", "m", "M"].includes(e.key)) menu.classList.remove("open"); return }

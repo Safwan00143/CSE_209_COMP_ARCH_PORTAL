@@ -186,6 +186,10 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
 .mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
 
+/* controls sit above the drawing layer and caption cards so they can be clicked and dragged */
+.ctrls { z-index: 12; }
+.ctrls input[type=range] { cursor: pointer; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -313,6 +317,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <p class="small abs exlegend" style="left:110px;bottom:104px"><span class="exk core">★ Exam</span> asked in past papers (sessions shown; tap for the questions) &nbsp; <span class="exk some">Asked</span> once or twice &nbsp; <span class="exk glance">Glance</span> not asked: read once</p>
   <p class="small dim abs hint" style="left:110px;bottom:60px">→ / ← step · ☰ or G: slide menu · S: speed · F: full screen · captions appear next to what they describe</p>
 </section>
+<section class="slide" data-scene="intro" data-title="Introduction: performance factors" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · p. 2" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">1 · Overview</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
+  <h2>Introduction</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="steps" data-title="Instruction execution: five steps" data-sec="1 · Overview" data-ref="Ch. 4 Part 1 · pp. 2–4" data-exam="some" data-examtxt="asked ’11-12">
   <div class="kicker">1 · Overview</div>
   <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’11-12</span></button><div class="exp"><div class="exr"><b>2011-12</b>Purpose of the ALU for R-type, load/store and branch</div></div></div>
@@ -407,10 +418,24 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfCtl" data-title="TF: control signals for add, sw, beq" data-sec="5 · Control" data-ref="2019-20 Q8(a)" data-exam="core" data-examtxt="★ exam ’19-20 · ’14-15">
+  <div class="kicker">5 · Control</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’19-20 · ’14-15</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2019-20</b>Control signals for add, sw, beq</div><div class="exr"><b>2014-15</b>Control bits for beq</div></div></div>
+  <h2>Past paper: control signals for add, sw, beq</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="jump" data-title="Implementing jumps" data-sec="5 · Control" data-ref="Ch. 4 Part 1 · pp. 31–32" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
   <div class="kicker">5 · Control</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Add jump to the datapath; why the upper 4 bits</div><div class="exr"><b>2022-23</b>Add j and jr</div><div class="exr"><b>2021-22</b>Complete the datapath for j</div><div class="exr"><b>2011-12</b>Datapath with JUMP</div></div></div>
   <h2>Jumps: building a 32-bit target</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfPC" data-title="TF: PC + 4, clock, jump, one memory?" data-sec="5 · Control" data-ref="2023-24 Q8(a)" data-exam="core" data-examtxt="★ exam ’23-24">
+  <div class="kicker">5 · Control</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>PC + 4, clock length, jump bits, one memory?</div></div></div>
+  <h2>Past paper: PC + 4, clock, jump, one memory?</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -441,6 +466,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h2>New instructions on the full datapath</h2>
   <div class="ctrls abs" style="left:1180px;top:650px;width:310px"></div>
   <div class="h abs" style="left:110px;top:150px;width:1380px;height:600px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfMux" data-title="TF: beq, bneq, j, jr with 2×1 muxes" data-sec="6 · Build it yourself" data-ref="2022-23 Q3" data-exam="core" data-examtxt="★ exam ’22-23 · ’18-19">
+  <div class="kicker">6 · Build it yourself</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’18-19</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2022-23</b>Add beq, bneq, j, jr with 2×1 muxes</div><div class="exr"><b>2018-19</b>Add bne, j, jr, jal, slt, lui</div></div></div>
+  <h2>Past paper: beq, bneq, j, jr with 2×1 muxes</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
 <section class="slide" data-scene="perf" data-title="Performance issues" data-sec="7 · Performance" data-ref="Ch. 4 Part 1 · p. 33" data-exam="some" data-examtxt="asked ’23-24 · ’18-19">
@@ -2537,9 +2569,20 @@ function Datapath(parent, o = {}) {
 /* ─────────── Generic datapath tour scene ───────────
    frames: [{ on, hot, col, zoom: ids|rect|"all", view, flows: [[ids, label]], tags: [[x,y,html]], cap: (P) => at(...) }]
    P(x, y) gives the host point of a datapath point after that frame's camera move, for caption pointers. */
+/** Control-bit card: { title, rows: [[signal, value, isNew]], note } → HTML in host coordinates. */
+function ctlPanel(K, c, at = [1075, 300, 300]) {
+  const v = (x) => (x === "X" ? '<span style="color:#6d737c">X</span>' : String(x).includes("1") ? `<b style="color:#ececec">${x}</b>` : `<span style="color:#9aa1aa">${x}</span>`)
+  const cells = c.rows.map(([k, x, nw]) => `<div style="display:flex;justify-content:space-between;padding:2px 8px;border-radius:6px;${nw ? "background:#2f2710;" : ""}"><span style="color:${nw ? C.y : "#a7aeb6"}">${k}</span>${v(x)}</div>`).join("")
+  const html = `<div style="width:${at[2]}px;text-align:left;background:#15181cf2;border:1.5px solid #3a3f47;border-radius:14px;padding:10px 12px;font-size:17px;line-height:1.35;font-family:Inter">
+    <div style="color:${C.b};font-weight:600;margin-bottom:6px">Control bits · ${c.title}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;font-variant-numeric:tabular-nums">${cells}</div>${c.note ? `<div style="color:#a7aeb6;font-size:15px;margin-top:7px">${c.note}</div>` : ""}</div>`
+  return K.html(at[0], at[1], at[2] + 4, 290, html, { j: "flex-start", s: 17 })
+}
 function dpTour(sl, frames, o = {}) {
   const svg = hostSvg(sl, o.h || 580), cam = Camera(svg)
   const dp = Datapath(cam.g, o.dp)
+  const HK = kit(svg)
+  let lastCtl = null
   const camStates = []
   const caps = frames.map((f, i) => () => {
     const st = camStates[i]
@@ -2552,6 +2595,8 @@ function dpTour(sl, frames, o = {}) {
     if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
+      if (lastCtl) { tl.to(lastCtl, { opacity: 0, duration: 0.3 }, p); lastCtl = null }
+      if (f.ctl) { const el = ctlPanel(HK, f.ctl, o.ctlAt); el.firstChild.style.alignItems = "flex-start"; tl.set(el, { opacity: 0 }, 0); tl.to(el, { opacity: 1, duration: 0.5 }, p + 0.3); lastCtl = el }
       if (f.remove) dp.remove(tl, f.remove, p)
       if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
@@ -2646,6 +2691,16 @@ const ctrlBtns = (sl, labels, onPick, sel = 0) => {
   bt.innerHTML = labels.map((l, i) => `<button class="btn${i === sel ? " sel" : ""}" data-i="${i}">${l}</button>`).join("")
   $$("button", bt).forEach((b) => (b.onclick = () => { $$("button", bt).forEach((x) => x.classList.toggle("sel", x === b)); onPick(+b.dataset.i) }))
   return bt
+}
+
+/* ─────────── Past-paper (TF) question slide: the question first, then the answer card by card ─────────── */
+const TFL = (h) => `<div style="text-align:left;width:100%">${h}</div>`
+const tfPre = (s) => `<pre class="mono" style="margin:4px 0;font-size:17px;line-height:1.4;text-align:left">${s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split("$").join("&#36;")}</pre>`
+function tfScene(sl, o) {
+  const head = `<div style="font-size:14px;letter-spacing:.14em;color:#e8b23a;font-weight:700;margin-bottom:6px">PAST PAPER · ${o.src}${o.marks ? " · " + o.marks + " marks" : ""}</div>`
+  const items = { q: [0, 0, 1360, o.qh || 120, TFL(head + o.q), { c: "#e8b23a", s: o.qs || 20 }] }
+  for (const [id, v] of Object.entries(o.items)) { const [x, y, w, h, html, io = {}] = v; items[id] = [x, y, w, h, io.plain ? html : TFL(html), { s: 18, c: C.line, ...io }] }
+  return cardScene(sl, items, [{ show: ["q"], cap: at(o.try || "Try it yourself first, then step on for the answer.", 0, 470, 1300) }, ...o.frames])
 }
 
 /* ══════════════ Rifat Sir · Chapter 4 Part 1: datapath and control ══════════════ */
@@ -2767,7 +2822,7 @@ scenes.clock = (sl) => {
   const caps = [
     at("<b>State elements</b> (registers) store values. <b>Combinational elements</b> compute: the output is a function of the inputs only.", 1010, 90, 360, [915, 175]),
     at("Between clock edges the logic transforms the data: new inputs ripple through to the output.", 330, 290, 480, [520, 240]),
-    at("Registers are <b>edge-triggered</b>: they take the new value only when Clk rises from 0 to 1.", 900, 300, 460, [X(800), 446]),
+    at("Registers are <b>edge-triggered</b>: they take the new value only when Clk rises from 0 to 1. A register with <b>write control</b> updates only when Write = 1 (the register file, PC-style state that must be kept).", 900, 300, 460, [X(800), 446]),
     at("So the logic's delay must fit inside one clock period: <b>the longest delay sets the clock period</b>. Drag the slider.", 1010, 40, 360, [X(600), 505]),
   ]
   return TL(sl, caps, (c) => {
@@ -3094,6 +3149,19 @@ const R_SET = ["pc", "im", "pc-im", "add4", "four", "pc-add4", "r-next", "regs",
 const ALL_IDS = [...LIB.DP.blocks.map((b) => b.id), ...LIB.DP.wires.map((w) => w.id), ...LIB.DP.notes.map((n) => "note:" + n.text), ...NEWIDS]
 const minus = (a, b) => a.filter((x) => !b.includes(x))
 const Q = (t) => `<b class="cy">?</b> ${t}`
+/* Control-bit cards. keys = the signals that exist on that datapath; extra overrides or adds (new signals marked in yellow). */
+const SIG = ["RegDst", "ALUSrc", "MemtoReg", "RegWrite", "MemRead", "MemWrite", "Branch", "Jump", "ALUOp"]
+const SIG_I = ["RegDst", "ALUSrc", "MemtoReg", "RegWrite", "MemRead", "MemWrite", "ALUOp"]
+const ctlOf = (k, title, o = {}) => {
+  const c = { ...LIB.CONTROL[k] }
+  c.ALUOp = c.ALUOp1 === "X" ? "XX" : `${c.ALUOp1}${c.ALUOp0}`
+  Object.assign(c, o.set || {})
+  const keys = [...(o.keys || SIG), ...Object.keys(o.set || {}).filter((x) => !(o.keys || SIG).includes(x))]
+  return { title, rows: keys.map((x) => [x, c[x], (o.nw || []).includes(x)]), note: o.note }
+}
+const FETCH = ["pc", "pc-im", "im", "im-bus", "bus", "f-op", "control", "pc-add4", "add4", "four", "pc4", "pcsrc", "pcsrc-jmux", "jmux", "next-pc"]
+const R_PATH = ["pc", "pc-im", "im", "im-bus", "bus", "f-rs", "f-rt", "regs", "rd1", "r-rd2", "alu", "f-funct", "aluctl", "aluctl-alu", "r-rd", "r-wb", "pc-add4", "add4", "four", "r-next", "f-op", "control"]
+const I_PATH = ["f-rs", "regs", "rd1", "f-imm", "signext", "se-out", "alusrc", "alusrc-alu", "alu", "aluctl", "aluctl-alu", "alu-bypass", "memtoreg", "wb", "f-rt-mux", "regdst", "regdst-wr"]
 
 /* A · R-type from nothing: ask what add needs, then wire only that. */
 scenes.buildR = (sl) => dpTour(sl, [
@@ -3107,7 +3175,8 @@ scenes.buildR = (sl) => dpTour(sl, [
   { draw: ["aluctl", "f-funct", "aluctl-alu"], hot: ["aluctl", "f-funct", "aluctl-alu"], on: "all", zoom: Z.exec, view: V, cap: (P) => R("Which operation? The <b>funct</b> field (bits 5–0) goes to ALU control: 32 → add, 34 → subtract, 42 → slt…", 30, P(675, 490)) },
   { hot: ["regs"], on: "all", zoom: "all", cap: (P) => R(Q("Step 5 · the result is written back. Which <b>register</b> number, and which <b>data</b>?"), 30, P(430, 420)) },
   { draw: ["r-rd", "r-wb"], hot: ["r-rd", "r-wb"], on: "all", zoom: "all", cap: (P) => R("Register: the <b>rd</b> field (15–11). Data: the ALU result, looped back to Write data.", 30, P(700, 545)) },
-  { draw: ["control", "f-op", "note:RegWrite", "note:ALUOp"], hot: ["control"], on: "all", zoom: "all", cap: (P) => R("Control decodes the opcode: RegWrite = 1 so the write happens, ALUOp = 10 for R-type.<br><br>Done. <b>No muxes</b>: so far every input has exactly one source. Next: add lw and sw.", 30, P(420, 190)) },
+  { draw: ["control", "f-op", "note:RegWrite", "note:ALUOp"], hot: ["control"], on: "all", zoom: "all", cap: (P) => R("Control decodes the opcode: RegWrite = 1 so the write happens, ALUOp = 10 for R-type.<br><br>Done. <b>No muxes</b>: so far every input has exactly one source.", 30, P(420, 190)) },
+  { on: "all", zoom: "all", hot: R_PATH, ctl: ctlOf("R-format", "add", { keys: ["RegWrite", "ALUOp"], note: "Only two control signals exist yet. ALU control: funct 32 → 0010 (add)." }), cap: R("<b>The whole picture</b>: add's path from PC to write-back, and its control bits.", 30) },
 ], { dp: DPB, absent: ALL_IDS })
 
 /* B · Add lw and sw: each conflict (two sources, one input) becomes a mux. */
@@ -3122,6 +3191,9 @@ scenes.buildI = (sl) => dpTour(sl, [
   { draw: ["x-rt"], hot: ["x-rt", "r-rd"], col: BAD, on: "all", zoom: Z.regs, view: V, cap: (P) => R(Q("Write register: add writes <b>rd</b> (bits 15–11), lw writes <b>rt</b> (20–16). Conflict."), 30, P(420, 410)) },
   { remove: ["r-rd", "x-rt"], draw: ["f-rd", "f-rt-mux", "regdst", "regdst-wr", "note:RegDst"], hot: ["regdst", "f-rt-mux", "f-rd"], on: "all", zoom: Z.regs, view: V, cap: (P) => R("<b>RegDst</b> mux: 0 = rt (lw), 1 = rd (R-type).", 30, P(390, 410)) },
   { draw: ["rd2-dmem", "note:MemWrite"], hot: ["rd2-dmem", "dmem"], on: "all", zoom: "all", cap: (P) => R("Add <b>sw</b>: Mem[R[rs] + offset] ← R[rt]. Read data 2 → memory Write data. Only one source wants that input, so <b>no mux</b>, just a wire.", 30, P(680, 460)) },
+  { on: "all", zoom: "all", hot: [...P_["R-format"], "r-next"], ctl: ctlOf("R-format", "add", { keys: SIG_I, nw: ["RegDst", "ALUSrc", "MemtoReg"], note: "Yellow: the new mux selects. add sets them to pick rd, the register and the ALU result." }), cap: R("<b>The whole picture</b> for add on the new datapath. Its muxes must now be set too.", 30) },
+  { on: "all", zoom: "all", hot: [...P_.lw, "r-next"], ctl: ctlOf("lw", "lw", { keys: SIG_I, note: "ALU control 0010: add base + offset." }), cap: R("<b>lw</b>, end to end: address, memory read, write-back to rt.", 30) },
+  { on: "all", zoom: "all", hot: [...P_.sw, "r-next"], ctl: ctlOf("sw", "sw", { keys: SIG_I, note: "X = don't care: nothing is written to a register, so RegDst and MemtoReg don't matter." }), cap: R("<b>sw</b>, end to end: address, and Read data 2 into memory.", 30) },
   { on: "all", zoom: "all", cap: R("R-type + lw + sw with three muxes. The exam recipe for “draw the datapath for add, lw, beq…”: draw the <b>union</b> of their paths, and put a mux wherever two sources meet.", 30) },
 ], { dp: DPB, absent: minus(ALL_IDS, R_SET) })
 
@@ -3137,6 +3209,8 @@ scenes.buildB = (sl) => dpTour(sl, [
   { draw: ["f-jump"], hot: ["f-jump"], on: "all", zoom: "all", cap: (P) => R("Now <b>j address</b>: PC ← PC+4[31–28] : address : 00. The 26-bit address field (bits 25–0) comes off the instruction bus.", 30, P(320, 30)) },
   { draw: ["shl2j", "pc4-top", "jaddr"], hot: ["shl2j", "pc4-top", "jaddr"], on: "all", zoom: "all", cap: (P) => R("Shift it left 2 (28 bits), put PC + 4's top 4 bits in front: the 32-bit jump address.", 30, P(600, 30)) },
   { remove: ["b-next1"], draw: ["jmux", "pcsrc-jmux", "next-pc", "note:Jump"], hot: ["jmux", "next-pc"], on: "all", zoom: "all", cap: (P) => R("Two candidates for the PC again: one more mux, selected by <b>Jump</b>.", 30, P(950, 50)) },
+  { on: "all", zoom: "all", hot: P_.beq, ctl: ctlOf("beq", "beq", { nw: ["Branch"], note: "ALUOp 01 → subtract. PCSrc = Branch AND Zero." }), cap: R("<b>beq</b>, end to end: compare in the ALU, target in the new adder, PCSrc picks.", 30) },
+  { on: "all", zoom: "all", hot: P_.j, ctl: ctlOf("j", "j", { nw: ["Jump"], note: "Nothing is written and the ALU is unused: almost everything is X." }), cap: R("<b>j</b>, end to end: instruction bits straight to the PC.", 30) },
   { on: "all", zoom: "all", cap: R("The full datapath. To add any instruction X:<br>1 · write X's register transfer<br>2 · find the existing path<br>3 · add only what's missing<br>4 · mux where sources meet<br>5 · name new control signals", 30) },
 ], { dp: DPB, absent: [...NEXT_IDS, ...minus(NEWIDS, ["r-next", "b-next1"]), "b-next1"] })
 
@@ -3148,41 +3222,105 @@ const CUSTOM = {
     { hot: ["f-rs", "regs", "rd1"], on: "all", cap: (P) => R("Step 2: what exists? R[rs] is already read: <b>Read data 1</b>.", 30, P(580, 352)) },
     { hot: ["jmux", "next-pc"], on: "all", cap: (P) => R(Q("Step 3: it must reach the PC, but the PC's input already comes from the Jump mux. Two sources…"), 30, P(970, 40)) },
     { remove: ["next-pc"], draw: ["jr-in", "jr-rs", "jrmux", "jr-out", "n-jr"], hot: ["jrmux", "jr-rs", "jr-in", "jr-out"], on: "all", zoom: ["jmux", "jrmux", "pcsrc", "jr-in", "n-jr"], pad: 60, view: [0, 0, 1060, 590],  cap: (P) => R("Step 4: one more mux after the Jump mux; input 1 = Read data 1. New signal <b>JR</b>, decoded from funct = 8 (main control sees only opcode 0, like any R-type), and RegWrite must be forced to 0.", 30, P(1000, 60)) },
+    { overall: true, on: "all", zoom: "all", hot: ["pc", "pc-im", "im", "im-bus", "bus", "f-rs", "regs", "rd1", "jr-rs", "jrmux", "jr-out", "f-op", "control", "f-funct", "aluctl", "n-jr"], ctl: ctlOf("R-format", "jr", { set: { RegDst: "X", ALUSrc: "X", MemtoReg: "X", RegWrite: 0, ALUOp: "XX", Jump: "X", JR: 1 }, nw: ["JR", "RegWrite"], note: "JR is decoded from funct = 8; RegWrite is forced to 0." }), cap: R("<b>The whole picture</b>: jr from fetch to the new PC.", 30) },
   ],
   bne: [
     { on: "all", zoom: "all", cap: R("<b>bne rs, rt, offset</b> ('22-23, '18-19, '12-13): if R[rs] ≠ R[rt], PC ← PC + 4 + offset × 4.", 30) },
     { hot: ["rd1", "rd2", "alu", "zero", "se-shl", "shl2b", "shl-addb", "addb", "addb-pcsrc", "pcsrc"], on: "all", cap: (P) => R("Everything beq uses is reused: subtract, Zero, the target adder, the PCSrc mux.", 30, P(770, 190)) },
     { hot: ["zero", "and", "and-pcsrc"], on: "all", cap: (P) => R(Q("Only the <b>condition</b> differs: branch when Zero = <b>0</b>."), 30, P(800, 263)) },
     { remove: ["and-pcsrc"], draw: ["bn-z", "bn-not", "bn-n", "bn-c", "n-bne", "bn-and", "bn-a1", "bn-a2", "bn-or", "bn-out"], hot: ["bn-not", "bn-and", "bn-or"], on: "all", zoom: ["and", "bn-or", "bn-and", "bn-not", "pcsrc", "bn-z"], pad: 30, view: [0, 0, 1060, 590],  cap: (P) => R("PCSrc = (Branch · Zero) + (<b>BNE</b> · ¬Zero): a NOT, an AND and an OR, plus a new control signal BNE.<br><br>With only 2×1 muxes ('22-23): a mux picks Zero or ¬Zero (select = BNE) before the existing AND.", 30, P(900, 250)) },
+    { overall: true, on: "all", zoom: "all", hot: [...P_.beq.filter((x) => x !== "and-pcsrc"), "bn-z", "bn-not", "bn-n", "bn-c", "n-bne", "bn-and", "bn-a2", "bn-or", "bn-out"], ctl: ctlOf("beq", "bne", { set: { Branch: 0, BNE: 1 }, nw: ["BNE", "Branch"], note: "ALUOp 01 → subtract. PCSrc = Branch·Zero + BNE·¬Zero." }), cap: R("<b>The whole picture</b>: bne end to end.", 30) },
   ],
   jal: [
     { on: "all", zoom: "all", cap: R("<b>jal target</b> ('18-19, '12-13): R[31] ← PC + 4, then jump.", 30) },
     { hot: ["f-jump", "shl2j", "jaddr", "pc4-top", "jmux", "next-pc"], on: "all", cap: (P) => R("The jump half is exactly <b>j</b>: reuse it (Jump = 1).", 30, P(600, 30)) },
     { hot: ["regdst", "regs", "memtoreg", "wb"], on: "all", cap: (P) => R(Q("New: write PC + 4 into register 31. Write register needs a third choice (31); Write data needs a third choice (PC + 4)."), 30, P(430, 420)) },
     { remove: ["regdst", "memtoreg"], draw: ["jal-rd", "jal-31", "jal-mtr", "jal-pc4"], hot: ["jal-rd", "jal-mtr", "add4"], on: "all", cap: (P) => R("Widen RegDst and MemtoReg to <b>3-input muxes</b> (2-bit selects): RegDst = 2 → 31, MemtoReg = 2 → PC + 4 (from the PC adder). RegWrite = 1.", 30, P(930, 425)) },
+    { overall: true, on: "all", zoom: "all", hot: [...P_.j, "jal-rd", "jal-31", "regdst-wr", "regs", "jal-mtr", "jal-pc4", "wb"], ctl: ctlOf("j", "jal", { set: { RegDst: "10", MemtoReg: "10", RegWrite: 1 }, nw: ["RegDst", "MemtoReg", "RegWrite"], note: "RegDst 10 → register 31; MemtoReg 10 → PC + 4." }), cap: R("<b>The whole picture</b>: jal writes $ra and jumps in the same cycle.".replace("$", "&#36;"), 30) },
   ],
   addi: [
     { on: "all", zoom: "all", cap: R("<b>addi rt, rs, imm</b>: R[rt] ← R[rs] + sign-ext(imm).", 30) },
     { hot: ["f-rs", "regs", "rd1", "f-imm", "signext", "se-out", "alusrc", "alusrc-alu", "alu", "alu-bypass", "memtoreg", "wb", "f-rt-mux", "regdst", "regdst-wr"], on: "all", cap: (P) => R("lw's address calculation, then R-type's write-back: every piece exists. <b>No new hardware</b>.<br><br>Control: RegDst = 0, ALUSrc = 1, MemtoReg = 0, RegWrite = 1, MemRead = MemWrite = Branch = 0, ALUOp = 00 (add).", 30, P(680, 385)) },
+    { overall: true, on: "all", zoom: "all", hot: [...FETCH, ...I_PATH], ctl: ctlOf("lw", "addi", { set: { MemtoReg: 0, MemRead: 0 }, note: "Like lw, but no memory read and the ALU result is written. ALU control 0010." }), cap: R("<b>The whole picture</b>: addi end to end.", 30) },
   ],
   ori: [
     { on: "all", zoom: "all", cap: R("<b>ori rt, rs, imm</b> ('20-21 asks for its active path): R[rt] ← R[rs] | zero-ext(imm).", 30) },
     { hot: ["f-rs", "regs", "rd1", "f-imm", "signext", "se-out", "alusrc", "alusrc-alu", "alu", "alu-bypass", "memtoreg", "wb", "f-rt-mux", "regdst", "regdst-wr"], on: "all", cap: (P) => R("The same path as addi…", 30, P(680, 385)) },
     { draw: ["n-ext"], hot: ["signext", "aluctl"], on: "all", zoom: ["signext", "n-ext", "aluctl", "alusrc", "alu"], pad: 30, view: [0, 0, 1060, 590],  cap: (P) => R("…but the immediate is <b>zero</b>-extended, and the ALU must OR. Make the extender selectable (<b>ExtOp</b>) and give ALUOp a new code so ALU control outputs OR (0001).", 30, P(466, 470)) },
+    { overall: true, on: "all", zoom: "all", hot: [...FETCH, ...I_PATH, "n-ext"], ctl: ctlOf("lw", "ori", { set: { MemtoReg: 0, MemRead: 0, ALUOp: "11", ExtOp: 1 }, nw: ["ALUOp", "ExtOp"], note: "ALUOp 11 → ALU control 0001 (OR); ExtOp 1 → zero-extend." }), cap: R("<b>The whole picture</b>: ori end to end.", 30) },
   ],
   slt: [
     { on: "all", zoom: "all", cap: R("<b>slt rd, rs, rt</b> ('18-19): R[rd] ← (R[rs] < R[rt]) ? 1 : 0.", 30) },
     { hot: P_["R-format"], on: "all", cap: (P) => R("R-format: exactly add's path. The ALU already has set-on-less-than (funct 42 → ALU control 0111). <b>No new hardware, no new control</b>: ALUOp = 10 like every R-type.", 30, P(680, 385)) },
+    { overall: true, on: "all", zoom: "all", hot: P_["R-format"], ctl: ctlOf("R-format", "slt", { note: "funct 42 → ALU control 0111 (set on less than)." }), cap: R("<b>The whole picture</b>: slt end to end.", 30) },
   ],
 }
 scenes.custom = (sl, api) => {
   const keys = Object.keys(CUSTOM)
   let pick = 0, inst
-  const make = () => { $(".h", sl).innerHTML = ""; inst = dpTour(sl, CUSTOM[keys[pick]].map((f) => (f.hot ? { ...f, on: [...f.hot, ...(f.draw || [])] } : f)), { dp: DPC, absent: NEWIDS }) }
+  const make = () => { $(".h", sl).innerHTML = ""; inst = dpTour(sl, CUSTOM[keys[pick]].map((f) => (f.hot && !f.overall ? { ...f, on: [...f.hot, ...(f.draw || [])] } : f)), { dp: DPC, absent: NEWIDS, ctlAt: [1075, 250, 300] }) }
   ctrlBtns(sl, keys, (i) => { pick = i; inst.tl.kill(); make(); api.refresh(0) })
   make()
   return { count: () => inst.count(), go: (k, a) => inst.go(k, a), leave: () => inst.leave() }
 }
+
+/* Lecture pages the first version skipped (p. 2): kept compact. */
+scenes.intro = (sl) => cardScene(sl, {
+  a: [0, 0, 1360, 120, "CPU time = <b class='cy'>instruction count</b> × <b class='cg'>CPI</b> × <b class='cb'>cycle time</b>", { plain: true, s: 36 }],
+  b: [0, 150, 660, 150, "<b class='cy'>Instruction count</b><div class='tiny dim'>set by the ISA and the compiler</div>", { c: C.y }],
+  c: [700, 150, 660, 150, "<b class='cg'>CPI</b> and <b class='cb'>cycle time</b><div class='tiny dim'>set by the CPU hardware: this chapter</div>", { c: C.g }],
+  d: [0, 330, 1360, 110, "Subset used throughout: <b>lw, sw</b> · <b>add, sub, and, or, slt</b> · <b>beq, j</b> — first a simple single-cycle version, then a realistic pipelined one", { c: C.line, s: 22 }],
+}, [
+  { show: ["a"], cap: at("Why build the processor carefully: its design decides two of the three performance factors.", 0, 470, 1300) },
+  { show: ["b", "c"], cap: at("The ISA and compiler fix how many instructions run; the hardware fixes how long each takes.", 0, 470, 1300) },
+  { show: ["d"], cap: at("This small subset already shows most of the design: memory access, arithmetic and control transfer.", 0, 470, 1300) },
+])
+
+/* Past-paper questions, placed right after the topic they test. Answers follow the website's worked solutions. */
+const ctlRow = (k, n) => { const c = LIB.CONTROL[k]; return `<tr><td>${n}</td>${["RegDst", "Branch", "MemRead", "MemtoReg", "MemWrite", "ALUSrc", "RegWrite"].map((s) => `<td>${c[s]}</td>`).join("")}</tr>` }
+
+scenes.tfCtl = (sl) => tfScene(sl, {
+  src: "2019-20 Q8(a)", marks: 15, qh: 100,
+  q: "Figure 8a shows a single-cycle datapath for a subset of MIPS. For <b>add</b>, <b>sw</b> and <b>beq</b>, give the values (0/1) of RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite.",
+  items: {
+    t: [0, 125, 1360, 175, `<table class="ct" style="width:100%"><tr><th></th><th>RegDst</th><th>Branch</th><th>MemRead</th><th>MemtoReg</th><th>MemWrite</th><th>ALUSrc</th><th>RegWrite</th></tr>${ctlRow("R-format", "add")}${ctlRow("sw", "sw")}${ctlRow("beq", "beq")}</table>`, { plain: true }],
+    w: [0, 315, 1360, 135, "<b>add</b>: destination rd (RegDst 1), two register operands (ALUSrc 0), ALU result written (MemtoReg 0, RegWrite 1).<br><b>sw</b>: register + offset (ALUSrc 1), MemWrite 1, no register written, so RegDst and MemtoReg are X.<br><b>beq</b>: subtract two registers (ALUSrc 0), Branch 1, nothing written: X again.", { s: 18 }],
+  },
+  frames: [
+    { show: ["t"], cap: at("The main control table. X = don't care (writing 0 is also safe).", 0, 470, 1300) },
+    { show: ["w"], cap: at("The reasons, which is what earns the marks.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfPC = (sl) => tfScene(sl, {
+  src: "2023-24 Q8(a)", marks: 20, qh: 120,
+  q: "(i) Why is PC incremented by 4? (ii) How is the clock cycle length set in a single-cycle design? (iii) Why are the upper 4 bits of PC + 4 used in the jump address? (iv) “One physical memory can serve as both instruction and data memory in a single-cycle datapath”: agree or disagree?",
+  items: {
+    a: [0, 140, 670, 145, "<b>(i)</b> Memory is byte-addressed and every instruction is one 4-byte word, so the next instruction is at PC + 4."],
+    b: [690, 140, 670, 145, "<b>(ii)</b> Every instruction takes one cycle, so the cycle must fit the <b>longest path</b>: lw, 200 + 100 + 200 + 200 + 100 = 800 ps."],
+    c: [0, 300, 670, 150, "<b>(iii)</b> J-format has 26 address bits; word alignment adds 00 → 28 bits. The top 4 come from PC + 4: the jump stays in the same 256 MB region."],
+    d: [690, 300, 670, 150, "<b>(iv) Disagree.</b> A load/store fetches its instruction and accesses data in the <b>same</b> cycle; one single-ported memory can't do both (structural hazard)."],
+  },
+  frames: [
+    { show: ["a", "b"], cap: at("Two one-liners.", 0, 470, 1300) },
+    { show: ["c", "d"], cap: at("(iv) is why the single-cycle datapath has separate memories; a multicycle design can share one.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfMux = (sl) => tfScene(sl, {
+  src: "2022-23 Q3", marks: 15, qh: 100,
+  q: "A given incomplete single-cycle datapath has no PC logic. Add connections to support <b>beq, bneq, j</b> and <b>jr</b> using the minimum number of muxes. Only 2 × 1 muxes are allowed; naming control signals is enough.",
+  items: {
+    a: [0, 120, 440, 330, "<b>What each needs</b><br>beq: ALU subtracts; target = PC + 4 + offset × 4<br>bneq: same, taken when Zero = 0<br>j: (PC+4)[31–28] : addr : 00<br>jr: PC ← Read data 1"],
+    b: [460, 120, 440, 330, "<b>Add</b><br>PC, PC + 4 adder; shift-left-2 + branch adder<br><b>Mux 1</b> (PCSrc): PC+4 / target, PCSrc = Branch·Zero + BranchNE·Zero′<br><b>Mux 2</b> (Jump): mux 1 / jump address<br><b>Mux 3</b> (JumpReg): mux 2 / Read data 1"],
+    c: [920, 120, 440, 330, `<table class="ct" style="width:100%;font-size:18px"><tr><th></th><th>Br</th><th>BrNE</th><th>J</th><th>JR</th></tr><tr><td>beq</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>bneq</td><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>j</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>jr</td><td>0</td><td>0</td><td>X</td><td>1</td></tr></table><div class="tiny dim">RegWrite = MemWrite = 0 for all</div>`, { plain: true }],
+  },
+  frames: [
+    { show: ["a"], cap: at("Step 1: write what each instruction does.", 0, 470, 1300) },
+    { show: ["b"], cap: at("Three 2 × 1 muxes: one shared by both branches, one for j, one for jr. The “Custom instructions” slide draws bne and jr on the datapath.", 0, 470, 1300) },
+    { show: ["c"], cap: at("New control signals. jr is R-type (funct 8), so JumpReg is decoded from opcode and funct.", 0, 470, 1300) },
+  ],
+})
 
 
 /* ══════════════════════ Engine ══════════════════════ */
@@ -3263,7 +3401,7 @@ $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }
 
 addEventListener("keydown", (e) => {
-  const typing = e.target.matches?.("input[type=text], input:not([type]), textarea")
+  const typing = e.target.matches?.("input[type=text], input:not([type]), input[type=range], textarea")
   if (typing) { if (e.key === "Escape" || e.key === "Enter") e.target.blur(); return }
   if (e.target.matches?.("input[type=range]") && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) e.target.blur()
   if (menu.classList.contains("open")) { if (["Escape", "g", "G", "m", "M"].includes(e.key)) menu.classList.remove("open"); return }

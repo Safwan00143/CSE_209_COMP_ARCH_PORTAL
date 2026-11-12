@@ -186,6 +186,10 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
 .mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
 
+/* controls sit above the drawing layer and caption cards so they can be clicked and dragged */
+.ctrls { z-index: 12; }
+.ctrls input[type=range] { cursor: pointer; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -342,10 +346,24 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
-<section class="slide" data-scene="addr" data-title="Address spaces" data-sec="2 · System architecture" data-ref="GPUs · pp. 17–19" data-exam="some" data-examtxt="asked ’23-24">
+<section class="slide" data-scene="addr" data-title="Address spaces" data-sec="2 · System architecture" data-ref="GPUs · p. 17" data-exam="some" data-examtxt="asked ’23-24">
   <div class="kicker">2 · System architecture</div>
   <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’23-24</span></button><div class="exp"><div class="exr"><b>2023-24</b>How CPU and GPU access each other's memory</div></div></div>
   <h2>Reaching each other's memory</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="drivers" data-title="Multi-GPU, consoles, drivers" data-sec="2 · System architecture" data-ref="GPUs · pp. 18–19" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">2 · System architecture</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
+  <h2>Multi-GPU, consoles and drivers</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfSys" data-title="TF: Intel/AMD GPU connections" data-sec="2 · System architecture" data-ref="2023-24 Q4(a)" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
+  <div class="kicker">2 · System architecture</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>Intel/AMD GPU connections; memory access</div><div class="exr"><b>2021-22</b>CPU–GPU connection diagrams</div></div></div>
+  <h2>Past paper: Intel/AMD GPU connections</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -392,6 +410,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <h2>Blocks onto SMs</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfCuda" data-title="TF: kernel, grid, block mapping" data-sec="4 · CUDA" data-ref="2023-24 Q4(c)" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
+  <div class="kicker">4 · CUDA</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>Kernel, grid, block; mapping</div><div class="exr"><b>2021-22</b>Same</div></div></div>
+  <h2>Past paper: kernel, grid, block mapping</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
 <section class="slide" data-scene="memory" data-title="Memory levels and barriers" data-sec="4 · CUDA" data-ref="GPUs · pp. 32–34" data-exam="glance" data-examtxt="glance">
@@ -2495,9 +2520,20 @@ function Datapath(parent, o = {}) {
 /* ─────────── Generic datapath tour scene ───────────
    frames: [{ on, hot, col, zoom: ids|rect|"all", view, flows: [[ids, label]], tags: [[x,y,html]], cap: (P) => at(...) }]
    P(x, y) gives the host point of a datapath point after that frame's camera move, for caption pointers. */
+/** Control-bit card: { title, rows: [[signal, value, isNew]], note } → HTML in host coordinates. */
+function ctlPanel(K, c, at = [1075, 300, 300]) {
+  const v = (x) => (x === "X" ? '<span style="color:#6d737c">X</span>' : String(x).includes("1") ? `<b style="color:#ececec">${x}</b>` : `<span style="color:#9aa1aa">${x}</span>`)
+  const cells = c.rows.map(([k, x, nw]) => `<div style="display:flex;justify-content:space-between;padding:2px 8px;border-radius:6px;${nw ? "background:#2f2710;" : ""}"><span style="color:${nw ? C.y : "#a7aeb6"}">${k}</span>${v(x)}</div>`).join("")
+  const html = `<div style="width:${at[2]}px;text-align:left;background:#15181cf2;border:1.5px solid #3a3f47;border-radius:14px;padding:10px 12px;font-size:17px;line-height:1.35;font-family:Inter">
+    <div style="color:${C.b};font-weight:600;margin-bottom:6px">Control bits · ${c.title}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;font-variant-numeric:tabular-nums">${cells}</div>${c.note ? `<div style="color:#a7aeb6;font-size:15px;margin-top:7px">${c.note}</div>` : ""}</div>`
+  return K.html(at[0], at[1], at[2] + 4, 290, html, { j: "flex-start", s: 17 })
+}
 function dpTour(sl, frames, o = {}) {
   const svg = hostSvg(sl, o.h || 580), cam = Camera(svg)
   const dp = Datapath(cam.g, o.dp)
+  const HK = kit(svg)
+  let lastCtl = null
   const camStates = []
   const caps = frames.map((f, i) => () => {
     const st = camStates[i]
@@ -2510,6 +2546,8 @@ function dpTour(sl, frames, o = {}) {
     if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
+      if (lastCtl) { tl.to(lastCtl, { opacity: 0, duration: 0.3 }, p); lastCtl = null }
+      if (f.ctl) { const el = ctlPanel(HK, f.ctl, o.ctlAt); el.firstChild.style.alignItems = "flex-start"; tl.set(el, { opacity: 0 }, 0); tl.to(el, { opacity: 1, duration: 0.5 }, p + 0.3); lastCtl = el }
       if (f.remove) dp.remove(tl, f.remove, p)
       if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
@@ -2604,6 +2642,16 @@ const ctrlBtns = (sl, labels, onPick, sel = 0) => {
   bt.innerHTML = labels.map((l, i) => `<button class="btn${i === sel ? " sel" : ""}" data-i="${i}">${l}</button>`).join("")
   $$("button", bt).forEach((b) => (b.onclick = () => { $$("button", bt).forEach((x) => x.classList.toggle("sel", x === b)); onPick(+b.dataset.i) }))
   return bt
+}
+
+/* ─────────── Past-paper (TF) question slide: the question first, then the answer card by card ─────────── */
+const TFL = (h) => `<div style="text-align:left;width:100%">${h}</div>`
+const tfPre = (s) => `<pre class="mono" style="margin:4px 0;font-size:17px;line-height:1.4;text-align:left">${s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split("$").join("&#36;")}</pre>`
+function tfScene(sl, o) {
+  const head = `<div style="font-size:14px;letter-spacing:.14em;color:#e8b23a;font-weight:700;margin-bottom:6px">PAST PAPER · ${o.src}${o.marks ? " · " + o.marks + " marks" : ""}</div>`
+  const items = { q: [0, 0, 1360, o.qh || 120, TFL(head + o.q), { c: "#e8b23a", s: o.qs || 20 }] }
+  for (const [id, v] of Object.entries(o.items)) { const [x, y, w, h, html, io = {}] = v; items[id] = [x, y, w, h, io.plain ? html : TFL(html), { s: 18, c: C.line, ...io }] }
+  return cardScene(sl, items, [{ show: ["q"], cap: at(o.try || "Try it yourself first, then step on for the answer.", 0, 470, 1300) }, ...o.frames])
 }
 
 /* ══════════════ Rifat Sir · Graphics and Computing GPUs ══════════════ */
@@ -2984,9 +3032,9 @@ scenes.scale = (sl, api) => {
   const make = () => {
     $(".h", sl).innerHTML = ""
     const svg = hostSvg(sl, 530), K = kit(svg)
-    const blocks = [...Array(8)].map((_, i) => K.node(20 + i * 160, 0, 145, 56, `block ${i}`, { c: C.b, s: 18 }))
     const W = 1300 / nSM
-    const sms = [...Array(nSM)].map((_, s) => { K.node(20 + s * W, 120, W - 30, 260, "", { c: C.g }); K.text(30 + s * W, 145, "SM " + s, { s: 18, c: C.g }); return 20 + s * W })
+    const sms = [...Array(nSM)].map((_, s) => { K.node(20 + s * W, 120, W - 30, 272, "", { c: C.g }); K.text(30 + s * W, 145, "SM " + s, { s: 18, c: C.g }); return 20 + s * W })
+    const blocks = [...Array(8)].map((_, i) => K.node(20 + i * 160, 0, 145, 50, `block ${i}`, { c: C.b, s: 18 }))
     const rounds = 8 / nSM
     const tick = K.text(20, 100, "", { s: 22, c: C.y })
     inst = TL(sl, [
@@ -2999,7 +3047,7 @@ scenes.scale = (sl, api) => {
       blocks.forEach((b, i) => {
         const s = i % nSM, r = Math.floor(i / nSM)
         const p = 0.3 + r * 1.0
-        tl.to(b, { x: sms[s] - (20 + i * 160) + 20, y: 165 + (r % 3) * 66, duration: 0.6, ease: "power2.inOut" }, p)
+        tl.to(b, { x: sms[s] - (20 + i * 160) + 20, y: 160 + r * 56, duration: 0.6, ease: "power2.inOut" }, p)
         if (r) tl.to(blocks[i - nSM], { opacity: 0.35, duration: 0.3 }, p)
         tl.set(tick, { textContent: `round ${r + 1} of ${rounds}` }, p)
       })
@@ -3059,6 +3107,44 @@ scenes.wrap = (sl) => cardScene(sl, {
   { show: ["a", "b"], cap: at("What drives GPU design.", 0, 380, 1300) },
   { show: ["c", "d"], cap: at("GPGPU used the graphics API for computing; <b>GPU computing</b> (CUDA) programs the same hardware directly, in C/C++.", 0, 380, 1300) },
 ])
+
+/* Lecture pages the first version skipped (pp. 18–19): kept compact. */
+scenes.drivers = (sl) => cardScene(sl, {
+  a: [0, 0, 660, 190, "<b>Multi-GPU systems</b><div class='tiny dim'>Workstations and gaming PCs may run 2–4 GPUs in parallel, e.g. NVIDIA SLI (Scalable Link Interconnect).</div>", { c: C.g }],
+  b: [700, 0, 660, 190, "<b>Consoles</b> (PS3, Xbox 360)<div class='tiny dim'>PC-like, but with customised internal buses. Built for a 5+ year life at constant capability; re-implemented on newer silicon to cut cost.</div>", { c: C.b }],
+  c: [0, 220, 1360, 190, "<b>Interfaces and drivers</b><div class='tiny dim'>Applications use the GPU as a coprocessor through standard APIs (<b>OpenGL</b>, <b>Direct3D</b>). The API sends commands, programs and data through a graphics device driver optimised for that GPU. PCI-Express replaced the earlier AGP (Accelerated Graphics Port).</div>", { c: C.y }],
+}, [
+  { show: ["a", "b"], cap: at("Variations on the CPU + GPU system.", 0, 470, 1300) },
+  { show: ["c"], cap: at("How software reaches the GPU.", 0, 470, 1300, [680, 410]) },
+])
+
+/* Past-paper questions, placed right after the topic they test. */
+scenes.tfSys = (sl) => tfScene(sl, {
+  src: "2023-24 Q4(a) · also 2021-22", marks: 10, qh: 86,
+  q: "Show with block diagrams how contemporary PCs with Intel and AMD CPUs connect a separate GPU. How do the CPU and GPU access each other's memory?",
+  items: {
+    a: [0, 105, 670, 190, "<b>(a) Intel</b>: CPU → front-side bus → <b>North Bridge</b> (memory controller, DDR2 memory) → <b>x16 PCIe</b> → GPU with its own memory. South Bridge off the North Bridge."],
+    b: [690, 105, 670, 190, "<b>(b) AMD</b>: the <b>memory controller is on the CPU die</b>; HyperTransport to the <b>chipset</b>; GPU on x16 PCIe from the chipset, with its own memory. x16 PCIe: 16 GB/s (8 each way)."],
+    c: [0, 310, 1360, 130, "<b>Memory access</b>: several address spaces. The GPU uses virtual addresses through its own <b>MMU</b> (page tables managed by the OS; coherent or noncoherent PCIe per page). The CPU reaches GPU memory through the PCIe <b>aperture</b>. Both work, but much slower than local memory.", { s: 19 }],
+  },
+  frames: [
+    { show: ["a", "b"], cap: at("Draw the two diagrams from the “Where the GPU sits” slide.", 0, 470, 1300) },
+    { show: ["c"], cap: at("The second half of the question.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfCuda = (sl) => tfScene(sl, {
+  src: "2023-24 Q4(c) · also 2021-22", marks: 10, qh: 70,
+  q: "What are a kernel, a grid and a thread block in CUDA? How do they map to the SP cores and SMs of NVIDIA's unified GPU?",
+  items: {
+    a: [0, 90, 560, 340, "<b>Kernel</b>: a C function for one thread, run by many threads (SPMD).<br><b>Thread block</b>: threads that cooperate through shared memory and __syncthreads().<br><b>Grid</b>: all the independent blocks of one kernel launch; they share global memory."],
+    b: [580, 90, 780, 340, `<table class="ct" style="width:100%;font-size:18px"><tr><th>CUDA</th><th>hardware (GeForce 8800)</th></tr><tr><td>grid</td><td>the whole GPU: blocks spread over the SMs</td></tr><tr><td>block</td><td>one <b>SM</b>: its shared memory and barrier</td></tr><tr><td>thread</td><td>an <b>SP</b> core, multithreaded (96 threads each)</td></tr></table><div class="tiny dim" style="margin-top:8px">Independent blocks → the same program runs on 2 or 30 SMs: transparent scalability.</div>`],
+  },
+  frames: [
+    { show: ["a"], cap: at("The three definitions.", 0, 470, 1300) },
+    { show: ["b"], cap: at("The mapping, and why it scales.", 0, 470, 1300) },
+  ],
+})
 
 
 /* ══════════════════════ Engine ══════════════════════ */
@@ -3139,7 +3225,7 @@ $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }
 
 addEventListener("keydown", (e) => {
-  const typing = e.target.matches?.("input[type=text], input:not([type]), textarea")
+  const typing = e.target.matches?.("input[type=text], input:not([type]), input[type=range], textarea")
   if (typing) { if (e.key === "Escape" || e.key === "Enter") e.target.blur(); return }
   if (e.target.matches?.("input[type=range]") && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) e.target.blur()
   if (menu.classList.contains("open")) { if (["Escape", "g", "G", "m", "M"].includes(e.key)) menu.classList.remove("open"); return }

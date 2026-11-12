@@ -186,6 +186,10 @@ table.ct td.on { color: var(--blue); font-weight: 700; }
 .exk.core { color: #f4d35e; border-color: #e8b23a; background: #2f2710; } .exk.some { color: #cfd3d8; border-color: #59626d; } .exk.glance { color: #7d848d; border-color: #2c3138; }
 .mst { font-style: normal; color: #f4d35e; margin-left: 6px; }
 
+/* controls sit above the drawing layer and caption cards so they can be clicked and dragged */
+.ctrls { z-index: 12; }
+.ctrls input[type=range] { cursor: pointer; }
+
 </style>
 <style>
 /* Phone and tablet layer: a reading panel with the caption at a readable size, large buttons, swipe to step. */
@@ -342,6 +346,13 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfDisk" data-title="TF: three Cs and disk read time" data-sec="2 · Technology" data-ref="2017-18 Q3(a)" data-exam="core" data-examtxt="★ exam ’17-18 · ’12-13">
+  <div class="kicker">2 · Technology</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’17-18 · ’12-13</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2017-18</b>Three Cs; disk read time</div><div class="exr"><b>2012-13</b>Disk sector read time</div></div></div>
+  <h2>Past paper: three Cs and disk read time</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="direct" data-title="Direct-mapped placement" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 17–19" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23">
   <div class="kicker">3 · Cache basics</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23</span></button><div class="exp"><div class="exn">Needed for every cache trace question.</div><div class="exr"><b>2023-24</b>Direct-mapped trace</div><div class="exr"><b>2022-23</b>Direct-mapped and 2-way trace</div></div></div>
@@ -357,12 +368,26 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="tfTrace" data-title="TF: direct-mapped vs 2-way trace" data-sec="3 · Cache basics" data-ref="2022-23 Q2(a)" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23">
+  <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2022-23</b>Direct-mapped and 2-way trace</div><div class="exr"><b>2023-24</b>Direct-mapped trace</div></div></div>
+  <h2>Past paper: direct-mapped vs 2-way trace</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="split" data-title="Address subdivision (type an address)" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 26–27" data-exam="core" data-examtxt="★ exam ’22-23 · ’20-21 · ’19-20">
   <div class="kicker">3 · Cache basics</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’20-21 · ’19-20</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2022-23</b>Total bits: 8-way, 4K blocks</div><div class="exr"><b>2020-21</b>Address split; index of an address</div><div class="exr"><b>2019-20</b>Tag bits; total bits</div><div class="exr"><b>2018-19</b>Cache size and overhead</div><div class="exr"><b>2016-17</b>Address formats</div><div class="exr"><b>2011-12</b>Tag bits and total size</div></div></div>
   <h2>Tag, index, offset</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:900px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfBits" data-title="TF: total bits, 8-way cache" data-sec="3 · Cache basics" data-ref="2022-23 Q2(b)" data-exam="core" data-examtxt="★ exam ’22-23 · ’19-20 · ’11-12">
+  <div class="kicker">3 · Cache basics</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’22-23 · ’19-20 · ’11-12</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2022-23</b>Total bits, 8-way</div><div class="exr"><b>2019-20</b>Tag bits, 8-way</div><div class="exr"><b>2011-12</b>Tag bits and total size</div></div></div>
+  <h2>Past paper: total bits, 8-way cache</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
 <section class="slide" data-scene="blocksize" data-title="Block size; cache misses" data-sec="3 · Cache basics" data-ref="Ch. 5 · pp. 28–29" data-exam="some" data-examtxt="asked ’23-24">
@@ -402,6 +427,20 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="spectrum" data-title="How much associativity" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 40, 43" data-exam="some" data-examtxt="asked ’12-13">
+  <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’12-13</span></button><div class="exp"><div class="exr"><b>2012-13</b>Sets for 2/4/8-way caches</div></div></div>
+  <h2>Spectrum of associativity</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfAssoc" data-title="TF: misses in FA, 2-way, DM" data-sec="5 · Associativity" data-ref="2021-22 Q4(a)" data-exam="core" data-examtxt="★ exam ’21-22 · ’17-18 · ’15-16">
+  <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’21-22 · ’17-18 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2021-22</b>FA, 2-way, DM misses</div><div class="exr"><b>2017-18</b>Same</div><div class="exr"><b>2015-16</b>Same</div><div class="exr"><b>2011-12</b>Same</div></div></div>
+  <h2>Past paper: misses in FA, 2-way, DM</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="setlookup" data-title="Set-associative lookup" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 44–45" data-exam="some" data-examtxt="asked ’12-13 · ’11-12">
   <div class="kicker">5 · Associativity</div>
   <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’12-13 · ’11-12</span></button><div class="exp"><div class="exr"><b>2012-13</b>Sets for 2/4/8-way</div><div class="exr"><b>2011-12</b>DM, set-associative, fully associative</div></div></div>
@@ -413,6 +452,20 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="kicker">5 · Associativity</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+3</span></button><div class="exp"><div class="exr"><b>2023-24</b>Add L2, then L3</div><div class="exr"><b>2022-23</b>One level vs L2; L1+L2 vs L1+L2+L3</div><div class="exr"><b>2021-22</b>L2 then L3 speed-up</div><div class="exr"><b>2017-18</b>L2 then L3 speed-up</div><div class="exr"><b>2015-16</b>L2 speed-up</div><div class="exr"><b>2012-13</b>L1, + DM L2, + 8-way L2</div></div></div>
   <h2>Multilevel caches</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfML" data-title="TF: L2 and L3 speed-up" data-sec="5 · Associativity" data-ref="2023-24 Q2(a)" data-exam="core" data-examtxt="★ exam ’23-24 · ’22-23 · ’21-22">
+  <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’22-23 · ’21-22</span><span class="more">+1</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>L2 then L3</div><div class="exr"><b>2022-23</b>One level vs L2</div><div class="exr"><b>2021-22</b>L2 then L3</div><div class="exr"><b>2017-18</b>L2 then L3</div></div></div>
+  <h2>Past paper: L2 and L3 speed-up</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="system" data-title="Caches and the rest of the system" data-sec="5 · Associativity" data-ref="Ch. 5 · pp. 37, 50–51" data-exam="some" data-examtxt="asked ’22-23">
+  <div class="kicker">5 · Associativity</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’22-23</span></button><div class="exp"><div class="exr"><b>2022-23</b>Radix sort vs quicksort: instructions vs cycles</div></div></div>
+  <h2>Caches and the rest of the system</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -437,12 +490,33 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
+<section class="slide" data-scene="handlers" data-title="TLB miss and page fault handlers" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 65–67, 72" data-exam="core" data-examtxt="★ exam ’19-20 · ’13-14">
+  <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’19-20 · ’13-14</span></button><div class="exp"><div class="exr"><b>2019-20</b>How a TLB miss is handled</div><div class="exr"><b>2013-14</b>TLB miss procedure</div></div></div>
+  <h2>TLB misses, page faults, protection</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfTLB" data-title="TF: how a TLB miss is handled" data-sec="6 · Virtual memory" data-ref="2019-20 Q7(c)" data-exam="core" data-examtxt="★ exam ’19-20 · ’13-14">
+  <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’19-20 · ’13-14</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2019-20</b>How a TLB miss is handled</div><div class="exr"><b>2013-14</b>TLB miss procedure</div></div></div>
+  <h2>Past paper: how a TLB miss is handled</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
 <section class="slide" data-scene="flow" data-title="TLB and cache together (pick a case)" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 68–71" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22 · ’18-19">
   <div class="kicker">6 · Virtual memory</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’18-19</span><span class="more">+2</span></button><div class="exp"><div class="exr"><b>2023-24</b>TLB–cache flow for read and write</div><div class="exr"><b>2021-22</b>Which hit/miss combinations are possible</div><div class="exr"><b>2018-19</b>Read/write flowchart</div><div class="exr"><b>2017-18</b>TLB and cache for a write</div><div class="exr"><b>2015-16</b>Flowchart for read and write</div></div></div>
   <h2>TLB and cache interaction</h2>
   <div class="ctrls abs" style="left:110px;top:160px;width:1300px"></div>
   <div class="h abs" style="left:110px;top:220px;width:1380px;height:530px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="framework" data-title="One framework for the hierarchy" data-sec="6 · Virtual memory" data-ref="Ch. 5 · pp. 73–77" data-exam="some" data-examtxt="asked ’12-13 · ’11-12">
+  <div class="kicker">6 · Virtual memory</div>
+  <div class="exam ex-some"><button class="exb" type="button">Asked <span class="yrs">’12-13 · ’11-12</span></button><div class="exp"><div class="exr"><b>2011-12</b>DM, set-associative, fully associative</div><div class="exr"><b>2012-13</b>Write-back advantages</div></div></div>
+  <h2>The memory hierarchy: one framework</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
 <section class="slide" data-scene="threec" data-title="The three Cs" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 73–79" data-exam="some" data-examtxt="asked ’17-18 · ’12-13">
@@ -456,6 +530,20 @@ body.m-land #rd .n { flex: 0 0 auto; min-width: 54px; }
   <div class="kicker">7 · Wrap-up</div>
   <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22 · ’15-16</span><span class="more">+1</span></button><div class="exp"><div class="exr"><b>2023-24</b>Coherence problem; snooping example</div><div class="exr"><b>2021-22</b>Snooping example</div><div class="exr"><b>2015-16</b>Coherence methods</div><div class="exr"><b>2013-14</b>Three coherence conditions</div></div></div>
   <h2>Cache coherence in multicores</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="tfCoh" data-title="TF: coherence and snooping" data-sec="7 · Wrap-up" data-ref="2023-24 Q3(c)" data-exam="core" data-examtxt="★ exam ’23-24 · ’21-22">
+  <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-core"><button class="exb" type="button">★ Exam <span class="yrs">’23-24 · ’21-22</span></button><div class="exp"><div class="exn">A real past-paper question. Try it before stepping on.</div><div class="exr"><b>2023-24</b>Coherence problem; snooping</div><div class="exr"><b>2021-22</b>Snooping example</div></div></div>
+  <h2>Past paper: coherence and snooping</h2>
+  <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
+  <div class="cap"></div>
+</section>
+<section class="slide" data-scene="realmem" data-title="Consistency, real hierarchies, pitfalls" data-sec="7 · Wrap-up" data-ref="Ch. 5 · pp. 86–92" data-exam="glance" data-examtxt="glance">
+  <div class="kicker">7 · Wrap-up</div>
+  <div class="exam ex-glance"><button class="exb" type="button">Glance · not in past papers</button></div>
+  <h2>Consistency, real chips, pitfalls</h2>
   <div class="h abs" style="left:110px;top:170px;width:1380px;height:580px"></div>
   <div class="cap"></div>
 </section>
@@ -2553,9 +2641,20 @@ function Datapath(parent, o = {}) {
 /* ─────────── Generic datapath tour scene ───────────
    frames: [{ on, hot, col, zoom: ids|rect|"all", view, flows: [[ids, label]], tags: [[x,y,html]], cap: (P) => at(...) }]
    P(x, y) gives the host point of a datapath point after that frame's camera move, for caption pointers. */
+/** Control-bit card: { title, rows: [[signal, value, isNew]], note } → HTML in host coordinates. */
+function ctlPanel(K, c, at = [1075, 300, 300]) {
+  const v = (x) => (x === "X" ? '<span style="color:#6d737c">X</span>' : String(x).includes("1") ? `<b style="color:#ececec">${x}</b>` : `<span style="color:#9aa1aa">${x}</span>`)
+  const cells = c.rows.map(([k, x, nw]) => `<div style="display:flex;justify-content:space-between;padding:2px 8px;border-radius:6px;${nw ? "background:#2f2710;" : ""}"><span style="color:${nw ? C.y : "#a7aeb6"}">${k}</span>${v(x)}</div>`).join("")
+  const html = `<div style="width:${at[2]}px;text-align:left;background:#15181cf2;border:1.5px solid #3a3f47;border-radius:14px;padding:10px 12px;font-size:17px;line-height:1.35;font-family:Inter">
+    <div style="color:${C.b};font-weight:600;margin-bottom:6px">Control bits · ${c.title}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;font-variant-numeric:tabular-nums">${cells}</div>${c.note ? `<div style="color:#a7aeb6;font-size:15px;margin-top:7px">${c.note}</div>` : ""}</div>`
+  return K.html(at[0], at[1], at[2] + 4, 290, html, { j: "flex-start", s: 17 })
+}
 function dpTour(sl, frames, o = {}) {
   const svg = hostSvg(sl, o.h || 580), cam = Camera(svg)
   const dp = Datapath(cam.g, o.dp)
+  const HK = kit(svg)
+  let lastCtl = null
   const camStates = []
   const caps = frames.map((f, i) => () => {
     const st = camStates[i]
@@ -2568,6 +2667,8 @@ function dpTour(sl, frames, o = {}) {
     if (o.absent) dp.remove(tl, o.absent, 0)
     frames.forEach((f) => {
       const p = tl.duration()
+      if (lastCtl) { tl.to(lastCtl, { opacity: 0, duration: 0.3 }, p); lastCtl = null }
+      if (f.ctl) { const el = ctlPanel(HK, f.ctl, o.ctlAt); el.firstChild.style.alignItems = "flex-start"; tl.set(el, { opacity: 0 }, 0); tl.to(el, { opacity: 1, duration: 0.5 }, p + 0.3); lastCtl = el }
       if (f.remove) dp.remove(tl, f.remove, p)
       if (f.draw) dp.draw(tl, f.draw, { pos: p, d: f.d, stagger: f.stagger })
       if (f.on || f.hot) dp.state(tl, { on: f.on ?? "all", hot: f.hot, col: f.col, hide: f.hideRest }, p)
@@ -2662,6 +2763,16 @@ const ctrlBtns = (sl, labels, onPick, sel = 0) => {
   bt.innerHTML = labels.map((l, i) => `<button class="btn${i === sel ? " sel" : ""}" data-i="${i}">${l}</button>`).join("")
   $$("button", bt).forEach((b) => (b.onclick = () => { $$("button", bt).forEach((x) => x.classList.toggle("sel", x === b)); onPick(+b.dataset.i) }))
   return bt
+}
+
+/* ─────────── Past-paper (TF) question slide: the question first, then the answer card by card ─────────── */
+const TFL = (h) => `<div style="text-align:left;width:100%">${h}</div>`
+const tfPre = (s) => `<pre class="mono" style="margin:4px 0;font-size:17px;line-height:1.4;text-align:left">${s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").split("$").join("&#36;")}</pre>`
+function tfScene(sl, o) {
+  const head = `<div style="font-size:14px;letter-spacing:.14em;color:#e8b23a;font-weight:700;margin-bottom:6px">PAST PAPER · ${o.src}${o.marks ? " · " + o.marks + " marks" : ""}</div>`
+  const items = { q: [0, 0, 1360, o.qh || 120, TFL(head + o.q), { c: "#e8b23a", s: o.qs || 20 }] }
+  for (const [id, v] of Object.entries(o.items)) { const [x, y, w, h, html, io = {}] = v; items[id] = [x, y, w, h, io.plain ? html : TFL(html), { s: 18, c: C.line, ...io }] }
+  return cardScene(sl, items, [{ show: ["q"], cap: at(o.try || "Try it yourself first, then step on for the answer.", 0, 470, 1300) }, ...o.frames])
 }
 
 /* ══════════════ Rifat Sir · Chapter 5: memory hierarchy ══════════════ */
@@ -2775,7 +2886,7 @@ scenes.disk = (sl) => {
   draw()
   return TL(sl, [
     at("Accessing a sector: queue (0 for an idle disk) + <b>seek</b> + <b>rotational latency</b> (half a turn on average) + <b>transfer</b> + controller overhead.", 760, 0, 600),
-    at("The slide's example: 512 B, 15,000 rpm, 4 ms seek, 100 MB/s, 0.2 ms controller: <b>6.2 ms</b>, almost all mechanical. Real seeks are often shorter (locality, OS scheduling): with 1 ms, 3.2 ms. Drag the sliders.", 760, 0, 600),
+    at("The slide's example: 512 B, 15,000 rpm, 4 ms seek, 100 MB/s, 0.2 ms controller: <b>6.2 ms</b>, almost all mechanical. Real seeks are often shorter (locality, OS scheduling): with 1 ms, 3.2 ms. Drives also cache and prefetch sectors and present logical sectors (SCSI, ATA, SATA). Drag the sliders.", 760, 0, 600),
   ], (c) => { c.tl.from([...bars.map((b) => b.r), ...bars.map((b) => b.t)], { opacity: 0, stagger: 0.1 }); c.F(); c.tl.from(tot, { opacity: 0 }); c.F() })
 }
 
@@ -3289,6 +3400,197 @@ scenes.wrap = (sl) => cardScene(sl, {
   { show: ["d"], cap: at("Two pitfalls from the slides.", 0, 500, 1300) },
 ])
 
+/* Lecture pages the first version skipped (pp. 37, 40, 43, 50–51, 65–67, 72–77, 86–92): kept compact. */
+
+/* pp. 40, 43 · One 8-entry cache, rearranged: 1-way → 8-way, with the miss rates beside it. */
+scenes.spectrum = (sl) => {
+  const svg = hostSvg(sl), K = kit(svg)
+  const boxes = [...Array(8)].map((_, i) => K.node(120, i * 50, 80, 42, "tag|data", { c: C.b, r: 6, s: 13 }))
+  const setL = [...Array(8)].map((_, j) => K.text(10, j * 50 + 27, "Set " + j, { s: 16, c: C.d }))
+  const rates = [["1-way", 10.3], ["2-way", 8.6], ["4-way", 8.3], ["8-way", 8.1]]
+  K.text(900, 14, "miss rate · 64 KB D-cache, 16-word blocks, SPEC2000", { s: 15, c: C.d })
+  const bars = rates.map(([n, r], i) => [K.text(900, 60 + i * 60, n, { s: 18 }), K.box(980, 40 + i * 60, r * 30, 30, { r: 5, fill: C.y + "33", c: C.y }), K.text(990 + r * 30, 62 + i * 60, r + "%", { s: 18, c: C.y })])
+  const caps = [], lay = (tl, w) => {
+    const s = 8 / w, p = tl.duration()
+    boxes.forEach((b, i) => tl.to(b, { x: (i % w) * 90, y: Math.floor(i / w) * 50 - i * 50, duration: 0.8, ease: "power2.inOut" }, p))
+    setL.forEach((t, j) => tl.to(t, { opacity: j < s ? 1 : 0, duration: 0.4 }, p))
+  }
+  const txt = ["<b>1-way</b> (direct mapped): 8 sets of one entry. One place per block; one tag comparison.", "<b>2-way</b>: 4 sets of two. Two comparators.", "<b>4-way</b>: 2 sets of four.", "<b>8-way</b> = <b>fully associative</b>: one set, any place. Eight comparators. Each step cuts the miss rate less: <b>diminishing returns</b>."]
+  txt.forEach((t, i) => caps.push(at(t, 0, 440, 1300, [990, 55 + i * 60])))
+  return TL(sl, caps, (c) => {
+    const tl = c.tl
+    tl.set(bars.flat(), { opacity: 0.35 })
+    tl.from([...boxes, ...setL], { opacity: 0, stagger: 0.04 })
+    tl.to(bars[0], { opacity: 1, duration: 0.3 })
+    c.F()
+    ;[2, 4, 8].forEach((w, k) => { const p = tl.duration(); lay(tl, w); tl.to(bars[k], { opacity: 0.35, duration: 0.3 }, p).to(bars[k + 1], { opacity: 1, duration: 0.3 }, p); c.F() })
+  })
+}
+
+/* pp. 65–67, 72 · What happens on a TLB miss and a page fault. */
+scenes.handlers = (sl) => cardScene(sl, {
+  a: [0, 0, 660, 150, "<b>TLB miss, page in memory</b><div class='tiny dim'>Load the PTE from memory into the TLB and retry. In hardware, or in software via a special exception with an optimised handler.</div>", { c: C.y }],
+  b: [700, 0, 660, 150, "<b>TLB miss, page not in memory</b><div class='tiny dim'>A page fault: the OS fetches the page, updates the page table, then restarts the faulting instruction.</div>", { c: C.r }],
+  s1: [0, 180, 440, 70, "1 · use the faulting address to find the PTE", { c: C.line, s: 19 }],
+  s2: [460, 180, 440, 70, "2 · locate the page on disk", { c: C.line, s: 19 }],
+  s3: [920, 180, 440, 70, "3 · choose a page to replace", { c: C.line, s: 19 }],
+  s4: [0, 270, 440, 70, "4 · if it is dirty, write it to disk first", { c: C.line, s: 19 }],
+  s5: [460, 270, 440, 70, "5 · read the page in, update the page table", { c: C.line, s: 19 }],
+  s6: [920, 270, 440, 70, "6 · make the process runnable; restart", { c: C.line, s: 19 }],
+  p: [0, 370, 1360, 80, "<b>Protection</b>: tasks may share parts of their address space. Page tables and other state are accessible only in privileged <b>supervisor (kernel) mode</b>, through privileged instructions.", { c: C.p, s: 19 }],
+}, [
+  { show: ["a"], hot: ["a"], cap: at("A TLB miss has two cases. The common one: the translation exists, just not in the TLB.", 0, 470, 1300, [330, 150]) },
+  { show: ["b"], cool: ["a"], hot: ["b"], cap: at("The rare one: the page itself is on disk.", 0, 470, 1300, [1030, 150]) },
+  { show: ["s1", "s2", "s3"], cool: ["b"], cap: at("The <b>page fault handler</b>, step by step…", 0, 470, 1300) },
+  { show: ["s4", "s5", "s6"], cap: at("…write-back of a dirty victim first, because disk writes are slow, which is also why virtual memory is always write-back.", 0, 470, 1300) },
+  { show: ["p"], cap: at("The OS needs hardware help to keep these tables safe from user programs.", 0, 470, 1300, [680, 410]) },
+])
+
+/* pp. 73–77 · One framework for every level of the hierarchy. */
+scenes.framework = (sl) => cardScene(sl, {
+  a: [0, 0, 330, 170, "<b>Placement</b><div class='tiny dim'>1-way: one choice · n-way: n choices in a set · fully associative: anywhere</div>", { c: C.b }],
+  b: [343, 0, 330, 170, "<b>Finding</b><div class='tiny dim'>index, then compare tags; virtual memory uses a full lookup table</div>", { c: C.y }],
+  c: [686, 0, 330, 170, "<b>Replacement</b><div class='tiny dim'>LRU (costly at high associativity), random (close to LRU); VM: approximate LRU</div>", { c: C.g }],
+  d: [1029, 0, 330, 170, "<b>Write policy</b><div class='tiny dim'>write-through (needs a write buffer) or write-back (more state); VM: write-back only</div>", { c: C.r }],
+  t: [0, 200, 1360, 230, `<table class="ct" style="width:100%"><tr><th>Associativity</th><th>Location method</th><th>Tag comparisons</th></tr><tr><td>Direct mapped</td><td>index</td><td>1</td></tr><tr><td>n-way set associative</td><td>set index, then search the set</td><td>n</td></tr><tr><td>Fully associative</td><td>search all entries</td><td>#entries</td></tr><tr><td></td><td>full lookup table (VM)</td><td>0</td></tr></table>`, { plain: true }],
+}, [
+  { show: ["a", "b", "c", "d"], cap: at("Caches, TLBs and virtual memory all answer the same four questions.", 0, 470, 1300) },
+  { show: ["t"], cap: at("Finding a block: hardware caches limit comparisons to keep cost down; virtual memory's page table makes full associativity possible with no comparisons.", 0, 470, 1300) },
+])
+
+/* pp. 37, 50–51 · Caches and the rest of the system. */
+scenes.system = (sl) => cardScene(sl, {
+  a: [0, 0, 440, 230, "<b>Faster CPU, same memory</b><div class='tiny dim'>Lower base CPI or a higher clock rate: memory stalls become a bigger share of the time. Cache behaviour can't be ignored.</div>", { c: C.y }],
+  b: [460, 0, 440, 230, "<b>Out-of-order CPUs</b><div class='tiny dim'>keep executing during a miss: pending stores wait in the load/store unit, dependent instructions in reservation stations. Hard to analyse: simulate.</div>", { c: C.b }],
+  c: [920, 0, 440, 230, "<b>Software</b><div class='tiny dim'>Misses depend on the access pattern: the algorithm and compiler. Radix sort runs fewer instructions than quicksort but can take more cycles, because of cache misses.</div>", { c: C.g }],
+}, [
+  { show: ["a"], cap: at("The CPI example showed it: with base CPI 1 instead of 2, stalls grew from 63% to 77% of the time.", 0, 300, 1300, [220, 230]) },
+  { show: ["b"], cap: at("With dynamic scheduling, a miss doesn't simply freeze the pipeline.", 0, 300, 1300, [680, 230]) },
+  { show: ["c"], cap: at("Instruction count alone is a poor guide: '22-23 asked exactly this about radix sort vs quicksort.", 0, 300, 1300, [1140, 230]) },
+])
+
+/* pp. 86–92 · Consistency, real hierarchies, pitfalls. */
+scenes.realmem = (sl) => cardScene(sl, {
+  a: [0, 0, 660, 190, "<b>Memory consistency</b><div class='tiny dim'>When does a write become visible? Assume a write completes only when all processors have seen it, and writes aren't reordered: if P writes X then Y, anyone who sees the new Y also sees the new X.</div>", { c: C.b }],
+  b: [700, 0, 660, 190, "<b>Cortex-A8 and Core i7</b><div class='tiny dim'>Multilevel on-chip caches and 2-level TLBs. Multi-banked caches allow several accesses per cycle. i7: requested word first, non-blocking caches, prefetching.</div>", { c: C.t }],
+  c: [0, 220, 1360, 210, "<b>Pitfalls</b><div class='tiny dim' style='line-height:1.55'>Byte vs word addressing: in a 32-byte direct-mapped cache with 4-byte blocks, byte 36 → block 1 but word 36 → block 4.<br>Ignoring memory effects in code: large strides (columns vs rows) give poor locality.<br>Shared L2/L3 with less associativity than cores → conflict misses. Using AMAT for out-of-order CPUs → simulate instead.<br>Extending the address range with segments (80286). A VMM on an ISA not designed for virtualisation.</div>", { c: C.r }],
+}, [
+  { show: ["a"], cap: at("Coherence is about one location; consistency is about the order writes to <b>different</b> locations are seen.", 0, 470, 1300, [330, 190]) },
+  { show: ["b"], cap: at("Real hierarchies add banks and non-blocking caches to serve multiple issue.", 0, 470, 1300, [1030, 190]) },
+  { show: ["c"], cap: at("The chapter's pitfalls. The byte-vs-word one is the classic trap in cache calculations.", 0, 470, 1300) },
+])
+
+/* Past-paper questions, placed right after the topic they test. Numbers come from the website's checked simulators. */
+const tblTrace = (cfg, seq, w) => {
+  const r = LIB.simulateCache(cfg, seq)
+  const rows = r.accesses.map((a) => `<tr><td>${a.addr}</td><td>${a.index}</td><td style="color:${a.hit ? C.g : C.r}">${a.hit ? "hit" : "miss"}</td><td class="mono" style="font-size:15px">${a.after.map((s) => s.map((l) => (l.valid ? l.block : "–")).join(",")).join(" | ")}</td></tr>`).join("")
+  return { r, html: `<table class="ct" style="width:100%;font-size:16px"><tr><th>block</th><th>${cfg.ways > 1 ? "set" : "index"}</th><th></th><th>contents after</th></tr>${rows}</table>` }
+}
+
+scenes.tfDisk = (sl) => tfScene(sl, {
+  src: "2017-18 Q3(a)", marks: 10, qh: 110,
+  q: "Name the three sources of cache misses. A disk: 1 MB sectors, 10,000 rpm, 5 ms average seek, 100 MB/s, 0.5 ms controller overhead. Average read time? How much better with a 2 ms seek?",
+  items: {
+    a: [0, 130, 440, 160, "<b>Three Cs</b>: compulsory (first access), capacity (cache too small), conflict (blocks share a set)."],
+    b: [460, 130, 900, 160, "<b>Read time</b> = seek + ½ rotation + transfer + controller<br>= 5 + 3 + 10 + 0.5 = <b>18.5 ms</b>  (½ rotation = 0.5 / (10000/60) s = 3 ms; 1 MB / 100 MB/s = 10 ms)"],
+    c: [0, 310, 1360, 120, "With a 2 ms seek: 2 + 3 + 10 + 0.5 = <b>15.5 ms</b>, 18.5 / 15.5 ≈ <b>1.19×</b> faster. Small, because the 1 MB transfer dominates.", { s: 19 }],
+  },
+  frames: [
+    { show: ["a"], cap: at("The definitions part.", 0, 470, 1300) },
+    { show: ["b"], cap: at("Rotational latency is half a rotation on average.", 0, 470, 1300) },
+    { show: ["c"], cap: at("Explain why the gain is small: that is the second mark.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfTrace = (sl) => {
+  const seq = [32, 36, 35, 32, 48, 32, 51, 35], dm = tblTrace({ sets: 8, ways: 1 }, seq), sa = tblTrace({ sets: 4, ways: 2 }, seq)
+  return tfScene(sl, {
+    src: "2022-23 Q2(a)", marks: 20, qh: 80,
+    q: "Two 8-block caches, direct-mapped and 2-way set-associative (LRU). Trace block addresses 32, 36, 35, 32, 48, 32, 51, 35 and give each hit ratio.",
+    items: {
+      a: [0, 95, 670, 355, `<b>Direct mapped</b> (index = block mod 8)${dm.html}`, { s: 16 }],
+      b: [690, 95, 670, 355, `<b>2-way</b> (set = block mod 4)${sa.html}`, { s: 16 }],
+    },
+    frames: [
+      { show: ["a"], cap: at(`Direct mapped: ${dm.r.hits}/8 = ${dm.r.hits / 8}. 32 and 48 fight over index 0, 35 and 51 over index 3.`, 0, 470, 1300) },
+      { show: ["b"], cap: at(`2-way: ${sa.r.hits}/8 = ${sa.r.hits / 8}. When 48 arrives, 36 is the LRU block in set 0, so 36 goes.`, 0, 470, 1300) },
+    ],
+  })
+}
+
+scenes.tfBits = (sl) => {
+  const t = LIB.totalBits({ addressBits: 32, dataBytes: 4096 * 16, blockBytes: 16, ways: 8 })
+  return tfScene(sl, {
+    src: "2022-23 Q2(b) · similar 2019-20, 2011-12", marks: 15, qh: 80,
+    q: "Total bits for an <b>8-way</b> set-associative cache of <b>4K blocks</b>, 4-word (16-byte) blocks, 32-bit addresses. Show the set and tag calculations.",
+    items: {
+      a: [0, 100, 440, 200, `<b>Offset</b> = log₂16 = 4 bits<br><b>Sets</b> = 4096 / 8 = ${t.sets}<br><b>Index</b> = log₂${t.sets} = ${t.split.index} bits`],
+      b: [460, 100, 440, 200, `<b>Tag</b> = 32 − ${t.split.index} − 4 = <b>${t.split.tag}</b> bits<br><b>Per block</b> = 128 data + ${t.split.tag} tag + 1 valid = ${t.perBlock} bits`],
+      c: [920, 100, 440, 200, `<b>Total</b> = 4096 × ${t.perBlock}<br>= <b>${t.total.toLocaleString("en-US")} bits</b><br>= ${t.total / 1024} Kibits`],
+    },
+    frames: [
+      { show: ["a"], cap: at("Sets, not blocks, decide the index.", 0, 470, 1300) },
+      { show: ["b", "c"], cap: at("Don't forget the valid bit. Higher associativity → fewer sets → a longer tag.", 0, 470, 1300) },
+    ],
+  })
+}
+
+scenes.tfML = (sl) => tfScene(sl, {
+  src: "2023-24 Q2(a) · similar 2022-23, 2021-22, 2017-18", marks: 10, qh: 110,
+  q: "Base CPI 1.0, 4 GHz, main memory 200 ns, L1 miss rate 5% per instruction. (i) Speed-up from an L2 (10 ns) that cuts misses to memory to 2%? (ii) Then an L3 (40 ns) cutting them to 1%?",
+  items: {
+    a: [0, 130, 440, 200, "<b>Penalties</b> (0.25 ns cycle)<br>memory 800 cycles · L2 40 · L3 160<br>L1 only: CPI = 1 + 0.05 × 800 = <b>41</b>"],
+    b: [460, 130, 440, 200, "<b>(i) + L2</b><br>CPI = 1 + 0.05 × 40 + 0.02 × 800 = <b>19</b><br>speed-up = 41 / 19 ≈ <b>2.16</b>"],
+    c: [920, 130, 440, 200, "<b>(ii) + L3</b><br>CPI = 1 + 2 + 0.02 × 160 + 0.01 × 800 = <b>14.2</b><br>19 / 14.2 ≈ <b>1.34</b> (2.89 over L1 only)"],
+  },
+  frames: [
+    { show: ["a"], cap: at("Convert every time into cycles first.", 0, 470, 1300) },
+    { show: ["b", "c"], cap: at("Each level's miss rate says who goes on to the next level.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfAssoc = (sl) => {
+  const seq = [1, 3, 2, 4, 5, 1, 3, 1, 3, 5, 3, 2], cf = [["Fully associative", { sets: 1, ways: 4 }], ["2-way", { sets: 2, ways: 2 }], ["Direct mapped", { sets: 4, ways: 1 }]]
+  const rs = cf.map(([, c]) => LIB.simulateCache(c, seq))
+  const row = (i) => `<b>${cf[i][0]}</b>: ${rs[i].accesses.map((a) => `<span style="color:${a.hit ? C.g : C.r}">${a.hit ? "H" : "M"}</span>`).join(" ")} → <b>${rs[i].misses} misses</b>`
+  return tfScene(sl, {
+    src: "2021-22 Q4(a) · similar 2017-18, 2015-16, 2011-12", marks: 15, qh: 90,
+    q: "Three caches of four one-word blocks, LRU: fully associative, 2-way, direct-mapped. Number of misses for 1, 3, 2, 4, 5, 1, 3, 1, 3, 5, 3, 2?",
+    items: { a: [0, 115, 1360, 90, row(0)], b: [0, 220, 1360, 90, row(1)], c: [0, 325, 1360, 90, row(2)] },
+    frames: [
+      { show: ["a"], cap: at("Five different blocks into four places: LRU keeps evicting the block needed next.", 0, 470, 1300) },
+      { show: ["b"], cap: at("Odd blocks 1, 3, 5 share set 1, which has two places.", 0, 470, 1300) },
+      { show: ["c"], cap: at("Only 1 and 5 collide. More associativity is not always better.", 0, 470, 1300) },
+    ],
+  })
+}
+
+scenes.tfTLB = (sl) => tfScene(sl, {
+  src: "2019-20 Q7(c) · also 2013-14", marks: 10, qh: 70,
+  q: "Explain how a TLB miss is handled.",
+  items: {
+    a: [0, 90, 670, 300, "<b>1 · Page in memory</b> (only the translation is missing)<br>Read the PTE from the page table (hardware or a software handler). Valid = 1: load it into the TLB, writing back the replaced entry's dirty and reference bits. Retry: now a TLB hit. Fast and frequent."],
+    b: [690, 90, 670, 300, "<b>2 · Page not in memory</b> (valid = 0): a <b>page fault</b><br>The OS finds the page on disk, picks a victim (approximate LRU; write it back if dirty), reads the page in (millions of cycles; another process runs meanwhile), updates the page table and TLB, and restarts the faulting instruction."],
+  },
+  frames: [
+    { show: ["a"], cap: at("The common case.", 0, 470, 1300) },
+    { show: ["b"], cap: at("The rare, expensive case. Draw the TLB flowchart if marks allow.", 0, 470, 1300) },
+  ],
+})
+
+scenes.tfCoh = (sl) => tfScene(sl, {
+  src: "2023-24 Q3(c) · also 2021-22", marks: 10, qh: 70,
+  q: "What is the cache coherence problem? Explain how a snooping protocol solves it, with an example.",
+  items: {
+    a: [0, 90, 560, 340, `<b>Problem</b>: private caches hold copies of the same address; after one core writes, others read stale values.<table class="ct" style="width:100%;font-size:16px;margin-top:6px"><tr><th>event</th><th>A</th><th>B</th><th>mem</th></tr><tr><td>A reads X</td><td>0</td><td></td><td>0</td></tr><tr><td>B reads X</td><td>0</td><td>0</td><td>0</td></tr><tr><td>A writes 1</td><td>1</td><td style="color:${C.r}">0</td><td>1</td></tr></table>`],
+    b: [580, 90, 780, 340, `<b>Snooping, write-invalidate</b>: every cache watches the bus. A writer broadcasts an <b>invalidate</b>; other copies become invalid, so their next read misses and gets the new value.<table class="ct" style="width:100%;font-size:16px;margin-top:6px"><tr><th>CPU</th><th>bus</th><th>A</th><th>B</th><th>mem</th></tr><tr><td>A writes 1</td><td>invalidate X</td><td>1</td><td>inv.</td><td>0</td></tr><tr><td>B reads X</td><td>miss for X</td><td>1</td><td>1</td><td>1</td></tr></table>`],
+  },
+  frames: [
+    { show: ["a"], cap: at("Show the problem with a small table.", 0, 470, 1300) },
+    { show: ["b"], cap: at("Then the same example with snooping. (Large systems use directories instead.)", 0, 470, 1300) },
+  ],
+})
+
 
 /* ══════════════════════ Engine ══════════════════════ */
 const slides = $$(".slide")
@@ -3368,7 +3670,7 @@ $("#menuBtn").onclick = toggleMenu
 menu.onclick = (e) => { if (e.target === menu) menu.classList.remove("open") }
 
 addEventListener("keydown", (e) => {
-  const typing = e.target.matches?.("input[type=text], input:not([type]), textarea")
+  const typing = e.target.matches?.("input[type=text], input:not([type]), input[type=range], textarea")
   if (typing) { if (e.key === "Escape" || e.key === "Enter") e.target.blur(); return }
   if (e.target.matches?.("input[type=range]") && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) e.target.blur()
   if (menu.classList.contains("open")) { if (["Escape", "g", "G", "m", "M"].includes(e.key)) menu.classList.remove("open"); return }
